@@ -12,7 +12,7 @@ public class GateKeeperClient extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GateKeeperClient.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("GateKeeper - Guard of Security");
         stage.setScene(scene);
         stage.show();
     }
