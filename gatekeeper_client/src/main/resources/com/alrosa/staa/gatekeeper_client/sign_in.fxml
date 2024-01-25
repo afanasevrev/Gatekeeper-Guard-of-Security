@@ -8,17 +8,17 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="350.0" prefWidth="400.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane prefHeight="350.0" prefWidth="400.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
-      <TextField layoutX="30.0" layoutY="202.0" prefHeight="25.0" prefWidth="195.0" promptText="Логин" />
-      <PasswordField layoutX="30.0" layoutY="251.0" prefHeight="25.0" prefWidth="195.0" promptText="Пароль" />
-      <Button layoutX="30.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" styleClass="button_sign_in" stylesheets="@css/styles.css" text="Войти" />
-      <Button layoutX="160.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="button_cancel" stylesheets="@css/styles.css" text="Отмена" />
+      <TextField layoutX="30.0" layoutY="202.0" prefHeight="25.0" prefWidth="195.0" promptText="Логин" styleClass="custom-textField" />
+      <PasswordField layoutX="30.0" layoutY="251.0" prefHeight="25.0" prefWidth="195.0" promptText="Пароль" styleClass="custom-textField" />
+      <Button layoutX="30.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" styleClass="button_sign_in" text="Войти" />
+      <Button layoutX="160.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" styleClass="button_cancel"  text="Отмена" />
       <ImageView fitHeight="200.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@logo/logo_short.png" />
          </image></ImageView>
-      <Button layoutX="240.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" styleClass="button_available_server" stylesheets="@css/styles.css" text="Доступность сервера" />
-      <TextArea layoutX="240.0" layoutY="240.0" prefHeight="85.0" prefWidth="150.0" promptText="Лог системы" />
+      <Button layoutX="240.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" styleClass="button_available_server" text="Доступность сервера" />
+      <TextArea layoutX="240.0" layoutY="240.0" prefHeight="85.0" prefWidth="150.0" promptText="Лог" />
    </children>
 </AnchorPane>

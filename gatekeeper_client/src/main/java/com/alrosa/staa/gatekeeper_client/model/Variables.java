@@ -4,7 +4,7 @@ import com.alrosa.staa.gatekeeper_client.GateKeeperClient;
 import javafx.scene.image.Image;
 
 /**
- * В классе будем хранить статические переменные
+ * В классе будем хранить статические переменные и постоянные
  */
 public class Variables {
     //Указываем путь к рисунку shield. Значок.

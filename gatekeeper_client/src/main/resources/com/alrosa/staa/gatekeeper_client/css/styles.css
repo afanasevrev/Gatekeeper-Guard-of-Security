@@ -45,3 +45,10 @@
 .button_available_server:hover {
     -fx-background-color: #ff9900;
 }
+
+.custom-textField {
+    -fx-background-color: #9db1cc; /* установим цвет фона */
+    -fx-text-fill: #000000; /* установим цвет текста */
+    -fx-font-size: 12px; /* установим размер шрифта */
+    -fx-prompt-text-fill: #808080; /* установим цвет подсказки */
+}
