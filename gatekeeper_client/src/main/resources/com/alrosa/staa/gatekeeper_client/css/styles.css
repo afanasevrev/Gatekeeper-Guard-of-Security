@@ -1,0 +1,47 @@
+.button {
+    -fx-background-color: #1000ff;
+    -fx-text-fill: #fff;
+    -fx-font-size: 12px;
+    -fx-pref-width: 95px;
+    -fx-pref-height: 25px;
+}
+
+.button:hover {
+    -fx-background-color: #ff9900;
+}
+
+.button_sign_in {
+    -fx-background-color: #1000ff;
+    -fx-text-fill: #fff;
+    -fx-font-size: 12px;
+    -fx-pref-width: 115px;
+    -fx-pref-height: 25px;
+}
+
+.button_sign_in:hover {
+    -fx-background-color: #ff9900;
+}
+
+.button_cancel {
+    -fx-background-color: #1000ff;
+    -fx-text-fill: #fff;
+    -fx-font-size: 12px;
+    -fx-pref-width: 65px;
+    -fx-pref-height: 25px;
+}
+
+.button_cancel:hover {
+    -fx-background-color: #ff9900;
+}
+
+.button_available_server {
+    -fx-background-color: #1000ff;
+    -fx-text-fill: #fff;
+    -fx-font-size: 12px;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 25px;
+}
+
+.button_available_server:hover {
+    -fx-background-color: #ff9900;
+}
