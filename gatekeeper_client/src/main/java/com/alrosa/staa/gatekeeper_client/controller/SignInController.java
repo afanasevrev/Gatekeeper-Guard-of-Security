@@ -29,13 +29,14 @@ public class SignInController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-     //   URL url = null;
+
         try {
             url = new URL("http://localhost:8080/");
             URLConnection connection = url.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-    //        return in.readLine();
-
+            String text = in.readLine();
+            System.out.println(text);
+            logsTextArea.setText(text);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
