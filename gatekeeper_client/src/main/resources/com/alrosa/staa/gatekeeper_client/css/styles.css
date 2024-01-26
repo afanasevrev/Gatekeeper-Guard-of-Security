@@ -1,20 +1,8 @@
-.button {
-    -fx-background-color: #1000ff;
-    -fx-text-fill: #fff;
-    -fx-font-size: 12px;
-    -fx-pref-width: 95px;
-    -fx-pref-height: 25px;
-}
-
-.button:hover {
-    -fx-background-color: #ff9900;
-}
-
 .button_sign_in {
     -fx-background-color: #1000ff;
     -fx-text-fill: #fff;
     -fx-font-size: 12px;
-    -fx-pref-width: 115px;
+    -fx-pref-width: 195px;
     -fx-pref-height: 25px;
 }
 
@@ -22,32 +10,15 @@
     -fx-background-color: #ff9900;
 }
 
-.button_cancel {
-    -fx-background-color: #1000ff;
-    -fx-text-fill: #fff;
-    -fx-font-size: 12px;
-    -fx-pref-width: 65px;
-    -fx-pref-height: 25px;
-}
-
-.button_cancel:hover {
-    -fx-background-color: #ff9900;
-}
-
-.button_available_server {
-    -fx-background-color: #1000ff;
-    -fx-text-fill: #fff;
-    -fx-font-size: 12px;
-    -fx-pref-width: 150px;
-    -fx-pref-height: 25px;
-}
-
-.button_available_server:hover {
-    -fx-background-color: #ff9900;
-}
-
 .custom-textField {
     -fx-background-color: #9db1cc; /* установим цвет фона */
+    -fx-text-fill: #000000; /* установим цвет текста */
+    -fx-font-size: 12px; /* установим размер шрифта */
+    -fx-prompt-text-fill: #808080; /* установим цвет подсказки */
+}
+
+.custom-textArea {
+    -fx-background-color: #1000ff; /* установим цвет фона */
     -fx-text-fill: #000000; /* установим цвет текста */
     -fx-font-size: 12px; /* установим размер шрифта */
     -fx-prompt-text-fill: #808080; /* установим цвет подсказки */
