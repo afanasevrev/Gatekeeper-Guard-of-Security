@@ -14,10 +14,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ResourceBundle;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
 public class SignInController implements Initializable {
+
     @FXML
     private TextField loginTextField = new TextField();
     @FXML
@@ -31,14 +34,18 @@ public class SignInController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         try {
-            url = new URL("http://localhost:8080/login");
+            url = new URL("http://localhost:8080/");
             URLConnection connection = url.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String text = in.readLine();
-            System.out.println(text);
             logsTextArea.setText(text);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean authentication() throws IOException, InterruptedException {
+
+        return false;
     }
 }
