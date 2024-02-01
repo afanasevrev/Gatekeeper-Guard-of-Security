@@ -19,9 +19,9 @@ public class SecurityConfig {
 
         UserDetails user = User.builder().username("user").password(pwEncoder.encode("12345")).roles("USER").build();
 
-        System.out.println("   >>> Root's password: " + root.getPassword());
+        System.out.println(">>> Root's password: " + root.getPassword());
 
-        System.out.println("   >>> User's password: " + user.getPassword());
+        System.out.println(">>> User's password: " + user.getPassword());
 
         return new InMemoryUserDetailsManager(root);
     }
