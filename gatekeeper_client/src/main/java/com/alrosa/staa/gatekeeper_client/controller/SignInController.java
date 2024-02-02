@@ -32,17 +32,10 @@ public class SignInController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            authentication();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+        
     }
 
-    public void authentication() throws IOException, InterruptedException {
+    public void authentication(String login, String password) throws IOException, InterruptedException {
         try {
             // URL, на который отправляем запрос
             String url = "http://localhost:8080/";
@@ -57,9 +50,7 @@ public class SignInController implements Initializable {
             con.setRequestMethod("GET");
 
             // Устанавливаем заголовок для basic авторизации
-            String username = "root";
-            String password = "gatekeeper";
-            String credentials = username + ":" + password;
+            String credentials = login + ":" + password;
             byte[] authEncBytes = Base64.getEncoder().encode(credentials.getBytes());
             String authStringEnc = new String(authEncBytes);
             con.setRequestProperty("Authorization", "Basic " + authStringEnc);
