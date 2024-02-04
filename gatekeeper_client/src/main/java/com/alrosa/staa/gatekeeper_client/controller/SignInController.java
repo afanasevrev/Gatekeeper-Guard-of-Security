@@ -31,7 +31,7 @@ public class SignInController implements Initializable {
     private TextArea logsTextArea = new TextArea();
 
     /**
-     * При нажатии кнопки проходим аутентификацию
+     * При нажатии кнопки проходим аутентификацию на сервере
      * @throws IOException
      * @throws InterruptedException
      */
@@ -45,6 +45,13 @@ public class SignInController implements Initializable {
 
     }
 
+    /**
+     * Метод для аутентификации на сервере
+     * @param login логин
+     * @param password пароль
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public void authentication(String login, String password) throws IOException, InterruptedException {
         try {
             // URL, на который отправляем запрос
@@ -83,7 +90,7 @@ public class SignInController implements Initializable {
             // Выводим ответ
             logsTextArea.setText(response.toString());
         } catch (Exception e) {
-            System.out.println("Произошла ошибка: " + e.getMessage());
+            logsTextArea.setText(e.getMessage());
         }
     }
 }
