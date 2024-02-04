@@ -30,9 +30,19 @@ public class SignInController implements Initializable {
     @FXML
     private TextArea logsTextArea = new TextArea();
 
+    /**
+     * При нажатии кнопки проходим аутентификацию
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    @FXML
+    private void clickSignInButton() throws IOException, InterruptedException {
+        authentication(loginTextField.getText(), passwordField.getText());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+
     }
 
     public void authentication(String login, String password) throws IOException, InterruptedException {
@@ -71,7 +81,6 @@ public class SignInController implements Initializable {
             in.close();
 
             // Выводим ответ
-            System.out.println(response.toString());
             logsTextArea.setText(response.toString());
         } catch (Exception e) {
             System.out.println("Произошла ошибка: " + e.getMessage());
