@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
+import com.alrosa.staa.gatekeeper_client.model.Variables;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,7 +21,6 @@ import java.util.ResourceBundle;
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
 public class SignInController implements Initializable {
-
     @FXML
     private TextField loginTextField = new TextField();
     @FXML
@@ -54,8 +54,12 @@ public class SignInController implements Initializable {
      */
     public void authentication(String login, String password) throws IOException, InterruptedException {
         try {
+            String server_ip = Variables.properties.getProperty("server_ip");
+
+            String server_port = Variables.properties.getProperty("server_port");
+
             // URL, на который отправляем запрос
-            String url = "http://localhost:8080/";
+            String url = "http://" + server_ip + ":" + server_port + "/";
 
             // Создаем объект URL
             URL obj = new URL(url);

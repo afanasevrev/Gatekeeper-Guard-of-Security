@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.alrosa.staa.gatekeeper_client/com.alrosa.staa.gatekeeper_client.HelloApplication
+                                com.alrosa.staa.gatekeeper_client/com.alrosa.staa.gatekeeper_client.GateKeeperClient
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
