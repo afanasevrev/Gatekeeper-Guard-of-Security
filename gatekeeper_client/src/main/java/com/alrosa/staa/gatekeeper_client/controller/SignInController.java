@@ -1,12 +1,15 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
+import com.alrosa.staa.gatekeeper_client.model.Authentication;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
+import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,6 +22,8 @@ import java.util.Base64;
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
 public class SignInController {
+    //Создаем экземпляр класса AdminsConsole
+    AdminsConsole adminsConsole = new AdminsConsole();
     @FXML
     private TextField loginTextField = new TextField();
     @FXML
@@ -83,7 +88,14 @@ public class SignInController {
             in.close();
 
             // Выводим ответ
-            logsTextArea.setText(response.toString());
+            String text = response.toString();
+
+            logsTextArea.setText(text);
+
+            if (text.equals("AUTHENTICATION")) {
+                adminsConsole.start(new Stage());
+            }
+
         } catch (Exception e) {
             logsTextArea.setText(e.getMessage());
         }

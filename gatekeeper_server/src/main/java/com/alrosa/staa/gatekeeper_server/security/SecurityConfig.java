@@ -23,6 +23,6 @@ public class SecurityConfig {
 
         System.out.println(">>> User's password: " + user.getPassword());
 
-        return new InMemoryUserDetailsManager(root);
+        return new InMemoryUserDetailsManager(root, user);
     }
 }

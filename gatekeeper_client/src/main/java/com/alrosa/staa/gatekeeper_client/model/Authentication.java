@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_server.security;
+package com.alrosa.staa.gatekeeper_client.model;
 
 public enum Authentication {
     AUTHENTICATION,
