@@ -13,14 +13,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.Base64;
-import java.util.ResourceBundle;
 
 /**
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
-public class SignInController implements Initializable {
+public class SignInController {
     @FXML
     private TextField loginTextField = new TextField();
     @FXML
@@ -40,11 +38,6 @@ public class SignInController implements Initializable {
         authentication(loginTextField.getText(), passwordField.getText());
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
     /**
      * Метод для аутентификации на сервере
      * @param login логин
@@ -59,7 +52,7 @@ public class SignInController implements Initializable {
             String server_port = Variables.properties.getProperty("server_port");
 
             // URL, на который отправляем запрос
-            String url = "http://" + server_ip + ":" + server_port + "/";
+            String url = "http://" + server_ip + ":" + server_port + "/getAuth";
 
             // Создаем объект URL
             URL obj = new URL(url);
@@ -78,8 +71,6 @@ public class SignInController implements Initializable {
 
             // Получаем ответ
             int responseCode = con.getResponseCode();
-            System.out.println("Отправляем GET запрос на " + url);
-            System.out.println("Ответ: " + responseCode);
 
             // Считываем ответ
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));

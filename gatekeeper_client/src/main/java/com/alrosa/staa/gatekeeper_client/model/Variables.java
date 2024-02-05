@@ -19,9 +19,7 @@ public class Variables {
     //Извлекаем настройки сервера из файла settings.properties
     static {
         try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/com/alrosa/staa/gatekeeper_client/settings/settings.properties")) {
-
             properties.load(fileInputStream);
-            System.out.println(properties.getProperty("server_ip"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
