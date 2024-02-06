@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AdminsConsole {
+public class BureausConsole {
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(GateKeeperClient.class.getResource("console/admin/admins_console.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GateKeeperClient.class.getResource("console/bureau/bureaus_console.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 350);
         stage.setTitle("GateKeeper - Guard of Security");
         stage.getIcons().add(Variables.shieldImage);

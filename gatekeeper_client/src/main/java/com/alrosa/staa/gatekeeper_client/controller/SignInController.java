@@ -3,6 +3,8 @@ package com.alrosa.staa.gatekeeper_client.controller;
 import com.alrosa.staa.gatekeeper_client.model.Authentication;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
+import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
+import com.alrosa.staa.gatekeeper_client.view.OperatorsConsole;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,6 +26,10 @@ import java.util.Base64;
 public class SignInController {
     //Создаем экземпляр класса AdminsConsole
     AdminsConsole adminsConsole = new AdminsConsole();
+    //Создаем экземпляр класса OperatorsConsole
+    OperatorsConsole operatorsConsole = new OperatorsConsole();
+    //Создаем экземпляр класса BureausConsole
+    BureausConsole bureausConsole = new BureausConsole();
     @FXML
     private TextField loginTextField = new TextField();
     @FXML
@@ -42,7 +48,6 @@ public class SignInController {
     private void clickSignInButton() throws IOException, InterruptedException {
         authentication(loginTextField.getText(), passwordField.getText());
     }
-
     /**
      * Метод для аутентификации на сервере
      * @param login логин
@@ -87,16 +92,36 @@ public class SignInController {
             }
             in.close();
 
-            // Выводим ответ
+            //Выводим ответ
             String text = response.toString();
-
+            //Выводим логи
             logsTextArea.setText(text);
 
-            if (text.equals("AUTHENTICATION")) {
+            //Проверяем аутентификацию
+            if (text.equals("AUTHENTICATION:ADMIN")) {
+                //Закрываем форму ввода логина и пароля
+                Stage stage = (Stage) signInButton.getScene().getWindow();
+                stage.close();
+                //Запускаем админскую консоль
                 adminsConsole.start(new Stage());
+            } else if (text.equals("AUTHENTICATION:OPERATOR")) {
+                //Закрываем форму ввода логина и пароля
+                Stage stage = (Stage) signInButton.getScene().getWindow();
+                stage.close();
+                //Запускаем консоль оператора
+                operatorsConsole.start(new Stage());
+            } else if (text.equals("AUTHENTICATION:BUREAU")) {
+                //Закрываем форму ввода логина и пароля
+                Stage stage = (Stage) signInButton.getScene().getWindow();
+                stage.close();
+                //Запускаем консоль оператора
+                bureausConsole.start(new Stage());
+            } else {
+                logsTextArea.setText("Неверный логин или пароль");
             }
 
         } catch (Exception e) {
+            //Выводим логи в окно консоли, если что-то пошло не так
             logsTextArea.setText(e.getMessage());
         }
     }

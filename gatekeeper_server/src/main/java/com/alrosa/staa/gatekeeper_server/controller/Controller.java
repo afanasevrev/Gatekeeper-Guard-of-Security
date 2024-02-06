@@ -15,6 +15,6 @@ public class Controller {
 
     @GetMapping("/getAuth")
     public String getAuthentication() {
-        return Authentication.AUTHENTICATION.toString();
+        return Authentication.AUTHENTICATION + ":" + Authentication.ADMIN;
     }
 }
