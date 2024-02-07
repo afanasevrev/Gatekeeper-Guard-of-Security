@@ -22,13 +22,7 @@ public class SecurityConfig {
     @Bean
     UserDetailsService authentication() {
         UserDetails root = User.builder().username("root").password(pwEncoder.encode("gatekeeper")).roles("USER","ADMIN").build();
-
         UserDetails user = User.builder().username("user").password(pwEncoder.encode("12345")).roles("USER").build();
-
-        System.out.println(">>> Root's password: " + root.getPassword());
-
-        System.out.println(">>> User's password: " + user.getPassword());
-
         return new InMemoryUserDetailsManager(root, user);
     }
 
