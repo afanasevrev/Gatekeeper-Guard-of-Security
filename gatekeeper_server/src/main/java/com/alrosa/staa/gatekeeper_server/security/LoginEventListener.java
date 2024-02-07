@@ -17,8 +17,10 @@ public class LoginEventListener {
     @EventListener
     public void handleSuccessfulLogin(AuthenticationSuccessEvent event) {
         String username = event.getAuthentication().getName();
+
         successfulLogins.add(username);
         System.out.println("Successful login for user: " + username);
+        System.out.println( event.getAuthentication().getDetails());
     }
 
     public List<String> getSuccessfulLogins() {
