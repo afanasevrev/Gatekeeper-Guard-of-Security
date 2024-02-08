@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,5 +56,21 @@ public class AdminsConsoleController implements Initializable {
         AnchorPane.setTopAnchor(vertical, 0.0);
         AnchorPane.setRightAnchor(vertical, 0.0);
 
+        getInfo();
+    }
+
+    public void getInfo() {
+        RestTemplate restTemplate = new RestTemplate();
+
+        String url = "http://localhost:8080/";
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+        if (response.getStatusCode().is2xxSuccessful()) {
+            String responseBody = response.getBody();
+            System.out.println("Response: " + responseBody);
+        } else {
+            System.out.println("Request failed with status code: " + response.getStatusCode());
+        }
     }
 }
