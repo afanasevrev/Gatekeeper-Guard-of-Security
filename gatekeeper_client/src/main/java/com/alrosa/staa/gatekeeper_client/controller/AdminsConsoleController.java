@@ -6,11 +6,19 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.springframework.http.ResponseEntity;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.CredentialsProvider;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.springframework.http.*;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.util.Base64;
 import java.util.ResourceBundle;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 /**
  * Контроллер предназначен для работы с файлом admins_console.fxml
@@ -56,7 +64,8 @@ public class AdminsConsoleController implements Initializable {
         AnchorPane.setTopAnchor(vertical, 0.0);
         AnchorPane.setRightAnchor(vertical, 0.0);
 
-        getInfo();
+        getAuthRestTemplate();
+
     }
 
     public void getInfo() {
@@ -73,4 +82,9 @@ public class AdminsConsoleController implements Initializable {
             System.out.println("Request failed with status code: " + response.getStatusCode());
         }
     }
+
+    public void getAuthRestTemplate() {
+
+    }
+
 }

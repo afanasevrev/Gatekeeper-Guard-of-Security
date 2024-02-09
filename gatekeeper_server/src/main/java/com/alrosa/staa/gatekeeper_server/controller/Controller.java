@@ -30,4 +30,5 @@ public class Controller {
     public List<String> getAuthClients() {
         return LoginEventListener.successfulLogins;
     }
+
 }
