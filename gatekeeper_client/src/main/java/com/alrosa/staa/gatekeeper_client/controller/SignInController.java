@@ -1,12 +1,10 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
-import com.alrosa.staa.gatekeeper_client.model.Authentication;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
 import com.alrosa.staa.gatekeeper_client.view.OperatorsConsole;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
@@ -114,7 +112,7 @@ public class SignInController {
                 //Закрываем форму ввода логина и пароля
                 Stage stage = (Stage) signInButton.getScene().getWindow();
                 stage.close();
-                //Запускаем консоль оператора
+                //Запускаем консоль бюро пропусков
                 bureausConsole.start(new Stage());
             } else {
                 logsTextArea.setText("Неверный логин или пароль");

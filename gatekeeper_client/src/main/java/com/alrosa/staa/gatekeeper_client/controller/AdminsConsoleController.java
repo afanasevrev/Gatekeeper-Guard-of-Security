@@ -72,5 +72,18 @@ public class AdminsConsoleController implements Initializable {
             System.out.println("Request failed with status code: " + response.getStatusCode());
         }
     }
+    public void getAuthentication() {
+        RestTemplate restTemplate = new RestTemplate();
+       // AuthenticationRequest request = new AuthenticationRequest("root", "gatekeeper"); // Подставьте фактические данные
 
+     //   ResponseEntity<String> response = restTemplate.postForEntity("http://localhost:8080/", request, String.class);
+      //  String sessionId = response.getHeaders().getFirst("Set-Cookie");
+
+       // HttpHeaders headers = new HttpHeaders();
+      //  headers.set("Cookie", sessionId);
+      //  HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+
+       // ResponseEntity<String> response = restTemplate.exchange("http://your-api-endpoint.com/protected-resource", HttpMethod.GET, entity, String.class);
+
+    }
 }
