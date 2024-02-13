@@ -20,7 +20,7 @@ public class LoginEventListener {
 
         successfulLogins.add(username);
         System.out.println("Successful login for user: " + username);
-        System.out.println( event.getAuthentication().getDetails());
+        System.out.println(event.getAuthentication().getDetails());
     }
 
     public List<String> getSuccessfulLogins() {
