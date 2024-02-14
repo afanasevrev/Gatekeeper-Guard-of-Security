@@ -74,6 +74,7 @@ public class AdminsConsoleController implements Initializable {
     }
     public void getAuthentication() {
         RestTemplate restTemplate = new RestTemplate();
-        
+
+
     }
 }
