@@ -15,10 +15,9 @@ import java.util.List;
 @RequestMapping
 public class Controller {
 
-
     @GetMapping("/")
     public String getInfo() {
-        return "Система контроля и управления доступом. GateKeeper - Guard of Security. Версия 1.0";
+        return "Система контроля и управления доступом. GateKeeper - Guard of Security";
     }
 
     @GetMapping("/getAuth")
