@@ -30,4 +30,9 @@ public class Controller {
         return LoginEventListener.successfulLogins;
     }
 
+    @GetMapping("/authenticate")
+    public String getAuthenticate() {
+        return Authentication.AUTHENTICATION + ":" + Authentication.ADMIN;
+    }
+
 }

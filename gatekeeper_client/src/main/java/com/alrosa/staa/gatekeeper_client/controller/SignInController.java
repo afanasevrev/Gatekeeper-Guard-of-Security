@@ -10,6 +10,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -122,5 +124,11 @@ public class SignInController {
             //Выводим логи в окно консоли, если что-то пошло не так
             logsTextArea.setText(e.getMessage());
         }
+    }
+
+    public void authenticate(String login, String password) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders httpHeaders = new HttpHeaders();
+        
     }
 }
