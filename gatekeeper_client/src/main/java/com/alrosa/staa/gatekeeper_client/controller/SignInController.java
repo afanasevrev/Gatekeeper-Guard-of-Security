@@ -10,7 +10,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedReader;
@@ -24,6 +27,8 @@ import java.util.Base64;
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
 public class SignInController {
+    private static String accessToken;
+
     //Создаем экземпляр класса AdminsConsole
     AdminsConsole adminsConsole = new AdminsConsole();
     //Создаем экземпляр класса OperatorsConsole
@@ -46,7 +51,8 @@ public class SignInController {
      */
     @FXML
     private void clickSignInButton() throws IOException, InterruptedException {
-        authentication(loginTextField.getText(), passwordField.getText());
+        //authentication(loginTextField.getText(), passwordField.getText());
+        authenticate(loginTextField.getText(), passwordField.getText());
     }
     /**
      * Метод для аутентификации на сервере
@@ -129,6 +135,10 @@ public class SignInController {
     public void authenticate(String login, String password) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
-        
+        httpHeaders.setBasicAuth(login, password);
+        HttpEntity<String> request = new HttpEntity<>(httpHeaders);
+        ResponseEntity<String> response = restTemplate.exchange("http://localhost:8080/authenticate", HttpMethod.GET, request, String.class);
+        accessToken = response.getBody();
+        System.out.println(accessToken);
     }
 }
