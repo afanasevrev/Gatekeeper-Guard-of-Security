@@ -70,6 +70,7 @@ public class SignInController {
             String text;
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders httpHeaders = new HttpHeaders();
+            
             httpHeaders.setBasicAuth(login, password);
             HttpEntity<String> request = new HttpEntity<>(httpHeaders);
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
