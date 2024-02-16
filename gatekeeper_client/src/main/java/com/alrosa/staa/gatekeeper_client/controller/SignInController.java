@@ -27,7 +27,6 @@ import java.util.Base64;
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
 public class SignInController {
-    private static String accessToken;
 
     //Создаем экземпляр класса AdminsConsole
     AdminsConsole adminsConsole = new AdminsConsole();
@@ -133,12 +132,47 @@ public class SignInController {
     }
 
     public void authenticate(String login, String password) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setBasicAuth(login, password);
-        HttpEntity<String> request = new HttpEntity<>(httpHeaders);
-        ResponseEntity<String> response = restTemplate.exchange("http://localhost:8080/authenticate", HttpMethod.GET, request, String.class);
-        accessToken = response.getBody();
-        System.out.println(accessToken);
+        try {
+            //Считываем из конфигурационного файла IP сервера
+            String server_ip = Variables.properties.getProperty("server_ip");
+            //Считываем из конфигурационного файла порт сервера
+            String server_port = Variables.properties.getProperty("server_port");
+            // URL, на который отправляем запрос
+            String url = "http://" + server_ip + ":" + server_port + "/authenticate";
+
+            String text;
+            RestTemplate restTemplate = new RestTemplate();
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setBasicAuth(login, password);
+            HttpEntity<String> request = new HttpEntity<>(httpHeaders);
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
+            text = response.getBody();
+            logsTextArea.setText(text);
+            //Проверяем аутентификацию
+            if (text.equals("AUTHENTICATION:ADMIN")) {
+                //Закрываем форму ввода логина и пароля
+                Stage stage = (Stage) signInButton.getScene().getWindow();
+                stage.close();
+                //Запускаем админскую консоль
+                adminsConsole.start(new Stage());
+            } else if (text.equals("AUTHENTICATION:OPERATOR")) {
+                //Закрываем форму ввода логина и пароля
+                Stage stage = (Stage) signInButton.getScene().getWindow();
+                stage.close();
+                //Запускаем консоль оператора
+                operatorsConsole.start(new Stage());
+            } else if (text.equals("AUTHENTICATION:BUREAU")) {
+                //Закрываем форму ввода логина и пароля
+                Stage stage = (Stage) signInButton.getScene().getWindow();
+                stage.close();
+                //Запускаем консоль бюро пропусков
+                bureausConsole.start(new Stage());
+            } else {
+                logsTextArea.setText("Неверный логин или пароль");
+            }
+        } catch(Exception e) {
+            //Выводим логи в окно консоли, если что-то пошло не так
+            logsTextArea.setText(e.getMessage());
+        }
     }
 }
