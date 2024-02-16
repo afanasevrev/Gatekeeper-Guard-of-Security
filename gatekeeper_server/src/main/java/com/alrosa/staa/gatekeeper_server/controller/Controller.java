@@ -20,11 +20,6 @@ public class Controller {
         return "Система контроля и управления доступом. GateKeeper - Guard of Security";
     }
 
-    @GetMapping("/getAuth")
-    public String getAuthentication() {
-        return Authentication.AUTHENTICATION + ":" + Authentication.ADMIN;
-    }
-
     @GetMapping("/getAuthorizedClients")
     public List<String> getAuthClients() {
         return LoginEventListener.successfulLogins;

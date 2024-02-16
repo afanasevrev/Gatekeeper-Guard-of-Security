@@ -50,7 +50,6 @@ public class SignInController {
      */
     @FXML
     private void clickSignInButton() throws IOException, InterruptedException {
-        //authentication(loginTextField.getText(), passwordField.getText());
         authenticate(loginTextField.getText(), passwordField.getText());
     }
     /**
@@ -70,7 +69,7 @@ public class SignInController {
             String text;
             RestTemplate restTemplate = new RestTemplate();
             HttpHeaders httpHeaders = new HttpHeaders();
-            
+
             httpHeaders.setBasicAuth(login, password);
             HttpEntity<String> request = new HttpEntity<>(httpHeaders);
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
