@@ -75,22 +75,20 @@ public class SignInController {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
             text = response.getBody();
             logsTextArea.setText(text);
+            Stage stage = (Stage) signInButton.getScene().getWindow();
             //Проверяем аутентификацию
             if (text.equals("AUTHENTICATION:ADMIN")) {
                 //Закрываем форму ввода логина и пароля
-                Stage stage = (Stage) signInButton.getScene().getWindow();
                 stage.close();
                 //Запускаем админскую консоль
                 adminsConsole.start(new Stage());
             } else if (text.equals("AUTHENTICATION:OPERATOR")) {
                 //Закрываем форму ввода логина и пароля
-                Stage stage = (Stage) signInButton.getScene().getWindow();
                 stage.close();
                 //Запускаем консоль оператора
                 operatorsConsole.start(new Stage());
             } else if (text.equals("AUTHENTICATION:BUREAU")) {
                 //Закрываем форму ввода логина и пароля
-                Stage stage = (Stage) signInButton.getScene().getWindow();
                 stage.close();
                 //Запускаем консоль бюро пропусков
                 bureausConsole.start(new Stage());
