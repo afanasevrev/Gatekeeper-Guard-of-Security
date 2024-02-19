@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
+import com.alrosa.staa.gatekeeper_client.cookie.CookieRestTemplateInterceptor;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
@@ -16,6 +17,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Контроллер предназначен для работы с файлом sign_in.fxml
@@ -62,6 +65,9 @@ public class SignInController {
 
             String text;
             RestTemplate restTemplate = new RestTemplate();
+            List<String> cookies = Arrays.asList("SessionID=D64BE8256A2F1E69CCA5A742203FE612");
+            restTemplate.getInterceptors().add(new CookieRestTemplateInterceptor(cookies));
+
             HttpHeaders httpHeaders = new HttpHeaders();
 
             httpHeaders.setBasicAuth(login, password);
