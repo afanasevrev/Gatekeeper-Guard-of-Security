@@ -102,18 +102,18 @@ public class SignInController {
     }
 
     public void authenticate1(String login, String password) {
-        String url = "http://localhost:8080/authenticate";
+        String url = "http://localhost:8080/";
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Cookies", "SessionID=32c");
+        headers.add("Cookies", "JSESSIONID=BF29A544854C8CFF46E3BE8502D956AD");
         headers.setBasicAuth(login, password);
 
         // Создаем тело запроса
         HttpEntity<String> request = new HttpEntity<>(headers);
 
-        // Отправляем POST запрос на URL для аутентификации
+        // Отправляем GET запрос на URL для аутентификации
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
 
         System.out.println(response.getStatusCode().is2xxSuccessful());
     }
