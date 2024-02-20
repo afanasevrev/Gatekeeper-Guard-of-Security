@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
+import com.alrosa.staa.gatekeeper_client.cookie.CookieRestTemplate;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
@@ -44,7 +45,8 @@ public class SignInController {
      */
     @FXML
     private void clickSignInButton() throws IOException, InterruptedException {
-        authenticate(loginTextField.getText(), passwordField.getText());
+        //authenticate(loginTextField.getText(), passwordField.getText());
+        authenticate1(loginTextField.getText(), passwordField.getText());
     }
     /**
      * Метод для аутентификации на сервере
@@ -60,14 +62,17 @@ public class SignInController {
             // URL, на который отправляем запрос
             String url = "http://" + server_ip + ":" + server_port + "/authenticate";
 
-            String text;
             RestTemplate restTemplate = new RestTemplate();
 
             HttpHeaders httpHeaders = new HttpHeaders();
-
             httpHeaders.setBasicAuth(login, password);
+            httpHeaders.add("Cookie", "SessionID=s42");
             HttpEntity<String> request = new HttpEntity<>(httpHeaders);
+
+            //request.getHeaders().add("Cookie", "JSESSIONID");
+
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
+            String text;
             text = response.getBody();
             logsTextArea.setText(text);
             Stage stage = (Stage) signInButton.getScene().getWindow();
@@ -94,5 +99,22 @@ public class SignInController {
             //Выводим логи в окно консоли, если что-то пошло не так
             logsTextArea.setText(e.getMessage());
         }
+    }
+
+    public void authenticate1(String login, String password) {
+        String url = "http://localhost:8080/authenticate";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Cookies", "SessionID=32c");
+        headers.setBasicAuth(login, password);
+
+        // Создаем тело запроса
+        HttpEntity<String> request = new HttpEntity<>(headers);
+
+        // Отправляем POST запрос на URL для аутентификации
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
+
+        System.out.println(response.getStatusCode().is2xxSuccessful());
     }
 }
