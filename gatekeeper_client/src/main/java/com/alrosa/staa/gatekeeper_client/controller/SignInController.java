@@ -47,6 +47,7 @@ public class SignInController {
     private void clickSignInButton() {
         authenticate(loginTextField.getText(), passwordField.getText());
     }
+    
     /**
      * Метод для аутентификации на сервере
      * @param login логин
