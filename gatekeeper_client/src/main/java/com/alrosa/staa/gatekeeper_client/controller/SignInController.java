@@ -47,7 +47,7 @@ public class SignInController {
     private void clickSignInButton() {
         authenticate(loginTextField.getText(), passwordField.getText());
     }
-    
+
     /**
      * Метод для аутентификации на сервере
      * @param login логин
@@ -75,8 +75,7 @@ public class SignInController {
             HttpEntity<String> request = new HttpEntity<>(url, headers);
             ResponseEntity<String> authResponse = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
 
-            String text;
-            text = authResponse.getBody();
+            String text = authResponse.getBody();
             logsTextArea.setText(text);
             Stage stage = (Stage) signInButton.getScene().getWindow();
 
