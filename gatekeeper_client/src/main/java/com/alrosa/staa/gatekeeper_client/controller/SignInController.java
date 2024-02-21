@@ -99,22 +99,56 @@ public class SignInController {
     }
 
     public void authenticate1(String login, String password) {
-        String url = "http://localhost:8080/";
+        try {
+            //Считываем из конфигурационного файла IP сервера
+            String server_ip = Variables.properties.getProperty("server_ip");
+            //Считываем из конфигурационного файла порт сервера
+            String server_port = Variables.properties.getProperty("server_port");
+            // URL, на который отправляем запрос
+            String url = "http://" + server_ip + ":" + server_port + "/authenticate";
 
-        RestTemplate restTemplate = new RestTemplate();
+            RestTemplate restTemplate = new RestTemplate();
 
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        HttpHeaders responseHeaders = response.getHeaders();
-        String jSessionId = responseHeaders.getFirst("Set-Cookie");
+            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+            HttpHeaders responseHeaders = response.getHeaders();
+            String jSessionId = responseHeaders.getFirst("Set-Cookie");
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Cookie", jSessionId);
-        headers.setBasicAuth(login, password);
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Cookie", jSessionId);
+            headers.setBasicAuth(login, password);
 
-        HttpEntity<String> request = new HttpEntity<>(url, headers);
-        ResponseEntity<String> authResponse = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
+            HttpEntity<String> request = new HttpEntity<>(url, headers);
+            ResponseEntity<String> authResponse = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
 
-        System.out.println(authResponse.getBody());
-        System.out.println(jSessionId);
+            String text;
+            text = authResponse.getBody();
+            logsTextArea.setText(text);
+            Stage stage = (Stage) signInButton.getScene().getWindow();
+            
+            //Проверяем аутентификацию
+            if (text.equals("AUTHENTICATION:ADMIN")) {
+                //Закрываем форму ввода логина и пароля
+                stage.close();
+                //Запускаем админскую консоль
+                adminsConsole.start(new Stage());
+            } else if (text.equals("AUTHENTICATION:OPERATOR")) {
+                //Закрываем форму ввода логина и пароля
+                stage.close();
+                //Запускаем консоль оператора
+                operatorsConsole.start(new Stage());
+            } else if (text.equals("AUTHENTICATION:BUREAU")) {
+                //Закрываем форму ввода логина и пароля
+                stage.close();
+                //Запускаем консоль бюро пропусков
+                bureausConsole.start(new Stage());
+            } else {
+                logsTextArea.setText("Неверный логин или пароль");
+            }
+
+        } catch (Exception e) {
+            //Выводим логи в окно консоли, если что-то пошло не так
+            logsTextArea.setText(e.getMessage());
+        }
+
     }
 }
