@@ -1,6 +1,5 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
-import com.alrosa.staa.gatekeeper_client.cookie.CookieInterceptor;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
@@ -15,11 +14,9 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Контроллер предназначен для работы с файлом sign_in.fxml
@@ -104,32 +101,20 @@ public class SignInController {
     public void authenticate1(String login, String password) {
         String url = "http://localhost:8080/";
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBasicAuth(login, password);
-
-        // Создаем тело запроса
-        HttpEntity<String> request = new HttpEntity<>(headers);
-
-
-        List<String> cookies = new ArrayList<>();
-        CookieInterceptor interceptor = new CookieInterceptor();
-
-        // Отправляем GET запрос на URL для аутентификации
         RestTemplate restTemplate = new RestTemplate();
 
-        restTemplate.setInterceptors(List.of(interceptor));
-        restTemplate.getForObject(url, String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        HttpHeaders responseHeaders = response.getHeaders();
+        String jSessionId = responseHeaders.getFirst("Set-Cookie");
 
-        String jSessionId = interceptor.getJSessionId();
-        if (jSessionId != null) {
-            cookies.add(jSessionId);
-        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Cookie", jSessionId);
+        headers.setBasicAuth(login, password);
 
-        restTemplate.setInterceptors(List.of(interceptor));
+        HttpEntity<String> request = new HttpEntity<>(url, headers);
+        ResponseEntity<String> authResponse = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
 
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
-
-        System.out.println(restTemplate.getInterceptors().get(0));
-        System.out.println(response.getBody());
+        System.out.println(authResponse.getBody());
+        System.out.println(jSessionId);
     }
 }
