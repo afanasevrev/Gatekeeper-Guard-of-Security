@@ -1,6 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
-import com.alrosa.staa.gatekeeper_client.cookie.CookieRestTemplate;
+import com.alrosa.staa.gatekeeper_client.cookie.CookieInterceptor;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
@@ -15,8 +15,11 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Контроллер предназначен для работы с файлом sign_in.fxml
@@ -66,10 +69,7 @@ public class SignInController {
 
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setBasicAuth(login, password);
-            httpHeaders.add("Cookie", "SessionID=s42");
             HttpEntity<String> request = new HttpEntity<>(httpHeaders);
-
-            //request.getHeaders().add("Cookie", "JSESSIONID");
 
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
             String text;
@@ -105,16 +105,31 @@ public class SignInController {
         String url = "http://localhost:8080/";
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Cookies", "JSESSIONID=BF29A544854C8CFF46E3BE8502D956AD");
         headers.setBasicAuth(login, password);
 
         // Создаем тело запроса
         HttpEntity<String> request = new HttpEntity<>(headers);
 
+
+        List<String> cookies = new ArrayList<>();
+        CookieInterceptor interceptor = new CookieInterceptor();
+
         // Отправляем GET запрос на URL для аутентификации
         RestTemplate restTemplate = new RestTemplate();
+
+        restTemplate.setInterceptors(List.of(interceptor));
+        restTemplate.getForObject(url, String.class);
+
+        String jSessionId = interceptor.getJSessionId();
+        if (jSessionId != null) {
+            cookies.add(jSessionId);
+        }
+
+        restTemplate.setInterceptors(List.of(interceptor));
+
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
 
-        System.out.println(response.getStatusCode().is2xxSuccessful());
+        System.out.println(restTemplate.getInterceptors().get(0));
+        System.out.println(response.getBody());
     }
 }
