@@ -44,9 +44,8 @@ public class SignInController {
      * @throws InterruptedException
      */
     @FXML
-    private void clickSignInButton() throws IOException, InterruptedException {
-        //authenticate(loginTextField.getText(), passwordField.getText());
-        authenticate1(loginTextField.getText(), passwordField.getText());
+    private void clickSignInButton() {
+        authenticate(loginTextField.getText(), passwordField.getText());
     }
     /**
      * Метод для аутентификации на сервере
@@ -54,51 +53,6 @@ public class SignInController {
      * @param password пароль
      */
     public void authenticate(String login, String password) {
-        try {
-            //Считываем из конфигурационного файла IP сервера
-            String server_ip = Variables.properties.getProperty("server_ip");
-            //Считываем из конфигурационного файла порт сервера
-            String server_port = Variables.properties.getProperty("server_port");
-            // URL, на который отправляем запрос
-            String url = "http://" + server_ip + ":" + server_port + "/authenticate";
-
-            RestTemplate restTemplate = new RestTemplate();
-
-            HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.setBasicAuth(login, password);
-            HttpEntity<String> request = new HttpEntity<>(httpHeaders);
-
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
-            String text;
-            text = response.getBody();
-            logsTextArea.setText(text);
-            Stage stage = (Stage) signInButton.getScene().getWindow();
-            //Проверяем аутентификацию
-            if (text.equals("AUTHENTICATION:ADMIN")) {
-                //Закрываем форму ввода логина и пароля
-                stage.close();
-                //Запускаем админскую консоль
-                adminsConsole.start(new Stage());
-            } else if (text.equals("AUTHENTICATION:OPERATOR")) {
-                //Закрываем форму ввода логина и пароля
-                stage.close();
-                //Запускаем консоль оператора
-                operatorsConsole.start(new Stage());
-            } else if (text.equals("AUTHENTICATION:BUREAU")) {
-                //Закрываем форму ввода логина и пароля
-                stage.close();
-                //Запускаем консоль бюро пропусков
-                bureausConsole.start(new Stage());
-            } else {
-                logsTextArea.setText("Неверный логин или пароль");
-            }
-        } catch(Exception e) {
-            //Выводим логи в окно консоли, если что-то пошло не так
-            logsTextArea.setText(e.getMessage());
-        }
-    }
-
-    public void authenticate1(String login, String password) {
         try {
             //Считываем из конфигурационного файла IP сервера
             String server_ip = Variables.properties.getProperty("server_ip");
@@ -124,7 +78,7 @@ public class SignInController {
             text = authResponse.getBody();
             logsTextArea.setText(text);
             Stage stage = (Stage) signInButton.getScene().getWindow();
-            
+
             //Проверяем аутентификацию
             if (text.equals("AUTHENTICATION:ADMIN")) {
                 //Закрываем форму ввода логина и пароля
@@ -144,11 +98,9 @@ public class SignInController {
             } else {
                 logsTextArea.setText("Неверный логин или пароль");
             }
-
         } catch (Exception e) {
             //Выводим логи в окно консоли, если что-то пошло не так
             logsTextArea.setText(e.getMessage());
         }
-
     }
 }
