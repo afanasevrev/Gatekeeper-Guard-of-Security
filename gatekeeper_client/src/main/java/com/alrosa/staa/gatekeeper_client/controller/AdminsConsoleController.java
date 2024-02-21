@@ -55,7 +55,7 @@ public class AdminsConsoleController implements Initializable {
         AnchorPane.setBottomAnchor(vertical, 0.0);
         AnchorPane.setTopAnchor(vertical, 0.0);
         AnchorPane.setRightAnchor(vertical, 0.0);
-
+        getInfo();
     }
 
     public void getInfo() {
@@ -71,10 +71,5 @@ public class AdminsConsoleController implements Initializable {
         } else {
             System.out.println("Request failed with status code: " + response.getStatusCode());
         }
-    }
-    public void getAuthentication() {
-        RestTemplate restTemplate = new RestTemplate();
-
-
     }
 }
