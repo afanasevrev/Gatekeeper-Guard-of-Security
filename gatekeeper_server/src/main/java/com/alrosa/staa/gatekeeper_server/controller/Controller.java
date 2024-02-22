@@ -15,10 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping
 public class Controller {
-    @PostMapping("/")
-    public String getInfoPost() {
-        return "Authorized";
-    }
+
     @GetMapping("/")
     public String getInfo() {
         return "Система контроля и управления доступом. GateKeeper - Guard of Security";

@@ -2,6 +2,7 @@ package com.alrosa.staa.gatekeeper_client.model;
 
 import com.alrosa.staa.gatekeeper_client.GateKeeperClient;
 import javafx.scene.image.Image;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.FileInputStream;
@@ -15,6 +16,12 @@ public class Variables {
 
     //Открываем RestTemplate
     public static RestTemplate restTemplate = new RestTemplate();
+
+    //Сюда запишем полученный SessionID
+    public static String jSessionId;
+
+    //Headers
+    public static HttpHeaders headers = new HttpHeaders();
 
     //Указываем путь к настройкам
     public static final Properties properties = new Properties();

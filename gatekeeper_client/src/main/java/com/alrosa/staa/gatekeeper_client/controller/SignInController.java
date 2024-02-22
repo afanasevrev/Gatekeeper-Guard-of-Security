@@ -64,13 +64,13 @@ public class SignInController {
 
             ResponseEntity<String> response = Variables.restTemplate.getForEntity(url, String.class);
             HttpHeaders responseHeaders = response.getHeaders();
-            String jSessionId = responseHeaders.getFirst("Set-Cookie");
+            Variables.jSessionId = responseHeaders.getFirst("Set-Cookie");
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Cookie", jSessionId);
-            headers.setBasicAuth(login, password);
+            //HttpHeaders headers = new HttpHeaders();
+            Variables.headers.set("Cookie", Variables.jSessionId);
+            Variables.headers.setBasicAuth(login, password);
 
-            HttpEntity<String> request = new HttpEntity<>(url, headers);
+            HttpEntity<String> request = new HttpEntity<>(url, Variables.headers);
             ResponseEntity<String> authResponse = Variables.restTemplate.exchange(url, HttpMethod.GET, request, String.class);
 
             String text = authResponse.getBody();
