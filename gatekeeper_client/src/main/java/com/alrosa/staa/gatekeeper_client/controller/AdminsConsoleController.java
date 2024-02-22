@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
+import com.alrosa.staa.gatekeeper_client.model.Variables;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -59,11 +60,10 @@ public class AdminsConsoleController implements Initializable {
     }
 
     public void getInfo() {
-        RestTemplate restTemplate = new RestTemplate();
 
         String url = "http://localhost:8080/";
 
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        ResponseEntity<String> response = Variables.restTemplate.getForEntity(url, String.class);
 
         if (response.getStatusCode().is2xxSuccessful()) {
             String responseBody = response.getBody();
