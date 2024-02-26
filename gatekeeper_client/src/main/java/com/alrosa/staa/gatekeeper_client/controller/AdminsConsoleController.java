@@ -60,6 +60,16 @@ public class AdminsConsoleController implements Initializable {
     }
 
     public void getInfo() {
+        RestTemplate restTemplate = new RestTemplate();
 
+        // Создаем HttpHeaders и добавляем куки
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Cookie", Variables.jSessionId);
+        
+        // Отправляем запрос с заданными куками
+        ResponseEntity<String> response = restTemplate.exchange("http://localhost:8080/", HttpMethod.GET, new HttpEntity<>(headers), String.class);
+
+        // Обработка ответа на запрос
+        System.out.println("Response: " + response.getBody());
     }
 }
