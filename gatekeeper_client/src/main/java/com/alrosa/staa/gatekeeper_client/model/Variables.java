@@ -13,15 +13,8 @@ import java.util.Properties;
  * В классе будем хранить статические переменные и постоянные
  */
 public class Variables {
-
-    //Открываем RestTemplate
-    public static RestTemplate restTemplate = new RestTemplate();
-
     //Сюда запишем полученный SessionID
     public static String jSessionId;
-
-    //Headers
-    public static HttpHeaders headers = new HttpHeaders();
 
     //Указываем путь к настройкам
     public static final Properties properties = new Properties();

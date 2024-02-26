@@ -60,19 +60,6 @@ public class AdminsConsoleController implements Initializable {
     }
 
     public void getInfo() {
-        String url = "http://localhost:8080/";
 
-        RestTemplate restTemplate = new RestTemplate();
-
-        HttpEntity<String> request = new HttpEntity<>(url, Variables.headers);
-
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
-
-        if (response.getStatusCode().is2xxSuccessful()) {
-            String responseBody = response.getBody();
-            System.out.println(responseBody);
-        } else {
-            System.out.println("Request failed with status code: " + response.getStatusCode());
-        }
     }
 }

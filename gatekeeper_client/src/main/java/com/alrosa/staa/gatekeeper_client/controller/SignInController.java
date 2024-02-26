@@ -62,16 +62,18 @@ public class SignInController {
             // URL, на который отправляем запрос
             String url = "http://" + server_ip + ":" + server_port + "/authenticate";
 
-            ResponseEntity<String> response = Variables.restTemplate.getForEntity(url, String.class);
+            RestTemplate restTemplate = new RestTemplate();
+
+            ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
             HttpHeaders responseHeaders = response.getHeaders();
             Variables.jSessionId = responseHeaders.getFirst("Set-Cookie");
 
-            //HttpHeaders headers = new HttpHeaders();
-            Variables.headers.set("Cookie", Variables.jSessionId);
-            Variables.headers.setBasicAuth(login, password);
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Cookie", Variables.jSessionId);
+            headers.setBasicAuth(login, password);
 
-            HttpEntity<String> request = new HttpEntity<>(url, Variables.headers);
-            ResponseEntity<String> authResponse = Variables.restTemplate.exchange(url, HttpMethod.GET, request, String.class);
+            HttpEntity<String> request = new HttpEntity<>(url, headers);
+            ResponseEntity<String> authResponse = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
 
             String text = authResponse.getBody();
             logsTextArea.setText(text);
