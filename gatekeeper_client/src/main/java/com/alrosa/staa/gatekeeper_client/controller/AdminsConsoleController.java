@@ -61,15 +61,13 @@ public class AdminsConsoleController implements Initializable {
 
     public void getInfo() {
         RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getInterceptors().add((request, body, execution) -> {
+            request.getHeaders().add("Cookie", Variables.jSessionId);
+            return execution.execute(request, body);
+        });
 
-        // Создаем HttpHeaders и добавляем куки
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Cookie", Variables.jSessionId);
-        headers.setBasicAuth("root", "gatekeeper");
-        // Отправляем запрос с заданными куками
-        ResponseEntity<String> response = restTemplate.exchange("http://localhost:8080/authenticate", HttpMethod.GET, new HttpEntity<>(headers), String.class);
+        ResponseEntity<String> response = restTemplate.exchange("http://localhost:8080/", HttpMethod.GET, null, String.class);
 
-        // Обработка ответа на запрос
-        System.out.println("Response: " + response.getBody());
+        System.out.println(response.getBody());
     }
 }
