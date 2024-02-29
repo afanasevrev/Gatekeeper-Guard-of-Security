@@ -1,6 +1,9 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
 import com.alrosa.staa.gatekeeper_client.model.Variables;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -10,6 +13,7 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 
@@ -56,18 +60,23 @@ public class AdminsConsoleController implements Initializable {
         AnchorPane.setBottomAnchor(vertical, 0.0);
         AnchorPane.setTopAnchor(vertical, 0.0);
         AnchorPane.setRightAnchor(vertical, 0.0);
-        getInfo();
+
+        try {
+            getInfo();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void getInfo() {
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getInterceptors().add((request, body, execution) -> {
-            request.getHeaders().add("Cookie", Variables.jSessionId);
-            return execution.execute(request, body);
-        });
-
-        ResponseEntity<String> response = restTemplate.exchange("http://localhost:8080/", HttpMethod.GET, null, String.class);
-
-        System.out.println(response.getBody());
+    public void getInfo() throws Exception {
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        try(Connection connection = factory.newConnection();
+            Channel channel = connection.createChannel()) {
+            channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
+            String message = "Hello Mirny";
+            channel.basicPublish("", Variables.QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
+            System.out.println(" [x] Sent '" + message + "'");
+        }
     }
 }

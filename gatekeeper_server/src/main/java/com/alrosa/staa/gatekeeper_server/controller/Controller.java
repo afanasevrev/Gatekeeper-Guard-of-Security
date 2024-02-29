@@ -23,8 +23,7 @@ public class Controller {
     }
 
     @GetMapping("/authenticate")
-    public String getAuthenticate() {
+    public String getAuthenticate() throws Exception {
         return Authentication.AUTHENTICATION + ":" + Authentication.ADMIN;
     }
-
 }

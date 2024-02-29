@@ -17,8 +17,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends SecurityConfigurerAdapter {
-    @Autowired
-    private UserDetailsService userDetailsService;
+
     private final PasswordEncoder pwEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
     @Bean
