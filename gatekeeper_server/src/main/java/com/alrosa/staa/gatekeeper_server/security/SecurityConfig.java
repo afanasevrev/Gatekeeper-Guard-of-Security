@@ -3,6 +3,7 @@ package com.alrosa.staa.gatekeeper_server.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.SecurityBuilder;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,12 +21,10 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
     private final PasswordEncoder pwEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-    
     @Bean
     UserDetailsService authentication() {
         UserDetails root = User.builder().username("root").password(pwEncoder.encode("gatekeeper")).roles("USER","ADMIN").build();
         UserDetails user = User.builder().username("user").password(pwEncoder.encode("12345")).roles("USER").build();
         return new InMemoryUserDetailsManager(root, user);
     }
-
 }
