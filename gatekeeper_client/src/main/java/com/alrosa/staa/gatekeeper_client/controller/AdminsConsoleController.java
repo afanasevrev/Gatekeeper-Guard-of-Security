@@ -76,6 +76,7 @@ public class AdminsConsoleController implements Initializable {
             channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
             String message = "Hello Mirny";
             channel.basicPublish("", Variables.QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
+        
             System.out.println(" [x] Sent '" + message + "'");
         }
     }
