@@ -24,6 +24,6 @@ public class Controller {
 
     @GetMapping("/authenticate")
     public String getAuthenticate() throws Exception {
-        return Authentication.AUTHENTICATION + ":" + Authentication.ADMIN;
+        return Authentication.AUTHENTICATION + ":" + LoginEventListener.getAuthorities;
     }
 }

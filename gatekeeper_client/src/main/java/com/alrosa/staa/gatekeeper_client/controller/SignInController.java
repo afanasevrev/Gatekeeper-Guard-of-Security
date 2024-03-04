@@ -98,6 +98,7 @@ public class SignInController {
             } else {
                 logsTextArea.setText("Неверный логин или пароль");
             }
+            System.out.println(text);
         } catch (Exception e) {
             //Выводим логи в окно консоли, если что-то пошло не так
             logsTextArea.setText(e.getMessage());

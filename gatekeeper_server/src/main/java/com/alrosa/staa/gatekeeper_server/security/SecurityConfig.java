@@ -22,7 +22,7 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
 
     @Bean
     UserDetailsService authentication() {
-        UserDetails root = User.builder().username("root").password(pwEncoder.encode("gatekeeper")).roles("USER","ADMIN").build();
+        UserDetails root = User.builder().username("root").password(pwEncoder.encode("gatekeeper")).roles("ADMIN", "USER").build();
         UserDetails user = User.builder().username("user").password(pwEncoder.encode("12345")).roles("USER").build();
         return new InMemoryUserDetailsManager(root, user);
     }
