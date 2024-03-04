@@ -75,6 +75,7 @@ public class AdminsConsoleController implements Initializable {
             String message = "Hello Mirny";
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("name", "John");
+            jsonObject.addProperty("female", "bondi");
             channel.basicPublish("", Variables.QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
             channel.basicPublish("", Variables.QUEUE_NAME, null, jsonObject.toString().getBytes(StandardCharsets.UTF_8));
             System.out.println(" [x] Sent '" + message + "'");
