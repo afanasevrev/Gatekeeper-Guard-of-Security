@@ -9,9 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import org.springframework.http.*;
-import org.springframework.web.client.RestTemplate;
-
+import com.google.gson.JsonObject;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
@@ -70,14 +68,17 @@ public class AdminsConsoleController implements Initializable {
 
     public void getInfo() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost("127.0.0.1");
         try(Connection connection = factory.newConnection();
             Channel channel = connection.createChannel()) {
             channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
             String message = "Hello Mirny";
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("name", "John");
             channel.basicPublish("", Variables.QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
-
+            channel.basicPublish("", Variables.QUEUE_NAME, null, jsonObject.toString().getBytes(StandardCharsets.UTF_8));
             System.out.println(" [x] Sent '" + message + "'");
+            System.out.println(jsonObject.toString());
         }
     }
 }
