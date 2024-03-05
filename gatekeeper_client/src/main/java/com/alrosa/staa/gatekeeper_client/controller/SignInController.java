@@ -83,7 +83,7 @@ public class SignInController {
             String text = authResponse.getBody();
             logsTextArea.setText(text);
             Stage stage = (Stage) signInButton.getScene().getWindow();
-            
+
             try {
                 //В экземпляр класса Roles записываем полученный JSON файл
                 role = gson.fromJson(text, Roles.class);
