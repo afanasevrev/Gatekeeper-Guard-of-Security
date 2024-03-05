@@ -3,11 +3,11 @@ package com.alrosa.staa.gatekeeper_server.db;
 import jakarta.persistence.*;
 
 /**
- * Класс сущности администратороа системы
+ * Класс сущности для дежурного оператора
  */
 @Entity
-@Table(name = "gk_admins")
-public class Admins {
+@Table(name = "gk_operators")
+public class Operator {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,8 +19,9 @@ public class Admins {
     @Column(name = "password")
     private String password;
 
-    public Admins(){}
-    public Admins(String login, String password) {
+    public Operator(){}
+
+    public Operator(String login, String password) {
         this.login = login;
         this.password = password;
     }
