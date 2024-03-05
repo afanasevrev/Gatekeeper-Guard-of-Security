@@ -6,6 +6,7 @@ import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
 import com.alrosa.staa.gatekeeper_client.view.OperatorsConsole;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -18,16 +19,15 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
-import java.lang.reflect.Type;
-
 
 /**
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
 public class SignInController {
-    //Создаем экземпляр класса роли
+    //для парсинга объектов JSON
+    Gson gson = new Gson();
+    //Создаем экземпляр класса Роли
     Roles role = new Roles();
-
     //Создаем экземпляр класса AdminsConsole
     AdminsConsole adminsConsole = new AdminsConsole();
     //Создаем экземпляр класса OperatorsConsole
@@ -83,36 +83,32 @@ public class SignInController {
             String text = authResponse.getBody();
             logsTextArea.setText(text);
             Stage stage = (Stage) signInButton.getScene().getWindow();
-            Gson gson = new Gson();
-
-            //В экземпляр класса Roles записываем полученный JSON файл
+            
             try {
+                //В экземпляр класса Roles записываем полученный JSON файл
                 role = gson.fromJson(text, Roles.class);
-            } catch(IllegalStateException e) {
-                logsTextArea.setText("Неверный логин или пароль");
-            }
 
-            //Проверяем аутентификацию
-            if (role.getRole().equals("[ROLE_ADMIN]")) {
-                //Закрываем форму ввода логина и пароля
-                stage.close();
-                //Запускаем админскую консоль
-                adminsConsole.start(new Stage());
-            } else if (role.getRole().equals("[ROLE_OPERATOR]")) {
-                //Закрываем форму ввода логина и пароля
-                stage.close();
-                //Запускаем консоль оператора
-                operatorsConsole.start(new Stage());
-            } else if (role.getRole().equals("[ROLE_BUREAU]")) {
-                //Закрываем форму ввода логина и пароля
-                stage.close();
-                //Запускаем консоль бюро пропусков
-                bureausConsole.start(new Stage());
-            } else {
+                //Проверяем аутентификацию
+                if (role.getRole().equals("[ROLE_ADMIN]")) {
+                    //Закрываем форму ввода логина и пароля
+                    stage.close();
+                    //Запускаем админскую консоль
+                    adminsConsole.start(new Stage());
+                } else if (role.getRole().equals("[ROLE_OPERATOR]")) {
+                    //Закрываем форму ввода логина и пароля
+                    stage.close();
+                    //Запускаем консоль оператора
+                    operatorsConsole.start(new Stage());
+                } else if (role.getRole().equals("[ROLE_BUREAU]")) {
+                    //Закрываем форму ввода логина и пароля
+                    stage.close();
+                    //Запускаем консоль бюро пропусков
+                    bureausConsole.start(new Stage());
+                }
+            } catch (JsonSyntaxException e) {
                 logsTextArea.setText("Неверный логин или пароль");
             }
         } catch (Exception e) {
-            //Выводим логи в окно консоли, если что-то пошло не так
             logsTextArea.setText(e.getMessage());
         }
     }
