@@ -86,7 +86,11 @@ public class SignInController {
             Gson gson = new Gson();
 
             //В экземпляр класса Roles записываем полученный JSON файл
-            role = gson.fromJson(text, Roles.class);
+            try {
+                role = gson.fromJson(text, Roles.class);
+            } catch(IllegalStateException e) {
+                logsTextArea.setText("Неверный логин или пароль");
+            }
 
             //Проверяем аутентификацию
             if (role.getRole().equals("[ROLE_ADMIN]")) {
