@@ -8,8 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GatekeeperServerApplication {
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(GatekeeperServerApplication.class, args);
-
+		//Создаем экземпляр ресивера
 		Receiver receiver = new Receiver();
+		//Запускаем сервер на основе RabbitMQ
 		receiver.start();
 	}
 }
