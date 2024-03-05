@@ -2,6 +2,7 @@ package com.alrosa.staa.gatekeeper_server.controller;
 
 import com.alrosa.staa.gatekeeper_server.security.Authentication;
 import com.alrosa.staa.gatekeeper_server.security.LoginEventListener;
+import com.alrosa.staa.gatekeeper_server.security.Roles;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,8 @@ public class Controller {
     }
 
     @GetMapping("/authenticate")
-    public String getAuthenticate() throws Exception {
-        return Authentication.AUTHENTICATION + ":" + LoginEventListener.getAuthorities;
+    public Roles getAuthenticate() throws Exception {
+        Roles roles = new Roles(LoginEventListener.getAuthorities);
+        return roles;
     }
 }

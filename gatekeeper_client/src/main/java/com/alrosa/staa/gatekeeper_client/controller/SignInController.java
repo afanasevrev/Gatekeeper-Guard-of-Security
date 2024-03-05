@@ -4,6 +4,7 @@ import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
 import com.alrosa.staa.gatekeeper_client.view.OperatorsConsole;
+import com.google.gson.Gson;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
+import java.lang.reflect.Type;
 
 
 /**
@@ -78,6 +80,8 @@ public class SignInController {
             String text = authResponse.getBody();
             logsTextArea.setText(text);
             Stage stage = (Stage) signInButton.getScene().getWindow();
+            Gson gson = new Gson();
+            //String values = gson.fromJson(text, String.class);
 
             //Проверяем аутентификацию
             if (text.equals("AUTHENTICATION:ADMIN")) {
