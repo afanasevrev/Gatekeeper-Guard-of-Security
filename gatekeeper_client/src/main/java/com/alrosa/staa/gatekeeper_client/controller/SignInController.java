@@ -106,7 +106,7 @@ public class SignInController {
                     bureausConsole.start(new Stage());
                 }
             } catch (JsonSyntaxException e) {
-                logsTextArea.setText("Неверный логин или пароль");
+                    logsTextArea.setText("Неверный логин или пароль");
             }
         } catch (Exception e) {
             logsTextArea.setText(e.getMessage());
