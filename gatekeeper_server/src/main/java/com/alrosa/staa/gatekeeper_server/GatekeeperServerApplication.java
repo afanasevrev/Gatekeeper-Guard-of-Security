@@ -4,6 +4,9 @@ import com.alrosa.staa.gatekeeper_server.session.Receiver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Точка запуска сервера
+ */
 @SpringBootApplication
 public class GatekeeperServerApplication {
 	public static void main(String[] args) throws Exception {
