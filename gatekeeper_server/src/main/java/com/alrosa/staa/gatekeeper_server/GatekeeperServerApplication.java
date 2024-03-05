@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GatekeeperServerApplication {
 	public static void main(String[] args) throws Exception {
+		//Запускаем сервер Spring
 		SpringApplication.run(GatekeeperServerApplication.class, args);
 		//Создаем экземпляр ресивера
 		Receiver receiver = new Receiver();
