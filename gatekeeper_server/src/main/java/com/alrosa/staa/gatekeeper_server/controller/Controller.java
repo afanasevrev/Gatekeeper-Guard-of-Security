@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping
 public class Controller {
+    Roles roles = new Roles();
 
     @GetMapping("/")
     public String getInfo() {
@@ -25,7 +26,7 @@ public class Controller {
 
     @GetMapping("/authenticate")
     public Roles getAuthenticate() throws Exception {
-        Roles roles = new Roles(LoginEventListener.getAuthorities);
+        roles.setRole(LoginEventListener.getAuthorities);
         return roles;
     }
 }

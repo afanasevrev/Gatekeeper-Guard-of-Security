@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
+import com.alrosa.staa.gatekeeper_client.model.Roles;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
@@ -24,6 +25,8 @@ import java.lang.reflect.Type;
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
 public class SignInController {
+    //Создаем экземпляр класса роли
+    Roles role = new Roles();
 
     //Создаем экземпляр класса AdminsConsole
     AdminsConsole adminsConsole = new AdminsConsole();
@@ -81,20 +84,22 @@ public class SignInController {
             logsTextArea.setText(text);
             Stage stage = (Stage) signInButton.getScene().getWindow();
             Gson gson = new Gson();
-            //String values = gson.fromJson(text, String.class);
+
+            //В экземпляр класса Roles записываем полученный JSON файл
+            role = gson.fromJson(text, Roles.class);
 
             //Проверяем аутентификацию
-            if (text.equals("AUTHENTICATION:ADMIN")) {
+            if (role.getRole().equals("[ROLE_ADMIN]")) {
                 //Закрываем форму ввода логина и пароля
                 stage.close();
                 //Запускаем админскую консоль
                 adminsConsole.start(new Stage());
-            } else if (text.equals("AUTHENTICATION:OPERATOR")) {
+            } else if (role.getRole().equals("[ROLE_OPERATOR]")) {
                 //Закрываем форму ввода логина и пароля
                 stage.close();
                 //Запускаем консоль оператора
                 operatorsConsole.start(new Stage());
-            } else if (text.equals("AUTHENTICATION:BUREAU")) {
+            } else if (role.getRole().equals("[ROLE_BUREAU]")) {
                 //Закрываем форму ввода логина и пароля
                 stage.close();
                 //Запускаем консоль бюро пропусков
@@ -102,7 +107,6 @@ public class SignInController {
             } else {
                 logsTextArea.setText("Неверный логин или пароль");
             }
-            System.out.println(text);
         } catch (Exception e) {
             //Выводим логи в окно консоли, если что-то пошло не так
             logsTextArea.setText(e.getMessage());
