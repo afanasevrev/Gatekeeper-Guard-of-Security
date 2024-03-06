@@ -74,10 +74,9 @@ public class AdminsConsoleController implements Initializable {
         try(Connection connection = factory.newConnection();
             Channel channel = connection.createChannel()) {
             channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
-            Main main = new Main("Main");
+            Main main = new Main("Главный");
             Gson gson = new Gson();
             String text = gson.toJson(main);
-            //String text = "pswd";
             channel.basicPublish("", Variables.QUEUE_NAME, null, text.getBytes(StandardCharsets.UTF_8));
             System.out.println(text);
         }
