@@ -1,6 +1,7 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
 import com.alrosa.staa.gatekeeper_client.model.Variables;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
 import com.google.gson.Gson;
 import com.rabbitmq.client.Channel;
@@ -39,6 +40,10 @@ public class AdminsConsoleController implements Initializable {
     //Вертикальный бокс
     @FXML
     private VBox vBox = new VBox();
+    //Создаем главную вершину дерева
+    private static TreeItem<Global> mainSystem = new TreeItem<>(new Main());
+    //Создаем само дерево
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //В контекстное меню добавляем кнопки
