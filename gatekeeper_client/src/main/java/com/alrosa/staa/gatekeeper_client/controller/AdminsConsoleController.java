@@ -10,13 +10,12 @@ import com.rabbitmq.client.ConnectionFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import com.google.gson.JsonObject;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
-
 
 /**
  * Контроллер для работы с файлом admins_console.fxml
@@ -41,9 +40,11 @@ public class AdminsConsoleController implements Initializable {
     @FXML
     private VBox vBox = new VBox();
     //Создаем главную вершину дерева
-    private static TreeItem<Global> mainSystem = new TreeItem<>(new Main());
+    private static TreeItem<Global> mainSystem = new TreeItem<>(new Main("Главный"));
     //Создаем само дерево
-
+    private static TreeView treeView = new TreeView(mainSystem);
+    //Создаем ссылку на рисунок для главной вершины
+    private final ImageView mainView = new ImageView(Variables.mainImage);
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //В контекстное меню добавляем кнопки
@@ -65,6 +66,16 @@ public class AdminsConsoleController implements Initializable {
         AnchorPane.setBottomAnchor(vertical, 0.0);
         AnchorPane.setTopAnchor(vertical, 0.0);
         AnchorPane.setRightAnchor(vertical, 0.0);
+
+        AnchorPane.setLeftAnchor(treeView, 0.0);
+        AnchorPane.setBottomAnchor(treeView, 0.0);
+        AnchorPane.setTopAnchor(treeView, 0.0);
+        AnchorPane.setRightAnchor(treeView, 0.0);
+
+        windowTree.getChildren().add(treeView);
+        mainView.setFitWidth(25);
+        mainView.setFitHeight(25);
+        mainSystem.setGraphic(mainView);
 
         try {
             getInfo();

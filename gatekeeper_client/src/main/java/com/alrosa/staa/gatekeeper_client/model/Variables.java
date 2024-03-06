@@ -21,6 +21,8 @@ public class Variables {
     public static final Properties properties = new Properties();
     //Указываем путь к рисунку shield. Значок.
     public static final Image shieldImage = new Image(GateKeeperClient.class.getResource("favicon/shield.png").toString());
+    //Указываем путь к рисунку main.
+    public static final Image mainImage = new Image(GateKeeperClient.class.getResource("icons/main.png").toString());
     //Извлекаем настройки сервера из файла settings.properties
     static {
         try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/com/alrosa/staa/gatekeeper_client/settings/settings.properties")) {

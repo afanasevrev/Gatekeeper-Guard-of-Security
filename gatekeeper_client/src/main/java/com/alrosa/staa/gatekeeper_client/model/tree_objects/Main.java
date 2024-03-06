@@ -32,4 +32,8 @@ public class Main implements Global {
         return this.direction;
     }
 
+    @Override
+    public String toString() {
+        return getComplete_name();
+    }
 }
