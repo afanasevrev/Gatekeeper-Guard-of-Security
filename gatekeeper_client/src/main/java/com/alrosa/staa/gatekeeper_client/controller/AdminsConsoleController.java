@@ -1,6 +1,8 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
 import com.alrosa.staa.gatekeeper_client.model.Variables;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
+import com.google.gson.Gson;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -16,7 +18,7 @@ import java.util.ResourceBundle;
 
 
 /**
- * Контроллер предназначен для работы с файлом admins_console.fxml
+ * Контроллер для работы с файлом admins_console.fxml
  */
 public class AdminsConsoleController implements Initializable {
     //Добавим контекстное меню
@@ -72,10 +74,12 @@ public class AdminsConsoleController implements Initializable {
         try(Connection connection = factory.newConnection();
             Channel channel = connection.createChannel()) {
             channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
-            JsonObject jsonObject = new JsonObject();
-            jsonObject.addProperty("name", "John");
-            channel.basicPublish("", Variables.QUEUE_NAME, null, jsonObject.toString().getBytes(StandardCharsets.UTF_8));
-            System.out.println(jsonObject);
+            Main main = new Main("Main");
+            Gson gson = new Gson();
+            String text = gson.toJson(main);
+            //String text = "pswd";
+            channel.basicPublish("", Variables.QUEUE_NAME, null, text.getBytes(StandardCharsets.UTF_8));
+            System.out.println(text);
         }
     }
 }
