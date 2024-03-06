@@ -2,37 +2,20 @@ package com.alrosa.staa.gatekeeper_client.model.tree_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 
-/**
- * Класс предназначен для объектов дерева
- */
-public abstract class Global {
-    //Наименование объекта
-    private String complete_name;
-
-    //Enum возвращаемого объекта
-    private Direction direction;
-
+public interface Global {
     /**
-     *
-     * @return возвращает имя объекта в дереве
+     * Возвращает имя объекта
+     * @return
      */
-    public abstract String getComplete_name();
-
+    String getComplete_name();
     /**
      * Присваивает имя объекту
      * @param complete_name
      */
-    public abstract void setComplete_name(String complete_name);
-
+    void setComplete_name(String complete_name);
     /**
-     *
-     * @return возвращет enum объекта
+     * Возвращаем enum объекта
+     * @return
      */
-    public abstract Direction getDirection();
-
-    /**
-     * Присваивает enum объекту
-     * @param direction
-     */
-    public abstract void setDirection(Direction direction);
+    Direction getDirection();
 }

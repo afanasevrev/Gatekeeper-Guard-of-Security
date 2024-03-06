@@ -5,7 +5,7 @@ import com.alrosa.staa.gatekeeper_client.model.Direction;
 /**
  * Класс для корня дерева
  */
-public class Main implements GlobalInterface {
+public class Main implements Global {
     //Имя объекта
     private String complete_name;
 
