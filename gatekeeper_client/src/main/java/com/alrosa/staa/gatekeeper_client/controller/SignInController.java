@@ -24,7 +24,7 @@ import java.io.IOException;
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
 public class SignInController {
-    //для парсинга объектов JSON
+    //Для парсинга объектов JSON
     Gson gson = new Gson();
     //Создаем экземпляр класса Роли
     Roles role = new Roles();
