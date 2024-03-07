@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_client.controller.rabbitmq;
+package com.alrosa.staa.gatekeeper_client.controller;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
