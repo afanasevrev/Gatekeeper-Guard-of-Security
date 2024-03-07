@@ -7,6 +7,9 @@ import com.rabbitmq.client.DeliverCallback;
 
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Класс приёмник сообщений от сервера
+ */
 public class Receiver {
     private static final String QUEUE_NAME = "Gatekeeper";
 
