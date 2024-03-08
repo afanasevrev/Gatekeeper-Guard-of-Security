@@ -88,23 +88,19 @@ public class SignInController {
                 //В экземпляр класса Roles записываем полученный JSON файл
                 role = gson.fromJson(text, Roles.class);
 
-                //Проверяем аутентификацию
+                //Проверим аутентификацию
                 if (role.getRole().equals("[ROLE_ADMIN]")) {
-                    //Закрываем форму ввода логина и пароля
-                    stage.close();
                     //Запускаем админскую консоль
                     adminsConsole.start(new Stage());
                 } else if (role.getRole().equals("[ROLE_OPERATOR]")) {
-                    //Закрываем форму ввода логина и пароля
-                    stage.close();
                     //Запускаем консоль оператора
                     operatorsConsole.start(new Stage());
                 } else if (role.getRole().equals("[ROLE_BUREAU]")) {
-                    //Закрываем форму ввода логина и пароля
-                    stage.close();
                     //Запускаем консоль бюро пропусков
                     bureausConsole.start(new Stage());
                 }
+                //Закрываем форму ввода логина и пароля
+                stage.close();
             } catch (JsonSyntaxException e) {
                     logsTextArea.setText("Неверный логин или пароль");
             }
