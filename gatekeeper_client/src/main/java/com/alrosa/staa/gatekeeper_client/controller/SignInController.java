@@ -44,7 +44,7 @@ public class SignInController {
     private TextArea logsTextArea = new TextArea();
 
     /**
-     * При нажатии кнопки проходим аутентификацию на сервере
+     * При нажатии кнопки, проходим аутентификацию на сервере
      * @throws IOException
      * @throws InterruptedException
      */
@@ -66,11 +66,12 @@ public class SignInController {
             String server_port = Variables.properties.getProperty("server_port");
             // URL, на который отправляем запрос
             String url = "http://" + server_ip + ":" + server_port + "/authenticate";
-
+            //Создаем экземпляр класса RestTemplate для http - запроса к серверу
             RestTemplate restTemplate = new RestTemplate();
 
             ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
             HttpHeaders responseHeaders = response.getHeaders();
+            //Активируем куки, чтобы получить ID сессии на сервере
             Variables.jSessionId = responseHeaders.getFirst("Set-Cookie");
 
             HttpHeaders headers = new HttpHeaders();
@@ -87,10 +88,9 @@ public class SignInController {
             try {
                 //В экземпляр класса Roles записываем полученный JSON файл
                 role = gson.fromJson(text, Roles.class);
-
                 //Проверим аутентификацию
                 if (role.getRole().equals("[ROLE_ADMIN]")) {
-                    //Запускаем админскую консоль
+                    //Запускаем консоль администратора
                     adminsConsole.start(new Stage());
                 } else if (role.getRole().equals("[ROLE_OPERATOR]")) {
                     //Запускаем консоль оператора
