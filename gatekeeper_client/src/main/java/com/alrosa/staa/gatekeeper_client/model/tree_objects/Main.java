@@ -3,7 +3,7 @@ package com.alrosa.staa.gatekeeper_client.model.tree_objects;
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 
 /**
- * Класс для корня дерева
+ * Класс для главной вершины дерева
  */
 public class Main implements Global {
     //Имя объекта

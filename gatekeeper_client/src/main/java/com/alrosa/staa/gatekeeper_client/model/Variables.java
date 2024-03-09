@@ -2,8 +2,6 @@ package com.alrosa.staa.gatekeeper_client.model;
 
 import com.alrosa.staa.gatekeeper_client.GateKeeperClient;
 import javafx.scene.image.Image;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,7 +11,7 @@ import java.util.Properties;
  * В классе будем хранить статические переменные и постоянные
  */
 public class Variables {
-    //Постоянная для подключения к серверу RabbitMQ
+    //Постоянная для обмена сообщением с сервером RabbitMQ
     public static final String QUEUE_NAME = "Gatekeeper";
     //Сюда запишем полученный SessionID
     public static String jSessionId;
