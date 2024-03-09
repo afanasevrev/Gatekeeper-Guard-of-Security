@@ -11,7 +11,7 @@ import java.util.Properties;
  * В классе будем хранить статические переменные и постоянные
  */
 public class Variables {
-    //Постоянная для обмена сообщением с сервером RabbitMQ
+    //Постоянная для обмена с сервером RabbitMQ
     public static final String QUEUE_NAME = "Gatekeeper";
     //Сюда запишем полученный SessionID
     public static String jSessionId;
