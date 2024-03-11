@@ -3,6 +3,9 @@ package com.alrosa.staa.gatekeeper_client.model.tree_objects.level_1;
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 
+/**
+ * Класс для объекта "Сервер"
+ */
 public class Server implements Global {
     //Имя объекта, по умолчанию "Сервер"
     private String complete_name = "Сервер";
