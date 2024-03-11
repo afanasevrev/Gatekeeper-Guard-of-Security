@@ -13,6 +13,8 @@ import java.nio.charset.StandardCharsets;
  */
 public class Receiver {
 
+    //Создаем экземпляр класса Transceiver
+    Transceiver transceiver = new Transceiver();
     /**
      * Метод запускает приёмник сообщений
      */
@@ -28,6 +30,11 @@ public class Receiver {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
             System.out.println(" [x] Received '" + message + "'");
+            try {
+                transceiver.send();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         };
 
         channel.basicConsume(Variables.QUEUE_NAME, true, deliverCallback, consumerTag -> { });

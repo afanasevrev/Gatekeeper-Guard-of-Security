@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
+import com.alrosa.staa.gatekeeper_client.controller.sessions.Receiver;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
@@ -21,6 +22,8 @@ import java.util.ResourceBundle;
  * Контроллер для работы с файлом admins_console.fxml
  */
 public class AdminsConsoleController implements Initializable {
+    //Создаем экземпляр класса Receiver
+    Receiver receiver = new Receiver();
     //Добавим контекстное меню
     private ContextMenu contextMenu = new ContextMenu();
     //Создание кнопки "Добавить"
@@ -78,6 +81,7 @@ public class AdminsConsoleController implements Initializable {
         mainSystem.setGraphic(mainView);
 
         try {
+            receiver.start();
             getInfo();
         } catch (Exception e) {
             throw new RuntimeException(e);
