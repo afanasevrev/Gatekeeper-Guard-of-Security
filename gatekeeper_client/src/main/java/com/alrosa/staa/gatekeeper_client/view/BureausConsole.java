@@ -16,5 +16,9 @@ public class BureausConsole {
         stage.getIcons().add(Variables.shieldImage);
         stage.setScene(scene);
         stage.show();
+        //При закрытии окна завершаем приложение полностью вместе с слушателем RabbitMQ
+        stage.setOnCloseRequest(e -> {
+            System.exit(0);
+        });
     }
 }
