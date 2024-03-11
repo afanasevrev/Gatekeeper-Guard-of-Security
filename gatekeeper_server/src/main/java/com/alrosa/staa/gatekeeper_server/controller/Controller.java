@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- *
+ * Контроллер для обработки запросов
  */
 @RestController
 @RequestMapping

@@ -1,25 +1,21 @@
-package com.alrosa.staa.gatekeeper_client.model.tree_objects;
+package com.alrosa.staa.gatekeeper_client.model.tree_objects.level_1;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 
-/**
- * Класс для главной вершины дерева
- */
-public class Main implements Global {
-    //Имя объекта
-    private String complete_name;
+public class Server implements Global {
+    //Имя объекта, по умолчанию "Сервер"
+    private String complete_name = "Сервер";
+    private final Direction direction = Direction.SERVER;
 
-    private final Direction direction = Direction.MAIN;
+    public Server(){}
 
-    public Main(){}
-
-    public Main(String complete_name) {
+    public Server(String complete_name) {
         this.complete_name = complete_name;
     }
-
     @Override
     public String getComplete_name() {
-        return complete_name;
+        return this.complete_name;
     }
 
     @Override
