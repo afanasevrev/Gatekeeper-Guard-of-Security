@@ -15,4 +15,6 @@ module com.alrosa.staa.gatekeeper_client {
     opens com.alrosa.staa.gatekeeper_client.model.tree_objects to com.google.gson;
     exports com.alrosa.staa.gatekeeper_client.controller.sessions;
     opens com.alrosa.staa.gatekeeper_client.controller.sessions to javafx.fxml;
+    exports com.alrosa.staa.gatekeeper_client.controller.admins_console;
+    opens com.alrosa.staa.gatekeeper_client.controller.admins_console to javafx.fxml;
 }

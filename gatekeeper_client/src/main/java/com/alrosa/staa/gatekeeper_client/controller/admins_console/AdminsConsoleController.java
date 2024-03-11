@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_client.controller;
+package com.alrosa.staa.gatekeeper_client.controller.admins_console;
 
 import com.alrosa.staa.gatekeeper_client.controller.sessions.Receiver;
 import com.alrosa.staa.gatekeeper_client.controller.sessions.Transceiver;
@@ -51,7 +51,7 @@ public class AdminsConsoleController implements Initializable {
         //В контекстное меню добавляем кнопки
         contextMenu.getItems().addAll(menuAdd, menuDelete);
         //В наше дерево добавляем контекстное меню
-        //treeView.setContextMenu(contextMenu);
+        treeView.setContextMenu(contextMenu);
 
         AnchorPane.setLeftAnchor(vBox, 0.0);
         AnchorPane.setBottomAnchor(vBox, 0.0);
@@ -77,6 +77,8 @@ public class AdminsConsoleController implements Initializable {
         mainView.setFitWidth(25);
         mainView.setFitHeight(25);
         mainSystem.setGraphic(mainView);
+
+
 
         try {
             receiver.start();
