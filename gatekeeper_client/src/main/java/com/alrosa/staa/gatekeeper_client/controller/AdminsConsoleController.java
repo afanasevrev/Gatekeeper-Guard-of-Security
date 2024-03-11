@@ -1,13 +1,10 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
 import com.alrosa.staa.gatekeeper_client.controller.sessions.Receiver;
+import com.alrosa.staa.gatekeeper_client.controller.sessions.Transceiver;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
-import com.google.gson.Gson;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -15,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 /**
@@ -24,6 +20,8 @@ import java.util.ResourceBundle;
 public class AdminsConsoleController implements Initializable {
     //Создаем экземпляр класса Receiver
     Receiver receiver = new Receiver();
+    //Создаем экземпляр класса Transceiver
+    Transceiver transceiver = new Transceiver();
     //Добавим контекстное меню
     private ContextMenu contextMenu = new ContextMenu();
     //Создание кнопки "Добавить"
@@ -82,23 +80,9 @@ public class AdminsConsoleController implements Initializable {
 
         try {
             receiver.start();
-            getInfo();
+            transceiver.send();
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public void getInfo() throws Exception {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("127.0.0.1");
-        try(Connection connection = factory.newConnection();
-            Channel channel = connection.createChannel()) {
-            channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
-            Main main = new Main("Главный");
-            Gson gson = new Gson();
-            String text = gson.toJson(main);
-            channel.basicPublish("", Variables.QUEUE_NAME, null, text.getBytes(StandardCharsets.UTF_8));
-            System.out.println(text);
         }
     }
 }
