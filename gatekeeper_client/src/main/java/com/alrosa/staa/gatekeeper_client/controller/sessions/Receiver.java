@@ -8,8 +8,14 @@ import com.rabbitmq.client.DeliverCallback;
 
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Класс для приёма сообщения от сервера
+ */
 public class Receiver {
-
+    /**
+     * Метод запускает приёмник сообщений от сервера
+     * @throws Exception
+     */
     public void start() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("127.0.0.1");

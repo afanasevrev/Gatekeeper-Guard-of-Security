@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_server.session;
+package com.alrosa.staa.gatekeeper_server.sessions;
 
 import com.alrosa.staa.gatekeeper_server.variables.Variables;
 import com.rabbitmq.client.Channel;
@@ -13,7 +13,9 @@ import java.nio.charset.StandardCharsets;
  */
 public class Receiver {
 
-    //Метод запускает приёмник сообщений
+    /**
+     * Метод запускает приёмник сообщений
+     */
     public void start() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("127.0.0.1");
