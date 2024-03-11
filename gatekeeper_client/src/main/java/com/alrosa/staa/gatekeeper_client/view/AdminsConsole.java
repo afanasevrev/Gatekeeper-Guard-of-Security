@@ -12,6 +12,7 @@ public class AdminsConsole {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GateKeeperClient.class.getResource("console/admin/admins_console.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 350);
+        stage.setMaximized(true);
         stage.setTitle("GateKeeper - Guard of Security");
         stage.getIcons().add(Variables.shieldImage);
         stage.setScene(scene);
