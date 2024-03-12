@@ -7,7 +7,7 @@ import com.alrosa.staa.gatekeeper_client.model.Direction;
  */
 public class Main implements Global {
     //Имя объекта
-    private String complete_name;
+    private String complete_name = "Главный";
 
     private final Direction direction = Direction.MAIN;
 
