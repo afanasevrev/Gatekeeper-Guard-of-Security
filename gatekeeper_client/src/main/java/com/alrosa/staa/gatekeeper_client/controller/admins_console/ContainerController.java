@@ -45,7 +45,7 @@ public class ContainerController implements Initializable {
         globalView.setFitHeight(25);
         globalView.setFitWidth(25);
         globalTreeItem.setGraphic(globalView);
-       // addItems(Variables.adminsConsoleDirection);
+        //addItems(Variables.adminsConsoleDirection);
         //Раскрываем дерево полностью
         globalTreeItem.setExpanded(true);
     }
@@ -53,6 +53,9 @@ public class ContainerController implements Initializable {
     @FXML
     private void isPressedButtonCreate() {}
 
+    /**
+     * Закрываем окно при нажатии кнопки "Отмена"
+     */
     @FXML
     private void isPressedButtonCancel() {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
