@@ -79,7 +79,6 @@ public class AdminsConsoleController implements Initializable {
         mainSystem.setGraphic(mainView);
 
         
-
         try {
             receiver.start();
             transceiver.send();
