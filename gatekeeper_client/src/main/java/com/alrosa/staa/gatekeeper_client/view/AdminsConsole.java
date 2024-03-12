@@ -17,7 +17,7 @@ public class AdminsConsole {
         stage.getIcons().add(Variables.shieldImage);
         stage.setScene(scene);
         stage.show();
-        //Закрываем приложение полностью вместе с слушателем RabbitMQ
+        //Закрываем приложение полностью вместе со слушателем RabbitMQ
         stage.setOnCloseRequest(e -> {
             System.exit(0);
         });

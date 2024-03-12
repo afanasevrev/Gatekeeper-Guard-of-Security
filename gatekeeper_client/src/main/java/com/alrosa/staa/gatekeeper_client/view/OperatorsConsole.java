@@ -16,7 +16,7 @@ public class OperatorsConsole {
         stage.getIcons().add(Variables.shieldImage);
         stage.setScene(scene);
         stage.show();
-        //При закрытии завершаем приложение полностью вместе с слушателем RabbitMQ
+        //При закрытии завершаем приложение полностью вместе со слушателем RabbitMQ
         stage.setOnCloseRequest(e -> {
             System.exit(0);
         });
