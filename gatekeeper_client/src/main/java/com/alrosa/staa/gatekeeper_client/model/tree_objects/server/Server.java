@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_client.model.tree_objects.level_1;
+package com.alrosa.staa.gatekeeper_client.model.tree_objects.server;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;

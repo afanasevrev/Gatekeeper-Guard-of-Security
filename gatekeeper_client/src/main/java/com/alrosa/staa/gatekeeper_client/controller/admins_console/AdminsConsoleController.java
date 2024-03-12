@@ -78,7 +78,7 @@ public class AdminsConsoleController implements Initializable {
         mainView.setFitHeight(25);
         mainSystem.setGraphic(mainView);
 
-        
+
         try {
             receiver.start();
             transceiver.send();
