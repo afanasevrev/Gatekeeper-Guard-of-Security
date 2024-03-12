@@ -3,10 +3,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" >
+<AnchorPane fx:controller="com.alrosa.staa.gatekeeper_client.controller.admins_console.ContainerController" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" >
     <children>
-        <Button fx:id="buttonCreate" layoutX="170.0" layoutY="350.0" mnemonicParsing="false" /> <!--> onAction="#isPressedButtonCreate"--> prefHeight="25.0" prefWidth="90.0" text="Добавить" />
-        <Button fx:id="buttonCancel" layoutX="280.0" layoutY="350.0" mnemonicParsing="false" /> <!--> onAction="#isPressedButtonCancel"--> prefHeight="25.0" prefWidth="90.0" text="Отмена" />
+        <Button fx:id="buttonCreate" layoutX="170.0" layoutY="350.0" mnemonicParsing="false" onAction="#isPressedButtonCreate" prefHeight="25.0" prefWidth="90.0" text="Добавить" />
+        <Button fx:id="buttonCancel" layoutX="280.0" layoutY="350.0" mnemonicParsing="false" onAction="#isPressedButtonCancel" prefHeight="25.0" prefWidth="90.0" text="Отмена" />
         <AnchorPane fx:id="anchorPane" prefHeight="300.0" prefWidth="400.0" />
     </children>
 </AnchorPane>
