@@ -1,20 +1,20 @@
-package com.alrosa.staa.gatekeeper_client.model.tree_objects.computer;
+package com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.Bureau;
 
 /**
- * Класс для объекта "Компьютер"
+ * Класс для карт доступа
  */
-public class Computer implements Global {
-    //Имя объекта, по умолчанию "Компьютер"
-    private String complete_name = "Компьютер";
+public class Cards extends Bureau {
+    //Имя объекта
+    private String complete_name = "Карты доступа";
 
-    private final Direction direction = Direction.COMPUTER;
+    private final Direction direction = Direction.CARDS;
 
-    public Computer(){}
+    public Cards() {}
 
-    public Computer(String complete_name) {
+    public Cards(String complete_name) {
         this.complete_name = complete_name;
     }
 
@@ -27,10 +27,12 @@ public class Computer implements Global {
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
     }
+
     @Override
     public Direction getDirection() {
         return this.direction;
     }
+
     @Override
     public String toString() {
         return getComplete_name();

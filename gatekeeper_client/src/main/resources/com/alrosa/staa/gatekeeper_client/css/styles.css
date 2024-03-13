@@ -5,7 +5,13 @@
     -fx-pref-width: 195px;
     -fx-pref-height: 25px;
 }
-
+.button_create_cancel {
+    -fx-background-color: #1000ff;
+    -fx-text-fill: #fff;
+    -fx-font-size: 12px;
+    -fx-pref-width: 90px;
+    -fx-pref-height: 25px;
+}
 .button_sign_in:hover {
     -fx-background-color: #ff9900;
 }

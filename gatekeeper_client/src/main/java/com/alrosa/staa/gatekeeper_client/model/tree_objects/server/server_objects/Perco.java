@@ -1,26 +1,26 @@
-package com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects;
+package com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.Bureau;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.Server;
 
 /**
- * Класс для отображения человека женского пола
+ * Класс для объекта контроллера Perco
  */
-public class Woman extends Bureau {
+public class Perco extends Server {
     //Имя объекта
-    private String complete_name = "Человек";
+    private String complete_name = "Контроллер Perco";
 
-    private final Direction direction = Direction.WOMAN;
+    private final Direction direction = Direction.PERCO;
 
-    public Woman() {}
+    public Perco() {}
 
-    public Woman(String complete_name) {
+    public Perco(String complete_name) {
         this.complete_name = complete_name;
     }
 
     @Override
     public String getComplete_name() {
-        return this.complete_name;
+        return complete_name;
     }
 
     @Override

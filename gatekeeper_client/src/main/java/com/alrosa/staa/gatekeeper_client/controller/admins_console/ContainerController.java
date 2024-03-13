@@ -45,7 +45,7 @@ public class ContainerController implements Initializable {
         globalView.setFitHeight(25);
         globalView.setFitWidth(25);
         globalTreeItem.setGraphic(globalView);
-        //addItems(Variables.adminsConsoleDirection);
+        addItems(Variables.adminsConsoleDirection);
         //Раскрываем дерево полностью
         globalTreeItem.setExpanded(true);
     }
@@ -62,6 +62,88 @@ public class ContainerController implements Initializable {
         stage.close();
     }
     private void addItems(Direction direction) {
-
+        globalTreeItem.getChildren().clear();
+        switch (direction) {
+            case MAIN:
+                globalTreeItem.getChildren().addAll
+                        (
+                                Variables.serverTreeItem,
+                                Variables.computerTreeItem,
+                                Variables.bureauTreeItem
+                        );
+                break;
+            case SERVER:
+                globalTreeItem.getChildren().addAll(Variables.percoTreeItem);
+                break;
+            case PERCO:
+                globalTreeItem.getChildren().addAll(Variables.PERCoC01TreeItem);
+                break;
+            case PERCOC01:
+                globalTreeItem.getChildren().addAll(Variables.cardReaderTreeItem);
+                break;
+            case COMPUTER:
+                globalTreeItem.getChildren().addAll(Variables.consoleTreeItem);
+                break;
+            case BUREAU:
+                globalTreeItem.getChildren().addAll
+                        (
+                                Variables.usersTreeItem,
+                                Variables.adminsTreeItem,
+                                Variables.operatorsTreeItem,
+                                Variables.globalAccessLevelsTreeItem,
+                                Variables.cardsTreeItem,
+                                Variables.cardLayoutsTreeItem,
+                                Variables.positionsTreeItem,
+                                Variables.organizationsTreeItem
+                        );
+                break;
+            case USERS:
+            case ADMINS:
+            case OPERATORS:
+                globalTreeItem.getChildren().addAll
+                        (
+                                Variables.manTreeItem,
+                                Variables.womanTreeItem
+                        );
+                break;
+            case GLOBAL_ACCESS_LEVELS:
+                globalTreeItem.getChildren().addAll
+                        (
+                                Variables.globalAccessLevelTreeItem
+                        );
+                break;
+            case CARDS:
+                globalTreeItem.getChildren().addAll
+                        (
+                                Variables.cardTreeItem
+                        );
+                break;
+            case CARD_LAYOUTS:
+                globalTreeItem.getChildren().addAll
+                        (
+                                Variables.cardLayoutTreeItem
+                        );
+                break;
+            case POSITIONS:
+                globalTreeItem.getChildren().addAll
+                        (
+                                Variables.positionTreeItem
+                        );
+                break;
+            case ORGANIZATIONS:
+                globalTreeItem.getChildren().addAll
+                        (
+                                Variables.organizationTreeItem
+                        );
+                break;
+            case ORGANIZATION:
+                globalTreeItem.getChildren().addAll
+                        (
+                                Variables.officeTreeItem
+                        );
+                break;
+            default:   System.out.println("Selected item: default");
+                break;
+        }
     }
 }

@@ -10,6 +10,7 @@ import com.alrosa.staa.gatekeeper_client.view.Container;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
@@ -124,5 +125,14 @@ public class AdminsConsoleController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    //Метод для добавления объекта в дерево системы
+    private void addItem(TreeItem treeItem, Image image) {
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(25);
+        imageView.setFitWidth(25);
+        treeItem.setGraphic(imageView);
+        Variables.adminsConsoleItem.getChildren().add(treeItem);
     }
 }
