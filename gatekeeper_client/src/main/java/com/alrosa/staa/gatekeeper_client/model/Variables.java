@@ -17,7 +17,7 @@ public class Variables {
     public static final String QUEUE_NAME = "Gatekeeper";
     //Сюда запишем полученный SessionID
     public static String jSessionId;
-    //Указываем путь к настройкам
+    //Переменная для загрузки настроек
     public static final Properties properties = new Properties();
     //Добавляем вершину дерева для контейнера
     public static TreeItem<Global> containerConsoleItem;

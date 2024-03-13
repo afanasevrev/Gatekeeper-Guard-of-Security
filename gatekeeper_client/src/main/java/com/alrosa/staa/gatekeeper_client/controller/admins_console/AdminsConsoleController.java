@@ -2,15 +2,20 @@ package com.alrosa.staa.gatekeeper_client.controller.admins_console;
 
 import com.alrosa.staa.gatekeeper_client.controller.sessions.Receiver;
 import com.alrosa.staa.gatekeeper_client.controller.sessions.Transceiver;
+import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
+import com.alrosa.staa.gatekeeper_client.view.Container;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,6 +23,10 @@ import java.util.ResourceBundle;
  * Контроллер для работы с файлом admins_console.fxml
  */
 public class AdminsConsoleController implements Initializable {
+    //Создаем экземпляр класса Container
+    Container container = new Container();
+    //Создаем сцену
+    Stage stage = new Stage();
     //Создаем экземпляр класса Receiver
     Receiver receiver = new Receiver();
     //Создаем экземпляр класса Transceiver
@@ -77,7 +86,37 @@ public class AdminsConsoleController implements Initializable {
         mainView.setFitWidth(25);
         mainView.setFitHeight(25);
         mainSystem.setGraphic(mainView);
+        //Добавляем реакцию на нажатие вершины дерева
+        treeView.setOnMouseClicked(event -> {
+                    Variables.adminsConsoleItem = (TreeItem<Global>) treeView.getSelectionModel().getSelectedItem();
+                    Variables.adminsConsoleDirection = Variables.adminsConsoleItem.getValue().getDirection();
+                    //Проверяем, что элемент не является пустым и что была нажата правая кнопка мыши
+                    if (Variables.adminsConsoleItem != null && event.getButton() == MouseButton.SECONDARY) {
+                        //Добавляем реакцию на нажатие кнопки "Добавить"
+                        menuAdd.setOnAction(event1 -> {
+                            try {
+                                Variables.containerConsoleDirection = Direction.MAIN;
+                                container.start(stage);
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        });
+                        //Добавляем реакцию на нажатие кнопки "Удалить"
+                        menuDelete.setOnAction(event1 -> {
+                            //System.out.println(Variables.direction);
+                            switch (Variables.adminsConsoleDirection) {
+                                case MAIN:
+                                    break;
+                                default:  Variables.adminsConsoleItem.getParent().getChildren().remove(Variables.adminsConsoleItem);
+                                    break;
+                            }
+                        });
+                        //Проверяем, что элемент не является пустым и что была нажата левая кнопка мыши
+                    } else if(Variables.adminsConsoleItem != null && event.getButton() == MouseButton.PRIMARY) {
 
+                    }
+                }
+        );
 
         try {
             receiver.start();
