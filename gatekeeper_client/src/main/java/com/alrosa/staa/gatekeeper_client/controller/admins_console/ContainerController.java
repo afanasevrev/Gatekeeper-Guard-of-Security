@@ -33,7 +33,7 @@ public class ContainerController implements Initializable {
     //Создаем рисунок главного объекта в ImageView
     private final ImageView globalView = new ImageView(Variables.mainImage);
     //Создаем дерево в контейнере
-    private TreeView global = new TreeView();
+    private TreeView global = new TreeView(globalTreeItem);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,6 +61,11 @@ public class ContainerController implements Initializable {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
+
+    /**
+     * Метод добавляет в контейнер дерево объектов
+     * @param direction
+     */
     private void addItems(Direction direction) {
         globalTreeItem.getChildren().clear();
         switch (direction) {

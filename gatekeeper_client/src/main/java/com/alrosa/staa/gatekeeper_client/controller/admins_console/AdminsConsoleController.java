@@ -91,6 +91,7 @@ public class AdminsConsoleController implements Initializable {
         treeView.setOnMouseClicked(event -> {
                     Variables.adminsConsoleItem = (TreeItem<Global>) treeView.getSelectionModel().getSelectedItem();
                     Variables.adminsConsoleDirection = Variables.adminsConsoleItem.getValue().getDirection();
+                    System.out.println(Variables.adminsConsoleDirection);
                     //Проверяем, что элемент не является пустым и что была нажата правая кнопка мыши
                     if (Variables.adminsConsoleItem != null && event.getButton() == MouseButton.SECONDARY) {
                         //Добавляем реакцию на нажатие кнопки "Добавить"
