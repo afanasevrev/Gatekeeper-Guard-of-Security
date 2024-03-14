@@ -91,8 +91,8 @@ public class ContainerController implements Initializable {
         switch (Variables.containerConsoleDirection) {
             case MAIN:     break;
             case SERVER:
-                Main main = new Main();
-                text = gson.toJson(main);
+                Server server = new Server();
+                text = gson.toJson(server);
                 transceiver.send(text);
                 item = new TreeItem<>(new Server());
                 imageView = new ImageView(Variables.imageServer);

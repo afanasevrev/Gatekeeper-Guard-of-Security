@@ -7,7 +7,7 @@ import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
 /**
  * Класс для объекта "Сервер"
  */
-public class Server extends Main {
+public class Server implements Global {
     //Имя объекта, по умолчанию "Сервер"
     private String complete_name = "Сервер";
     private final Direction direction = Direction.SERVER;
