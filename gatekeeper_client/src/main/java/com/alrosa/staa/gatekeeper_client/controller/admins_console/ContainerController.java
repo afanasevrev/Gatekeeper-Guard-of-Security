@@ -369,7 +369,7 @@ public class ContainerController implements Initializable {
                                 Variables.officeTreeItem
                         );
                 break;
-            default:   System.out.println("Selected item: default");
+            default:
                 break;
         }
     }
