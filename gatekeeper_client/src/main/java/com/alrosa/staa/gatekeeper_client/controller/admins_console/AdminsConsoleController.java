@@ -91,7 +91,6 @@ public class AdminsConsoleController implements Initializable {
         treeView.setOnMouseClicked(event -> {
                     Variables.adminsConsoleItem = (TreeItem<Global>) treeView.getSelectionModel().getSelectedItem();
                     Variables.adminsConsoleDirection = Variables.adminsConsoleItem.getValue().getDirection();
-                    System.out.println(Variables.adminsConsoleDirection);
                     //Проверяем, что элемент не является пустым и что была нажата правая кнопка мыши
                     if (Variables.adminsConsoleItem != null && event.getButton() == MouseButton.SECONDARY) {
                         //Добавляем реакцию на нажатие кнопки "Добавить"
@@ -127,7 +126,6 @@ public class AdminsConsoleController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
     //Метод для добавления объекта в дерево системы
     private void addItem(TreeItem treeItem, Image image) {
         ImageView imageView = new ImageView(image);

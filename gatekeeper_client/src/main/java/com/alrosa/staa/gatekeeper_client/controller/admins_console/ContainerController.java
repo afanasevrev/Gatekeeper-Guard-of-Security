@@ -65,7 +65,9 @@ public class ContainerController implements Initializable {
         addItems(Variables.adminsConsoleDirection);
         //Раскрываем дерево полностью
         globalTreeItem.setExpanded(true);
-
+        /**
+         * При нажатии на объект, метод записывает в статическую переменную enum выбранного объекта
+         */
         global.setOnMouseClicked(event -> {
             Variables.containerConsoleItem = (TreeItem<Global>) global.getSelectionModel().getSelectedItem();
             Variables.containerConsoleDirection = Variables.containerConsoleItem.getValue().getDirection();
@@ -73,7 +75,7 @@ public class ContainerController implements Initializable {
     }
 
     /**
-     * При нажатии кнопки добавляем в дерево объекты
+     * При нажатии кнопки добавляем в главное дерево объекты (вершины)
      */
     @FXML
     private void isPressedButtonCreate() {
