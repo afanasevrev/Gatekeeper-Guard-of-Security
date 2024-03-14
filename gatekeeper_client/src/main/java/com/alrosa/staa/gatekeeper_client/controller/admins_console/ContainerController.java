@@ -94,14 +94,18 @@ public class ContainerController implements Initializable {
                 Server server = new Server();
                 text = gson.toJson(server);
                 transceiver.send(text);
-                item = new TreeItem<>(new Server());
+                item = new TreeItem<>(server);
                 imageView = new ImageView(Variables.imageServer);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
                 item.setGraphic(imageView);
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
-            case COMPUTER: item = new TreeItem<>(new Computer());
+            case COMPUTER:
+                Computer computer = new Computer();
+                text = gson.toJson(computer);
+                transceiver.send(text);
+                item = new TreeItem<>(computer);
                 imageView = new ImageView(Variables.imageComputer);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);

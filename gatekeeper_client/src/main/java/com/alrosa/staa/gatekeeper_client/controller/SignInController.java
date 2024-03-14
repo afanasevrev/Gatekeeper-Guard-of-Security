@@ -108,11 +108,7 @@ public class SignInController {
                 }
                 //Запускаем обмен сообщениями между клиентом и сервером
                 try {
-                    //Main main = new Main("Главный");
-                    //Gson gson = new Gson();
-                    //text = gson.toJson(main);
                     receiver.start();
-                    //transceiver.send(text);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
