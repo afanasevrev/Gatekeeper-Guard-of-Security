@@ -6,18 +6,18 @@ import com.google.gson.Gson;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.TimeoutException;
 
 /**
- * Класс для отправки сообщений к серверу посредством RabbitMQ
+ * Класс для отправки сообщений на сервер посредством RabbitMQ
  */
 public class Transceiver {
+    ConnectionFactory factory = new ConnectionFactory();
+
+    String server_ip = Variables.properties.getProperty("server_ip");
+
     public void send() throws Exception {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("127.0.0.1");
+        factory.setHost(server_ip);
         try(Connection connection = factory.newConnection();
             Channel channel = connection.createChannel()) {
             channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
