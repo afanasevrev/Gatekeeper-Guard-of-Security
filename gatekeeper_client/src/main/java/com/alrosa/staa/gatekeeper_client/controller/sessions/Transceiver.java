@@ -12,18 +12,28 @@ import java.nio.charset.StandardCharsets;
  * Класс для отправки сообщений на сервер посредством RabbitMQ
  */
 public class Transceiver {
+    private static final Transceiver INSTANCE = new Transceiver();
+    private Transceiver() {}
+    public static Transceiver getTransceiver () {
+        if (INSTANCE == null) {
+            return new Transceiver();
+        } else {
+            return INSTANCE;
+        }
+    }
     ConnectionFactory factory = new ConnectionFactory();
 
     String server_ip = Variables.properties.getProperty("server_ip");
 
-    public void send() throws Exception {
+    /**
+     * Отправляем сообщение на сервер
+     * @throws Exception
+     */
+    public void send(String text) throws Exception {
         factory.setHost(server_ip);
         try(Connection connection = factory.newConnection();
             Channel channel = connection.createChannel()) {
             channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
-            Main main = new Main("Главный");
-            Gson gson = new Gson();
-            String text = gson.toJson(main);
             channel.basicPublish("", Variables.QUEUE_NAME, null, text.getBytes(StandardCharsets.UTF_8));
             System.out.println(text);
         }

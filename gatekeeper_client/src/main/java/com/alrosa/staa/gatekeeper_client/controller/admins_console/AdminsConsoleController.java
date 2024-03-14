@@ -28,10 +28,6 @@ public class AdminsConsoleController implements Initializable {
     Container container = new Container();
     //Создаем сцену
     Stage stage = new Stage();
-    //Создаем экземпляр класса Receiver
-    Receiver receiver = new Receiver();
-    //Создаем экземпляр класса Transceiver
-    Transceiver transceiver = new Transceiver();
     //Добавим контекстное меню
     private ContextMenu contextMenu = new ContextMenu();
     //Создание кнопки "Добавить"
@@ -118,13 +114,6 @@ public class AdminsConsoleController implements Initializable {
                     }
                 }
         );
-
-        try {
-            receiver.start();
-            transceiver.send();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
     //Метод для добавления объекта в дерево системы
     private void addItem(TreeItem treeItem, Image image) {

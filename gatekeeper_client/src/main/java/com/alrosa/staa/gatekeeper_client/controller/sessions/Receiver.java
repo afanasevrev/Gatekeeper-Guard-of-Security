@@ -9,16 +9,17 @@ import com.rabbitmq.client.DeliverCallback;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Класс для приёма сообщения от сервера
+ * Класс для приёма сообщений от сервера
  */
 public class Receiver {
+    private String client_ip = Variables.properties.getProperty("client_ip");
+    private ConnectionFactory factory = new ConnectionFactory();
     /**
      * Метод запускает приёмник сообщений от сервера
      * @throws Exception
      */
     public void start() throws Exception {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("127.0.0.1");
+        factory.setHost(client_ip);
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 

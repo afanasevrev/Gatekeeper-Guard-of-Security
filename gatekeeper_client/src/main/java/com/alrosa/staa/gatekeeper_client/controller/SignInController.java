@@ -1,7 +1,10 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
+import com.alrosa.staa.gatekeeper_client.controller.sessions.Receiver;
+import com.alrosa.staa.gatekeeper_client.controller.sessions.Transceiver;
 import com.alrosa.staa.gatekeeper_client.model.Roles;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
 import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
 import com.alrosa.staa.gatekeeper_client.view.OperatorsConsole;
@@ -24,6 +27,10 @@ import java.io.IOException;
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
 public class SignInController {
+    //Создаем экземпляр класса Receiver
+    Receiver receiver = new Receiver();
+    //Создаем экземпляр класса Transceiver
+    Transceiver transceiver = Transceiver.getTransceiver();
     //Для парсинга объектов JSON
     Gson gson = new Gson();
     //Создаем экземпляр класса Роли
@@ -98,6 +105,16 @@ public class SignInController {
                 } else if (role.getRole().equals("[ROLE_BUREAU]")) {
                     //Запускаем консоль бюро пропусков
                     bureausConsole.start(new Stage());
+                }
+                //Запускаем обмен сообщениями между клиентом и сервером
+                try {
+                    Main main = new Main("Главный");
+                    Gson gson = new Gson();
+                    text = gson.toJson(main);
+                    receiver.start();
+                    transceiver.send(text);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
                 //Закрываем форму ввода логина и пароля
                 stage.close();
