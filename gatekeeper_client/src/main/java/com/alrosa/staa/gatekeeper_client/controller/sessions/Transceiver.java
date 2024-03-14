@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
  * Класс для отправки сообщений на сервер посредством RabbitMQ
  */
 public class Transceiver {
-    private static final Transceiver INSTANCE = new Transceiver();
+    private static Transceiver INSTANCE;
     private Transceiver() {}
     public static Transceiver getTransceiver () {
         if (INSTANCE == null) {

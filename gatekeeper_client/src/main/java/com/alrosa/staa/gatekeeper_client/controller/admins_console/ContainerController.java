@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller.admins_console;
 
+import com.alrosa.staa.gatekeeper_client.controller.sessions.Transceiver;
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
@@ -20,6 +21,7 @@ import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.Server;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.Perco;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.PERCoC01;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.percoc01_objects.CardReader;
+import com.google.gson.Gson;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -51,7 +53,12 @@ public class ContainerController implements Initializable {
     private final ImageView globalView = new ImageView(Variables.mainImage);
     //Создаем дерево в контейнере
     private TreeView global = new TreeView(globalTreeItem);
-
+    //Создаем экземпляр класа Transceiver
+    private Transceiver transceiver = Transceiver.getTransceiver();
+    //Создаем текст передаваемого сообщения
+    String text = new String();
+    //Создаем JSON для отправки на сервер
+    Gson gson = new Gson();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         AnchorPane.setRightAnchor(global, 0.0);
@@ -78,12 +85,16 @@ public class ContainerController implements Initializable {
      * При нажатии кнопки добавляем в главное дерево объекты (вершины)
      */
     @FXML
-    private void isPressedButtonCreate() {
+    private void isPressedButtonCreate() throws Exception {
         TreeItem<Global> item;
         ImageView imageView;
         switch (Variables.containerConsoleDirection) {
             case MAIN:     break;
-            case SERVER:   item = new TreeItem<>(new Server());
+            case SERVER:
+                Main main = new Main();
+                text = gson.toJson(main);
+                transceiver.send(text);
+                item = new TreeItem<>(new Server());
                 imageView = new ImageView(Variables.imageServer);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
