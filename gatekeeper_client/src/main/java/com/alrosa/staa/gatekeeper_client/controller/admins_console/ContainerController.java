@@ -114,6 +114,9 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case BUREAU:
+                Bureau bureau = new Bureau();
+                text = gson.toJson(bureau);
+                transceiver.send(text);
                 item = new TreeItem<>(new Bureau());
                 imageView = new ImageView(Variables.imageBureau);
                 imageView.setFitHeight(25);

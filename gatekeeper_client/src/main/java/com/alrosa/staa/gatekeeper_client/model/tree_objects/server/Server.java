@@ -1,14 +1,12 @@
 package com.alrosa.staa.gatekeeper_client.model.tree_objects.server;
 
-import com.alrosa.staa.gatekeeper_client.controller.sessions.Transceiver;
 import com.alrosa.staa.gatekeeper_client.model.Direction;
-import com.alrosa.staa.gatekeeper_client.model.Sender;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 
 /**
  * Класс для объекта "Сервер"
  */
-public class Server implements Global, Sender {
+public class Server implements Global {
 
     //Имя объекта, по умолчанию "Сервер"
     private String complete_name = "Сервер";
@@ -39,8 +37,4 @@ public class Server implements Global, Sender {
         return getComplete_name();
     }
 
-    @Override
-    public Transceiver send() {
-        return Transceiver.getTransceiver();
-    }
 }
