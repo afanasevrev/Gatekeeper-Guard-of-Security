@@ -12,14 +12,14 @@ import java.nio.charset.StandardCharsets;
  * Класс - приёмник сообщений от сервера
  */
 public class Receiver {
-
     //Создаем экземпляр класса Transceiver
     Transceiver transceiver = new Transceiver();
+
+    ConnectionFactory factory = new ConnectionFactory();
     /**
      * Метод запускает приёмник сообщений
      */
     public void start() throws Exception {
-        ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("127.0.0.1");
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
