@@ -18,4 +18,6 @@ public interface Global {
      * @return
      */
     Direction getDirection();
+
+    
 }

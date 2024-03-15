@@ -117,7 +117,7 @@ public class ContainerController implements Initializable {
                 Bureau bureau = new Bureau();
                 text = gson.toJson(bureau);
                 transceiver.send(text);
-                item = new TreeItem<>(new Bureau());
+                item = new TreeItem<>(bureau);
                 imageView = new ImageView(Variables.imageBureau);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -125,7 +125,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case PERCO:
-                item = new TreeItem<>(new Perco());
+                Perco perco = new Perco();
+                text = gson.toJson(perco);
+                transceiver.send(text);
+                item = new TreeItem<>(perco);
                 imageView = new ImageView(Variables.imagePerco);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -133,7 +136,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case PERCOC01:
-                item = new TreeItem<>(new PERCoC01());
+                PERCoC01 perCoC01 = new PERCoC01();
+                text = gson.toJson(perCoC01);
+                transceiver.send(text);
+                item = new TreeItem<>(perCoC01);
                 imageView = new ImageView(Variables.imagePERCoC01);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -141,7 +147,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case CARDREADER:
-                item = new TreeItem<>(new CardReader());
+                CardReader cardReader = new CardReader();
+                text = gson.toJson(cardReader);
+                transceiver.send(text);
+                item = new TreeItem<>(cardReader);
                 imageView = new ImageView(Variables.imageCardReader);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -149,7 +158,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case CONSOLE:
-                item = new TreeItem<>(new Console());
+                Console console = new Console();
+                text = gson.toJson(console);
+                transceiver.send(text);
+                item = new TreeItem<>(console);
                 imageView = new ImageView(Variables.imageConsole);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -157,7 +169,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case USERS:
-                item = new TreeItem<>(new Users());
+                Users users = new Users();
+                text = gson.toJson(users);
+                transceiver.send(text);
+                item = new TreeItem<>(users);
                 imageView = new ImageView(Variables.imageUsers);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -165,7 +180,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case ADMINS:
-                item = new TreeItem<>(new Admins());
+                Admins admins = new Admins();
+                text = gson.toJson(admins);
+                transceiver.send(text);
+                item = new TreeItem<>(admins);
                 imageView = new ImageView(Variables.imageAdmins);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -173,7 +191,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case OPERATORS:
-                item = new TreeItem<>(new Operators());
+                Operators operators = new Operators();
+                text = gson.toJson(operators);
+                transceiver.send(text);
+                item = new TreeItem<>(operators);
                 imageView = new ImageView(Variables.imageOperators);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -181,7 +202,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case GLOBAL_ACCESS_LEVELS:
-                item = new TreeItem<>(new GlobalAccessLevels());
+                GlobalAccessLevels globalAccessLevels = new GlobalAccessLevels();
+                text = gson.toJson(globalAccessLevels);
+                transceiver.send(text);
+                item = new TreeItem<>(globalAccessLevels);
                 imageView = new ImageView(Variables.imageGlobalAccessLevels);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -189,7 +213,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case CARDS:
-                item = new TreeItem<>(new Cards());
+                Cards cards = new Cards();
+                text = gson.toJson(cards);
+                transceiver.send(text);
+                item = new TreeItem<>(cards);
                 imageView = new ImageView(Variables.imageCards);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -197,7 +224,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case CARD_LAYOUTS:
-                item = new TreeItem<>(new CardLayouts());
+                CardLayouts cardLayouts = new CardLayouts();
+                text = gson.toJson(cardLayouts);
+                transceiver.send(text);
+                item = new TreeItem<>(cardLayouts);
                 imageView = new ImageView(Variables.imageCardLayouts);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -205,7 +235,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case POSITIONS:
-                item = new TreeItem<>(new Positions());
+                Positions positions = new Positions();
+                text = gson.toJson(positions);
+                transceiver.send(text);
+                item = new TreeItem<>(positions);
                 imageView = new ImageView(Variables.imagePositions);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -213,7 +246,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case ORGANIZATIONS:
-                item = new TreeItem<>(new Organizations());
+                Organizations organizations = new Organizations();
+                text = gson.toJson(organizations);
+                transceiver.send(text);
+                item = new TreeItem<>(organizations);
                 imageView = new ImageView(Variables.imageOrganizations);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -221,7 +257,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case MAN:
-                item = new TreeItem<>(new Man());
+                Man man = new Man();
+                text = gson.toJson(man);
+                transceiver.send(text);
+                item = new TreeItem<>(man);
                 imageView = new ImageView(Variables.imageMan);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -229,7 +268,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case WOMAN:
-                item = new TreeItem<>(new Woman());
+                Woman woman = new Woman();
+                text = gson.toJson(woman);
+                transceiver.send(text);
+                item = new TreeItem<>(woman);
                 imageView = new ImageView(Variables.imageWoman);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -237,7 +279,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case GLOBAL_ACCESS_LEVEL:
-                item = new TreeItem<>(new GlobalAccessLevel());
+                GlobalAccessLevel globalAccessLevel = new GlobalAccessLevel();
+                text = gson.toJson(globalAccessLevel);
+                transceiver.send(text);
+                item = new TreeItem<>(globalAccessLevel);
                 imageView = new ImageView(Variables.imageGlobalAccessLevel);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
@@ -245,7 +290,10 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case CARD:
-                item = new TreeItem<>(new Card());
+                Card card = new Card();
+                text = gson.toJson(card);
+                transceiver.send(text);
+                item = new TreeItem<>(card);
                 imageView = new ImageView(Variables.imageCard);
                 imageView.setFitHeight(25);
                 imageView.setFitWidth(25);
