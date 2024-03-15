@@ -9,11 +9,12 @@ import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
  * Класс для объекта "Сервер"
  */
 public class Server implements Global, Sender {
+
     //Имя объекта, по умолчанию "Сервер"
     private String complete_name = "Сервер";
     private final Direction direction = Direction.SERVER;
 
-    public Server(){}
+    public Server() {}
 
     public Server(String complete_name) {
         this.complete_name = complete_name;
