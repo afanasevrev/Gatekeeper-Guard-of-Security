@@ -1,12 +1,12 @@
 package com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.organizations_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.Organizations;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 
 /**
  * Класс для организации
  */
-public class Organization extends Organizations {
+public class Organization implements Global {
     //Имя объекта
     private String complete_name = "Организация";
 

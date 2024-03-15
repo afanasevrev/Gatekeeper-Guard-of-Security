@@ -1,12 +1,12 @@
 package com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.Perco;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 
 /**
  * Класс для контроллера PERCoC01
  */
-public class PERCoC01 extends Perco {
+public class PERCoC01 implements Global {
     //Имя объекта
     private String complete_name = "Контроллер PERC0-C01";
 

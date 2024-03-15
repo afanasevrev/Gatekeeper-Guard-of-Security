@@ -1,12 +1,12 @@
 package com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.Bureau;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 
 /**
  * Класс для макетов карт
  */
-public class CardLayouts extends Bureau {
+public class CardLayouts implements Global {
     //Имя объекта
     private String complete_name = "Макеты карт";
 

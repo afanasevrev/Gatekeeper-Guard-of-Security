@@ -1,11 +1,11 @@
 package com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.card_layouts_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.CardLayouts;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 /**
  * Класс для макета карты
  */
-public class CardLayout extends CardLayouts {
+public class CardLayout implements Global {
     //Имя объекта
     private String complete_name = "Макет карты";
 

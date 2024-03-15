@@ -1,12 +1,13 @@
 package com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.percoc01_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.PERCoC01;
 
 /**
  * Класс для считывателей
  */
-public class CardReader extends PERCoC01 {
+public class CardReader implements Global {
     //Имя объекта
     private String complete_name = "Считыватель";
 

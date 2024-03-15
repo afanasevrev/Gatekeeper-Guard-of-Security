@@ -1,12 +1,13 @@
 package com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.cards_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.Cards;
 
 /**
  * Класс для карты доступа
  */
-public class Card extends Cards {
+public class Card implements Global {
     //Имя объекта
     private String complete_name = "Карта доступа";
 

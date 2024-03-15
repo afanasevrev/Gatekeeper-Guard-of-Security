@@ -1,12 +1,13 @@
 package com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.computer_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.Computer;
 
 /**
  * Класс для объекта "Консоль"
  */
-public class Console extends Computer {
+public class Console implements Global {
     //Имя объекта
     private String complete_name = "Консоль";
 

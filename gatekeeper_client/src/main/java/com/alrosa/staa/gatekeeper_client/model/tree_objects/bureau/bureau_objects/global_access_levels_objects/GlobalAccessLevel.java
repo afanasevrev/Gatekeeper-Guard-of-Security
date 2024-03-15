@@ -1,9 +1,9 @@
 package com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.global_access_levels_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.Bureau;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 
-public class GlobalAccessLevel extends Bureau {
+public class GlobalAccessLevel implements Global {
     //Имя объекта
     private String complete_name = "Глобальный уровень доступа";
 
