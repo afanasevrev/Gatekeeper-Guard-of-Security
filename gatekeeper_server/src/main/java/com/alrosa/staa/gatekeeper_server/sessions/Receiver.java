@@ -14,7 +14,6 @@ import java.nio.charset.StandardCharsets;
 public class Receiver {
     //Создаем экземпляр класса Transceiver
     Transceiver transceiver = new Transceiver();
-
     ConnectionFactory factory = new ConnectionFactory();
     /**
      * Метод запускает приёмник сообщений
@@ -25,7 +24,7 @@ public class Receiver {
         Channel channel = connection.createChannel();
 
         channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
-        System.out.println(" [*] Server RabbitMQ is started");
+        System.out.println(Variables.date + " Server RabbitMQ is started");
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
