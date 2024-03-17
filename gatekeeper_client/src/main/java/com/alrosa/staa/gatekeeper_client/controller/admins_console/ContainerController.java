@@ -61,6 +61,7 @@ public class ContainerController implements Initializable {
     Gson gson = new Gson();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Выравниваем наше дерево по всем краям окна
         AnchorPane.setRightAnchor(global, 0.0);
         AnchorPane.setTopAnchor(global, 0.0);
         AnchorPane.setLeftAnchor(global, 0.0);
