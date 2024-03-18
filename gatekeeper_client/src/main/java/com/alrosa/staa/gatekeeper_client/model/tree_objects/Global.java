@@ -4,6 +4,24 @@ import com.alrosa.staa.gatekeeper_client.model.Direction;
 
 public interface Global {
     /**
+     * Присваивает ID объекту
+     */
+    void setId(int id);
+    /**
+     * Присваивает родительское ID объекту
+     */
+    void setParentId(int parentId);
+    /**
+     * Возвращает ID объекта
+     * @return
+     */
+    int getId();
+    /**
+     * Возвращает родительское ID объекта
+     * @return
+     */
+    int getParentId();
+    /**
      * Возвращает имя объекта
      * @return
      */
@@ -18,6 +36,4 @@ public interface Global {
      * @return
      */
     Direction getDirection();
-
-    
 }
