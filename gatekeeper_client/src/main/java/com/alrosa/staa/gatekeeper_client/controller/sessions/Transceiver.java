@@ -29,7 +29,7 @@ public class Transceiver {
      * Отправляем сообщение на сервер
      * @throws Exception
      */
-    public void send(String text) throws Exception {
+    public synchronized void send(String text) throws Exception {
         factory.setHost(server_ip);
         try(Connection connection = factory.newConnection();
             Channel channel = connection.createChannel()) {
