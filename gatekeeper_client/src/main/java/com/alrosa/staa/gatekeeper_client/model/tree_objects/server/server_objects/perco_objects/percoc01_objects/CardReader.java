@@ -2,7 +2,6 @@ package com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objec
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.PERCoC01;
 
 /**
  * Класс для считывателей
