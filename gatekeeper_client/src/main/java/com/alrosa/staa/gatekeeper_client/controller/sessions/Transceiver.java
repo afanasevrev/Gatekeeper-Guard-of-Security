@@ -22,7 +22,7 @@ public class Transceiver {
         }
     }
     ConnectionFactory factory = new ConnectionFactory();
-    
+
     //Вытягиваем настройки подключения из конфигурационного файла
     String server_ip = Variables.properties.getProperty("server_ip");
 
