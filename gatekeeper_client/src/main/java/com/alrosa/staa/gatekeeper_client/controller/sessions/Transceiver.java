@@ -34,7 +34,6 @@ public class Transceiver {
             Channel channel = connection.createChannel()) {
             channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
             channel.basicPublish("", Variables.QUEUE_NAME, null, text.getBytes(StandardCharsets.UTF_8));
-            System.out.println(text);
         }
     }
 }
