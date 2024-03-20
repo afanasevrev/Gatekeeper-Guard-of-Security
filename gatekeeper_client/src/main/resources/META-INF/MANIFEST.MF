@@ -1,22 +1,3 @@
 Manifest-Version: 1.0
 Main-Class: com.alrosa.staa.gatekeeper_client.GateKeeperClient
-Class-Path: jackson-datatype-jsr310-2.15.3.jar javafx-base-17.0.1-win.ja
- r jul-to-slf4j-2.0.11.jar spring-web-6.1.3.jar spring-context-6.1.3.jar
-  javafx-base-17.0.1.jar spring-boot-3.2.2.jar javafx-graphics-17.0.1-wi
- n.jar jackson-annotations-2.15.3.jar logback-core-1.4.14.jar tomcat-emb
- ed-core-10.1.18.jar javafx-fxml-17.0.1.jar spring-boot-starter-json-3.2
- .2.jar spring-security-core-6.2.1.jar jackson-databind-2.15.3.jar jacks
- on-module-parameter-names-2.15.3.jar javafx-graphics-17.0.1.jar spring-
- boot-starter-3.2.2.jar logback-classic-1.4.14.jar slf4j-api-2.0.11.jar 
- javafx-controls-17.0.1-win.jar jackson-core-2.15.3.jar tomcat-embed-web
- socket-10.1.18.jar gson-2.10.1.jar spring-core-6.1.3.jar amqp-client-5.
- 20.0.jar javafx-fxml-17.0.1-win.jar spring-jcl-6.1.3.jar javafx-control
- s-17.0.1.jar spring-boot-starter-tomcat-3.2.2.jar spring-boot-starter-l
- ogging-3.2.2.jar log4j-api-2.21.1.jar spring-boot-starter-web-3.2.2.jar
-  spring-expression-6.1.3.jar spring-beans-6.1.3.jar micrometer-commons-
- 1.12.2.jar log4j-to-slf4j-2.21.1.jar spring-aop-6.1.3.jar jakarta.annot
- ation-api-2.1.1.jar snakeyaml-2.2.jar spring-webmvc-6.1.3.jar jackson-d
- atatype-jdk8-2.15.3.jar spring-security-crypto-6.2.1.jar spring-boot-au
- toconfigure-3.2.2.jar tomcat-embed-el-10.1.18.jar micrometer-observatio
- n-1.12.2.jar
 
