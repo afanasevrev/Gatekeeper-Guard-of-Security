@@ -43,7 +43,6 @@ public class Receiver {
             System.out.println(message);
             List<Main> mainObjects = getMainObjects();
             text = gson.toJson(mainObjects);
-            System.out.println(mainObjects.get(0).getDirection());
             try {
                 transceiver.send(text);
             } catch (Exception e) {
