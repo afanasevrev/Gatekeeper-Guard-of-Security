@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_server.sessions;
 
+import com.alrosa.staa.gatekeeper_server.db.Direction;
 import com.alrosa.staa.gatekeeper_server.db.Main;
 import com.alrosa.staa.gatekeeper_server.util.HibernateUtil;
 import com.alrosa.staa.gatekeeper_server.variables.Variables;
@@ -42,7 +43,10 @@ public class Receiver {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
             System.out.println(message);
             List<Main> mainObjects = getMainObjects();
-            text = gson.toJson(mainObjects);
+            Main main1 = new Main();
+            main1 = mainObjects.get(0);
+
+            text = gson.toJson(main1);
             try {
                 transceiver.send(text);
             } catch (Exception e) {
