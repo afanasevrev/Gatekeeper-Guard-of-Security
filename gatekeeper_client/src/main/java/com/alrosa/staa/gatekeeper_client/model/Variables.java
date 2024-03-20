@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -304,17 +305,17 @@ public class Variables {
 
     //Извлекаем настройки сервера из файла settings.properties
     static {
-        /**
         try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/com/alrosa/staa/gatekeeper_client/settings/settings.properties")) {
+            properties.load(fileInputStream);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        /**
+        try (FileInputStream fileInputStream = new FileInputStream("settings.properties")) {
             properties.load(fileInputStream);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
          **/
-        try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/com/alrosa/staa/gatekeeper_client/settings/settings.properties")) {
-            properties.load(fileInputStream);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 }
