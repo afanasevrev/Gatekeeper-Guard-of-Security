@@ -1,8 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller.sessions;
 
 import com.alrosa.staa.gatekeeper_client.model.Variables;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
-import com.google.gson.Gson;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;

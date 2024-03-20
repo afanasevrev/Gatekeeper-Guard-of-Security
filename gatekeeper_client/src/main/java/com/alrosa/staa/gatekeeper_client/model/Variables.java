@@ -304,6 +304,13 @@ public class Variables {
 
     //Извлекаем настройки сервера из файла settings.properties
     static {
+        /**
+        try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/com/alrosa/staa/gatekeeper_client/settings/settings.properties")) {
+            properties.load(fileInputStream);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+         **/
         try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/com/alrosa/staa/gatekeeper_client/settings/settings.properties")) {
             properties.load(fileInputStream);
         } catch (IOException ex) {
