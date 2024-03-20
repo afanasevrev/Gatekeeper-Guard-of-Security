@@ -24,6 +24,11 @@ public class Main {
         this.name = name;
     }
 
+    public Main(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

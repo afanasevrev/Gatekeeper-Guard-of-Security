@@ -43,8 +43,7 @@ public class Receiver {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
             System.out.println(message);
             List<Main> mainObjects = getMainObjects();
-            Main main1 = new Main();
-            main1 = mainObjects.get(0);
+            Main main1 = new Main(mainObjects.get(0).getName(), mainObjects.get(0).getId());
 
             text = gson.toJson(main1);
             try {
