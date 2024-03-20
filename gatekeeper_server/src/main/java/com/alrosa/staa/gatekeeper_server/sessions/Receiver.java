@@ -41,10 +41,9 @@ public class Receiver {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
             System.out.println(message);
-            List<Main> mainObjects = new ArrayList<>();
-            mainObjects = getMainObjects();
+            List<Main> mainObjects = getMainObjects();
             text = gson.toJson(mainObjects);
-
+            System.out.println(mainObjects.get(0).getDirection());
             try {
                 transceiver.send(text);
             } catch (Exception e) {

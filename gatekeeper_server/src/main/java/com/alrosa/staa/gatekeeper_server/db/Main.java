@@ -16,6 +16,8 @@ public class Main {
     @Column(name = "name")
     private String name;
 
+    private final Direction direction = Direction.MAIN;
+
     public Main() {}
 
     public Main(String name) {
@@ -26,15 +28,15 @@ public class Main {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Direction getDirection() {
+        return this.direction;
     }
 }
