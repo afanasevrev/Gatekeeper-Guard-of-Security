@@ -11,7 +11,7 @@ public class Main implements Global {
     private int id;
 
     //Родительский ID объекта в БД
-    private int parentId = 1;
+    private int parentId = 0;
 
     //Имя объекта
     private String complete_name = "Главный";
