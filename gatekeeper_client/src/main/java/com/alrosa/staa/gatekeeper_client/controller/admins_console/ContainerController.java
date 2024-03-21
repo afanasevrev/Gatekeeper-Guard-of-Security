@@ -83,7 +83,7 @@ public class ContainerController implements Initializable {
     }
 
     /**
-     * При нажатии кнопки добавляем в главное дерево объекты (вершины)
+     * При нажатии кнопки "Добавить" добавляем в главное дерево объекты (вершины)
      */
     @FXML
     private void isPressedButtonCreate() throws Exception {

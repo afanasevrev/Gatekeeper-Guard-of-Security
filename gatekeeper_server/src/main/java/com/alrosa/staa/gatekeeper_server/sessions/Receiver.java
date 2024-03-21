@@ -42,17 +42,18 @@ public class Receiver {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
             System.out.println(message);
-            List<Main> mainObjects = getMainObjects();
-            Main main1 = new Main(mainObjects.get(0).getName(), mainObjects.get(0).getId());
+            if (message.equals("UPDATE")) {
+                List<Main> mainObjects = getMainObjects();
+                Main main1 = new Main(mainObjects.get(0).getName(), mainObjects.get(0).getId());
+                text = gson.toJson(main1);
+                try {
+                    transceiver.send(text);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
 
-            text = gson.toJson(main1);
-            try {
-                transceiver.send(text);
-                transceiver.send("MAIN");
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
-
         };
         channel.basicConsume(Variables.QUEUE_NAME, true, deliverCallback, consumerTag -> { });
     }
