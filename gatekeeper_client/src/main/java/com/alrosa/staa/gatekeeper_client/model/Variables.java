@@ -25,12 +25,16 @@ import javafx.scene.image.ImageView;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Properties;
 
 /**
  * В классе будем хранить статические переменные и постоянные
  */
 public class Variables {
+
+    public static Date date = new Date();
+
     //Постоянная для сессий на основе RabbitMQ
     public static final String QUEUE_NAME = "Gatekeeper";
 

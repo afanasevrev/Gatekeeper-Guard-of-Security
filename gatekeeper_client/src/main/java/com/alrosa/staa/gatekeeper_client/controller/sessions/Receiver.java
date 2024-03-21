@@ -24,7 +24,7 @@ public class Receiver {
         Channel channel = connection.createChannel();
 
         channel.queueDeclare(Variables.QUEUE_NAME_1, false, false, false, null);
-        System.out.println(" [*] Server RabbitMQ is started");
+        System.out.println(Variables.date + " [*] Receiver RabbitMQ is started");
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
