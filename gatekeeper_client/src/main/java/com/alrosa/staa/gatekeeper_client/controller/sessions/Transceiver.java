@@ -23,7 +23,6 @@ public class Transceiver {
 
     //Вытягиваем настройки подключения из конфигурационного файла
     String server_ip = Variables.properties.getProperty("server_ip");
-
     /**
      * Отправляем сообщение на сервер
      * @throws Exception

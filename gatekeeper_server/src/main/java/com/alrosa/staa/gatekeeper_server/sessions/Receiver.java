@@ -51,6 +51,7 @@ public class Receiver {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+
         };
         channel.basicConsume(Variables.QUEUE_NAME, true, deliverCallback, consumerTag -> { });
     }
