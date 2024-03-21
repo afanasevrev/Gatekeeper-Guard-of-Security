@@ -33,6 +33,9 @@ import java.util.Properties;
 public class Variables {
     //Постоянная для сессий на основе RabbitMQ
     public static final String QUEUE_NAME = "Gatekeeper";
+
+    public static final String QUEUE_NAME_1 = "Gatekeeper_1";
+
     //Сюда запишем полученный SessionID
     public static String jSessionId;
     //Переменная для загрузки настроек

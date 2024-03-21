@@ -48,6 +48,7 @@ public class Receiver {
             text = gson.toJson(main1);
             try {
                 transceiver.send(text);
+                transceiver.send("MAIN");
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

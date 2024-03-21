@@ -15,8 +15,8 @@ public class Transceiver {
         factory.setHost("127.0.0.1");
         try(Connection connection = factory.newConnection();
             Channel channel = connection.createChannel()) {
-            channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
-            channel.basicPublish("", Variables.QUEUE_NAME, null, text.getBytes(StandardCharsets.UTF_8));
+            channel.queueDeclare(Variables.QUEUE_NAME_1, false, false, false, null);
+            channel.basicPublish("", Variables.QUEUE_NAME_1, null, text.getBytes(StandardCharsets.UTF_8));
         }
     }
 }

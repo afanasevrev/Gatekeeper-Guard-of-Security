@@ -23,7 +23,7 @@ public class Receiver {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.queueDeclare(Variables.QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(Variables.QUEUE_NAME_1, false, false, false, null);
         System.out.println(" [*] Server RabbitMQ is started");
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
@@ -31,6 +31,6 @@ public class Receiver {
             System.out.println(" [x] Received '" + message + "'");
         };
 
-        channel.basicConsume(Variables.QUEUE_NAME, true, deliverCallback, consumerTag -> { });
+        channel.basicConsume(Variables.QUEUE_NAME_1, true, deliverCallback, consumerTag -> { });
     }
 }
