@@ -53,7 +53,7 @@ public class ContainerController implements Initializable {
     private final ImageView globalView = new ImageView(Variables.mainImage);
     //Создаем дерево в контейнере
     private TreeView global = new TreeView(globalTreeItem);
-    //Создаем экземпляр класа Transceiver
+    //Создаем экземпляр класса Transceiver
     private Transceiver transceiver = Transceiver.getTransceiver();
     //Создаем текст передаваемого сообщения
     String text = new String();
