@@ -2,6 +2,9 @@ package com.alrosa.staa.gatekeeper_client.model.tree_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 
+/**
+ * Интерфейс для объектов дерева
+ */
 public interface Global {
     /**
      * Присваивает ID объекту
