@@ -18,7 +18,7 @@ public class SampleController {
 
     @RequestMapping("/emit")
     @ResponseBody
-    private String queue() {
+    String queue() {
         logger.info("Emit to Gatekeeper");
         template.convertAndSend("Gatekeeper", "Papistafalli");
         return "emit to Gatekeeper";

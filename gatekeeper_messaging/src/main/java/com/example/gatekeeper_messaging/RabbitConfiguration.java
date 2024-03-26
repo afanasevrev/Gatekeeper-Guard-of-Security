@@ -47,7 +47,8 @@ public class RabbitConfiguration {
         container.setMessageListener(new MessageListener() {
             //Тут ловим сообщения из Gatekeeper
             public void onMessage(Message message) {
-                logger.info("received from Gatekeeper : " + new String(message.getBody()));
+                logger.info("Received from Gatekeeper : " + new String(message.getBody()));
+                System.out.println(new String(message.getBody()));
             }
         });
         return container;
