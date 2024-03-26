@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 public class Transceiver {
     ConnectionFactory factory = new ConnectionFactory();
     public void send(String text) throws Exception {
-        factory.setHost("127.0.0.1");
+        factory.setHost("192.168.1.66");
         try(Connection connection = factory.newConnection();
             Channel channel = connection.createChannel()) {
             channel.queueDeclare(Variables.QUEUE_NAME_1, false, false, false, null);
