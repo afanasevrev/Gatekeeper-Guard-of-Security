@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 public class RabbitConfiguration {
     Logger logger = Logger.getLogger(RabbitConfiguration.class);
 
-    //Настраиваем соединение с RabbitMQ
+    //Настраиваем соединение с сервером RabbitMQ
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
