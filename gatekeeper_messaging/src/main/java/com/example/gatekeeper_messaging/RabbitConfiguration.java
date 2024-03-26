@@ -23,7 +23,7 @@ public class RabbitConfiguration {
     }
 
     @Bean
-    public AmqpAdmin amQpAdmin() {
+    public AmqpAdmin amqpAdmin() {
         return new RabbitAdmin(connectionFactory());
     }
 
