@@ -3,7 +3,6 @@ package com.example.gatekeeper_messaging;
 
 import org.apache.log4j.Logger;
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +19,7 @@ public class SampleController {
     @ResponseBody
     String queue() {
         logger.info("Emit to Gatekeeper");
-        template.convertAndSend("Gatekeeper", "Papistafalli");
+        template.convertAndSend("Gatekeeper", "Papista-falli");
         return "emit to Gatekeeper";
     }
-
 }
