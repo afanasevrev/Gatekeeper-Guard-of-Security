@@ -10,6 +10,12 @@ import org.springframework.stereotype.Component;
 public class RabbitMqListener {
     Logger logger = Logger.getLogger(RabbitConfiguration.class);
 
+    /**
+     * Слушатель сообщений от клиентов
+     * @param message
+     * @return
+     * @throws InterruptedException
+     */
     @RabbitListener(queues = "Gatekeeper")
     public String processQueue(String message) throws InterruptedException {
         logger.info("Received from Gatekeeper: " + message);
