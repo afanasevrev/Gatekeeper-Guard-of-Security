@@ -21,12 +21,15 @@ public class RabbitConfiguration {
 
     @Bean
     public AmqpAdmin amqpAdmin() {
-        return new RabbitAdmin(connectionFactory());
+        AmqpAdmin amqpAdmin = new RabbitAdmin(connectionFactory());
+        return amqpAdmin;
     }
 
     @Bean
     public RabbitTemplate rabbitTemplate() {
-        return new RabbitTemplate(connectionFactory());
+        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
+        rabbitTemplate.setReplyTimeout(60 * 1000);
+        return rabbitTemplate;
     }
 
     //Объявляем очередь с именем "Gatekeeper"

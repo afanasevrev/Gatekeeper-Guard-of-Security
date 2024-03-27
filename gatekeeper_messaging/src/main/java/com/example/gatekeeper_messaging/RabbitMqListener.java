@@ -11,7 +11,9 @@ public class RabbitMqListener {
     Logger logger = Logger.getLogger(RabbitConfiguration.class);
 
     @RabbitListener(queues = "Gatekeeper")
-    public void processQueue(String message) {
+    public String processQueue(String message) throws InterruptedException {
         logger.info("Received from Gatekeeper: " + message);
+        Thread.sleep(2000);
+        return "Received on worker: " + message;
     }
 }
