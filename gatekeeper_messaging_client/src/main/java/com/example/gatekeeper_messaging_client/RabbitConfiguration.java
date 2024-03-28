@@ -16,7 +16,7 @@ public class RabbitConfiguration {
     //Настраиваем соединение с сервером RabbitMQ
     @Bean
     public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("127.0.0.1");
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
         return connectionFactory;
     }
 

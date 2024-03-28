@@ -5,22 +5,18 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-
-
+@AutoConfiguration
+@ComponentScan
+@Import(RabbitConfiguration.class)
 public class SendMessage {
-    CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
-    RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-
-    Queue queue = new Queue("Gatekeeper");
-
-
-   // @Autowired
-   // AmqpTemplate template;
+    @Autowired
+    AmqpTemplate template;
 
     public String send(String text) {
-        rabbitTemplate.setReplyTimeout(3 * 1000);
-        String response = (String) rabbitTemplate.convertSendAndReceive(text);
+        String response = (String) template.convertSendAndReceive(text);
         return response;
     }
 }
