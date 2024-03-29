@@ -16,16 +16,18 @@ public class RabbitMqListener {
      * @return
      * @throws InterruptedException
      */
-    //@RabbitListener(queues = "Gatekeeper")
-   // public String processQueue(String message) throws InterruptedException {
-   //     logger.info("Received from Gatekeeper: " + message);
-    //    Thread.sleep(2000);
-    //    return "Received on worker: " + message;
-    //}
+
+    /**
+    @RabbitListener(queues = "Gatekeeper")
+    public String processQueue(String message) throws InterruptedException {
+        logger.info("Received from Gatekeeper: " + message);
+        Thread.sleep(2000);
+        return "Received on worker: " + message;
+    }
+    **/
 
     @RabbitListener(queues = "Gatekeeper")
     public void processQueue1(String message) throws InterruptedException {
         logger.info("Received from Gatekeeper: " + message);
-        Thread.sleep(2000);
     }
 }

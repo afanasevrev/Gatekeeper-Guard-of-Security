@@ -14,7 +14,7 @@ public class Transmitter {
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
     public void sendMessage(String text) throws Exception {
-        connectionFactory.setHost("localhost");
+        connectionFactory.setHost("127.0.0.1");
         try(Connection connection = connectionFactory.newConnection();
             Channel channel = connection.createChannel())
         {
