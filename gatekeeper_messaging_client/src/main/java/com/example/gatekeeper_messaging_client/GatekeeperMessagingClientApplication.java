@@ -4,11 +4,9 @@ import org.apache.log4j.BasicConfigurator;
 
 public class GatekeeperMessagingClientApplication {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws Exception {
 		BasicConfigurator.configure();
-
-		SendMessage sendMessage = new SendMessage();
-
-		System.out.println(sendMessage.send("Hello Revoly"));
+		Transmitter transmitter = new Transmitter();
+		transmitter.sendMessage("Hello Moscow!");
 	}
 }
