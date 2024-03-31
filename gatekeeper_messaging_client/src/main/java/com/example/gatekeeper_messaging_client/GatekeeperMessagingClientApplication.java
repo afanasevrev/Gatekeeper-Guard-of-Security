@@ -8,5 +8,7 @@ public class GatekeeperMessagingClientApplication {
 		BasicConfigurator.configure();
 		Transmitter transmitter = new Transmitter();
 		transmitter.sendMessage("Hello Moscow!");
+		Receiver receiver = new Receiver();
+		receiver.start();
 	}
 }
