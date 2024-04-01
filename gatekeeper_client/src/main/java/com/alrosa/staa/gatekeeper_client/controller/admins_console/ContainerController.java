@@ -1,6 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller.admins_console;
 
-import com.alrosa.staa.gatekeeper_client.controller.sessions.Transceiver;
+import com.alrosa.staa.gatekeeper_client.controller.messaging.Transceiver;
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;

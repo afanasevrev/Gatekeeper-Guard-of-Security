@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_server.sessions;
+package com.alrosa.staa.gatekeeper_server.messaging;
 
 import org.apache.log4j.Logger;
 import org.springframework.amqp.core.AmqpAdmin;

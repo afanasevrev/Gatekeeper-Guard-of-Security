@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_client.controller.sessions;
+package com.alrosa.staa.gatekeeper_client.controller.messaging;
 
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.rabbitmq.client.Channel;

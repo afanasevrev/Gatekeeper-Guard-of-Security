@@ -1,6 +1,6 @@
 package com.alrosa.staa.gatekeeper_server;
 
-import com.alrosa.staa.gatekeeper_server.sessions.RabbitConfiguration;
+import com.alrosa.staa.gatekeeper_server.messaging.RabbitConfiguration;
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

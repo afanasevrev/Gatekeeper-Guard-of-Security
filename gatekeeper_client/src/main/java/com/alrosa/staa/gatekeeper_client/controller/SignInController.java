@@ -1,10 +1,9 @@
 package com.alrosa.staa.gatekeeper_client.controller;
 
-import com.alrosa.staa.gatekeeper_client.controller.sessions.Receiver;
-import com.alrosa.staa.gatekeeper_client.controller.sessions.Transceiver;
+import com.alrosa.staa.gatekeeper_client.controller.messaging.Receiver;
+import com.alrosa.staa.gatekeeper_client.controller.messaging.Transceiver;
 import com.alrosa.staa.gatekeeper_client.model.Roles;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
 import com.alrosa.staa.gatekeeper_client.view.AdminsConsole;
 import com.alrosa.staa.gatekeeper_client.view.BureausConsole;
 import com.alrosa.staa.gatekeeper_client.view.OperatorsConsole;
