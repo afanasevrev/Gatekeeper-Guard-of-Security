@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
  * Контроллер для работы с файлом admins_console.fxml
  */
 public class AdminsConsoleController implements Initializable {
-
     //Создаем экземпляр класса Container
     Container container = new Container();
     //Создаем сцену
@@ -78,8 +77,7 @@ public class AdminsConsoleController implements Initializable {
         AnchorPane.setBottomAnchor(treeView, 0.0);
         AnchorPane.setTopAnchor(treeView, 0.0);
         AnchorPane.setRightAnchor(treeView, 0.0);
-
-
+        
         windowTree.getChildren().add(treeView);
         mainView.setFitWidth(25);
         mainView.setFitHeight(25);
