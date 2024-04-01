@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_server.messaging;
 
+import com.alrosa.staa.gatekeeper_server.variables.Variables;
 import org.apache.log4j.Logger;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Queue;
@@ -35,6 +36,6 @@ public class RabbitConfiguration {
     //Объявляем очередь с именем "Gatekeeper"
     @Bean
     public Queue MyQueue() {
-        return new Queue("Gatekeeper");
+        return new Queue(Variables.QUEUE_NAME);
     }
 }

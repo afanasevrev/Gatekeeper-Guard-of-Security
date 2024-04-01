@@ -1,6 +1,7 @@
 package com.alrosa.staa.gatekeeper_client.controller.admins_console;
 
 import com.alrosa.staa.gatekeeper_client.controller.messaging.Receiver;
+import com.alrosa.staa.gatekeeper_client.controller.messaging.Transmitter;
 import com.alrosa.staa.gatekeeper_client.model.CommandList;
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
@@ -28,6 +29,9 @@ import java.util.concurrent.TimeoutException;
 public class AdminsConsoleController implements Initializable {
     //Создаем экземпляр класса Receiver
     private Receiver receiver = Receiver.getInstance();
+
+    //Создаем экземпляр класса Transmitter
+    private Transmitter transmitter = Transmitter.getInstance();
 
     //Создаем экземпляр класса Container
     Container container = new Container();
@@ -92,6 +96,12 @@ public class AdminsConsoleController implements Initializable {
         //Запускаем слушатель сообщений от сервера
         try {
             receiver.start();
+        } catch (IOException | TimeoutException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            transmitter.sendMessage(String.valueOf(CommandList.UPDATE));
         } catch (IOException | TimeoutException e) {
             throw new RuntimeException(e);
         }

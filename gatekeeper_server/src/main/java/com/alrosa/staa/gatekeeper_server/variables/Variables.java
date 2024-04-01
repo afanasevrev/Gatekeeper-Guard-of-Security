@@ -10,7 +10,7 @@ public class Variables {
     //Переменная для сеанса связи по RabbitMQ
     public static final String QUEUE_NAME = "Gatekeeper";
 
-    public static final String QUEUE_NAME_1 = "Gatekeeper_1";
+    public static final String QUEUE_NAME_1 = "Gatekeeper_Client";
 
     public static Date date = new Date();
 }
