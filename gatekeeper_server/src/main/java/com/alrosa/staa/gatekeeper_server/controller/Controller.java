@@ -22,11 +22,6 @@ public class Controller {
         return "Система контроля и управления доступом. GateKeeper - Guard of Security";
     }
 
-    @GetMapping("/getAuthorizedClients")
-    public List<String> getAuthClients() {
-        return LoginEventListener.successfulLogins;
-    }
-
     @GetMapping("/authenticate")
     public Roles getAuthenticate() throws Exception {
         roles.setRole(LoginEventListener.getAuthorities);
