@@ -27,6 +27,8 @@ public class Receiver {
 
         Channel channel = connection.createChannel();
 
+        channel.queueDeclare("Gatekeeper1", true, false, false, null);
+
         System.out.println("[*] Receiver RabbitMQ is started");
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
@@ -34,6 +36,6 @@ public class Receiver {
             System.out.println(" [x] Received '" + message + "'");
         };
 
-        channel.basicConsume("Gatekeeper", true, deliverCallback, consumerTag -> { });
+        channel.basicConsume("Gatekeeper1", true, deliverCallback, consumerTag -> { });
     }
 }

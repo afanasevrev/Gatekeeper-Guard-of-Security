@@ -37,4 +37,5 @@ public class RabbitConfiguration {
     public Queue MyQueue() {
         return new Queue("Gatekeeper");
     }
+
 }
