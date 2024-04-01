@@ -15,17 +15,14 @@ import java.util.concurrent.TimeoutException;
  */
 public class Transmitter {
     private static Transmitter INSTANCE;
-
     private ConnectionFactory connectionFactory = new ConnectionFactory();
     private Transmitter(){}
-
     public synchronized static Transmitter getInstance() {
         if(INSTANCE == null) {
             INSTANCE = new Transmitter();
         }
         return INSTANCE;
     }
-
     /**
      * Метод для отправки сообщения серверу
      * @param text
