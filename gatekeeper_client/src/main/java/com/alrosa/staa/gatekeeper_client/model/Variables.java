@@ -37,7 +37,7 @@ public class Variables {
     //Постоянная для сессий на основе RabbitMQ
     public static final String QUEUE_NAME = "Gatekeeper";
 
-    public static final String QUEUE_NAME_1 = "Gatekeeper_1";
+    public static final String QUEUE_NAME_1 = "Gatekeeper_Client";
 
     //Сюда запишем полученный SessionID
     public static String jSessionId;
