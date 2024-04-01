@@ -1,6 +1,5 @@
 package com.alrosa.staa.gatekeeper_client.controller.admins_console;
 
-import com.alrosa.staa.gatekeeper_client.controller.messaging.Transceiver;
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
@@ -53,8 +52,7 @@ public class ContainerController implements Initializable {
     private final ImageView globalView = new ImageView(Variables.mainImage);
     //Создаем дерево в контейнере
     private TreeView global = new TreeView(globalTreeItem);
-    //Создаем экземпляр класса Transceiver
-    private Transceiver transceiver = Transceiver.getTransceiver();
+
     //Создаем текст передаваемого сообщения
     String text = new String();
     //Создаем JSON для отправки на сервер
@@ -326,8 +324,6 @@ public class ContainerController implements Initializable {
                 System.out.println(Variables.containerConsoleItem.getValue().getDirection());
                 break;
         }
-        //Отправляем на сервер данные объекта
-        transceiver.send(text);
         //Сортируем элементы дерева после необходимых итераций
         Variables.adminsConsoleItem.getChildren().sort(Comparator.comparing(t->t.getValue().toString()));
     }

@@ -1,6 +1,5 @@
 package com.alrosa.staa.gatekeeper_client.controller.admins_console;
 
-import com.alrosa.staa.gatekeeper_client.controller.messaging.Transceiver;
 import com.alrosa.staa.gatekeeper_client.model.CommandList;
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
@@ -24,8 +23,7 @@ import java.util.ResourceBundle;
  * Контроллер для работы с файлом admins_console.fxml
  */
 public class AdminsConsoleController implements Initializable {
-    //Создаем экземпляр класса Transceiver
-    Transceiver transceiver = Transceiver.getTransceiver();
+
     //Создаем экземпляр класса Container
     Container container = new Container();
     //Создаем сцену
@@ -81,11 +79,6 @@ public class AdminsConsoleController implements Initializable {
         AnchorPane.setTopAnchor(treeView, 0.0);
         AnchorPane.setRightAnchor(treeView, 0.0);
 
-        try {
-            transceiver.send(CommandList.UPDATE.toString());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
         windowTree.getChildren().add(treeView);
         mainView.setFitWidth(25);
