@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller.admins_console;
 
+import com.alrosa.staa.gatekeeper_client.controller.messaging.Receiver;
 import com.alrosa.staa.gatekeeper_client.model.CommandList;
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
@@ -16,13 +17,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Контроллер для работы с файлом admins_console.fxml
  */
 public class AdminsConsoleController implements Initializable {
+    //Создаем экземпляр класса Receiver
+    private Receiver receiver = Receiver.getInstance();
+
     //Создаем экземпляр класса Container
     Container container = new Container();
     //Создаем сцену
@@ -77,11 +83,19 @@ public class AdminsConsoleController implements Initializable {
         AnchorPane.setBottomAnchor(treeView, 0.0);
         AnchorPane.setTopAnchor(treeView, 0.0);
         AnchorPane.setRightAnchor(treeView, 0.0);
-        
+
         windowTree.getChildren().add(treeView);
         mainView.setFitWidth(25);
         mainView.setFitHeight(25);
         mainSystem.setGraphic(mainView);
+
+        //Запускаем слушатель сообщений от сервера
+        try {
+            receiver.start();
+        } catch (IOException | TimeoutException e) {
+            throw new RuntimeException(e);
+        }
+
         //Добавляем реакцию на нажатие вершины дерева
         treeView.setOnMouseClicked(event -> {
                     Variables.adminsConsoleItem = (TreeItem<Global>) treeView.getSelectionModel().getSelectedItem();
@@ -113,6 +127,7 @@ public class AdminsConsoleController implements Initializable {
                     }
                 }
         );
+
     }
     //Метод для добавления объекта в дерево системы
     private void addItem(TreeItem treeItem, Image image) {
