@@ -8,6 +8,7 @@ import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
 import com.alrosa.staa.gatekeeper_client.view.Container;
+import com.google.gson.Gson;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -31,6 +32,12 @@ public class AdminsConsoleController implements Initializable {
 
     //Создаем экземпляр класса Transmitter
     private Transmitter transmitter = Transmitter.getInstance();
+
+    //Задействуем JSON
+    private Gson gson = new Gson();
+
+    //Текст для отправки на сервер
+    private String text = new String();
 
     //Создаем экземпляр класса Container
     Container container = new Container();
@@ -100,7 +107,8 @@ public class AdminsConsoleController implements Initializable {
         }
         //Отправляем сообщение на сервер
         try {
-            transmitter.sendMessage(String.valueOf(CommandList.UPDATE));
+            text = gson.toJson(mainSystem.getValue());
+            transmitter.sendMessage(text);
         } catch (IOException | TimeoutException e) {
             throw new RuntimeException(e);
         }
