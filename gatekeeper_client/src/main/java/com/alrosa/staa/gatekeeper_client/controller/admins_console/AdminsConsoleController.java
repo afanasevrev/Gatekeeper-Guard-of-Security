@@ -17,7 +17,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -137,7 +136,6 @@ public class AdminsConsoleController implements Initializable {
                     }
                 }
         );
-
     }
     //Метод для добавления объекта в дерево системы
     private void addItem(TreeItem treeItem, Image image) {
