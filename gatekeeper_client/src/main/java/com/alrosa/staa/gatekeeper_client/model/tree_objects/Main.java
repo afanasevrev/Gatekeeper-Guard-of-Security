@@ -8,7 +8,7 @@ import com.alrosa.staa.gatekeeper_client.model.Direction;
 public class Main implements Global {
 
     //ID объекта в БД
-    private int id;
+    private int id = 1;
 
     //Родительский ID объекта в БД
     private int parentId = 0;

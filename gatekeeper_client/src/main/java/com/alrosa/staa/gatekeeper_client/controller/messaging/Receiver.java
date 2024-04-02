@@ -45,6 +45,7 @@ public class Receiver {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
             logger.info("Received from the server: " + message);
+
         };
         channel.basicConsume(Variables.QUEUE_NAME_1, true, deliverCallback, consumerTag -> {});
     }
