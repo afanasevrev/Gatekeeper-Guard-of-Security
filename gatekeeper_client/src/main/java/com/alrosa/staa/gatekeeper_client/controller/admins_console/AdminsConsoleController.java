@@ -98,7 +98,7 @@ public class AdminsConsoleController implements Initializable {
         } catch (IOException | TimeoutException e) {
             throw new RuntimeException(e);
         }
-
+        //Отправляем сообщение на сервер
         try {
             transmitter.sendMessage(String.valueOf(CommandList.UPDATE));
         } catch (IOException | TimeoutException e) {
