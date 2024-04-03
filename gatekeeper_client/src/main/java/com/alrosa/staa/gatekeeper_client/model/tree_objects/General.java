@@ -7,15 +7,17 @@ import com.alrosa.staa.gatekeeper_client.model.Direction;
  * При создании объекта, данные будем отправлять на сервер
  */
 public class General implements Global {
+    
+    private Direction direction;
+
+    private int parentId;
 
     @Override
-    public void setId(int id) {
-
-    }
+    public void setId(int id) {}
 
     @Override
     public void setParentId(int parentId) {
-
+        this.parentId = parentId;
     }
 
     @Override
@@ -25,7 +27,7 @@ public class General implements Global {
 
     @Override
     public int getParentId() {
-        return 0;
+        return this.parentId;
     }
 
     @Override
@@ -34,17 +36,15 @@ public class General implements Global {
     }
 
     @Override
-    public void setComplete_name(String complete_name) {
-
-    }
+    public void setComplete_name(String complete_name) {}
 
     @Override
     public Direction getDirection() {
-        return null;
+        return this.direction;
     }
 
     @Override
     public void setDirection(Direction direction) {
-
+        this.direction = direction;
     }
 }
