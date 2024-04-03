@@ -12,7 +12,6 @@ import java.util.List;
  */
 @Component
 public class LoginEventListener {
-
     Logger logger = Logger.getLogger(LoginEventListener.class);
 
     //Массив для хранения логинов
