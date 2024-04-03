@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_server.messaging;
 
+import com.alrosa.staa.gatekeeper_server.db.Direction;
 import com.alrosa.staa.gatekeeper_server.db.General;
 import com.alrosa.staa.gatekeeper_server.db.Server;
 import com.alrosa.staa.gatekeeper_server.util.HibernateUtil;
@@ -34,13 +35,19 @@ public class RabbitMqListener {
         logger.info(message);
         General general = gson.fromJson(message, General.class);
         logger.info(general.getDirection());
-        //template.convertAndSend(Variables.QUEUE_NAME_1, "Otvet poluchen");
+        if (general.getDirection() == Direction.SERVER) {
+            Server server = new Server("Сервер", "0.0.0.0", 0);
+            writeServer(server);
+            logger.info(server.getId());
+        } else {
+            template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
+        }
     }
     /**
      * Метод записывает в БД объект Сервер
      * @param server
      */
-    private void writeServer(Server server) {
+    private synchronized void writeServer(Server server) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // Старт транзакции
