@@ -17,7 +17,7 @@ public class Computer implements Global {
     //Имя объекта, по умолчанию "Компьютер"
     private String complete_name = "Компьютер";
 
-    private final Direction direction = Direction.COMPUTER;
+    private Direction direction = Direction.COMPUTER;
 
     public Computer(){}
 
@@ -53,6 +53,11 @@ public class Computer implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
     @Override
     public Direction getDirection() {

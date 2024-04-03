@@ -16,7 +16,7 @@ public class Server implements Global {
 
     //Имя объекта, по умолчанию "Сервер"
     private String complete_name = "Сервер";
-    private final Direction direction = Direction.SERVER;
+    private Direction direction = Direction.SERVER;
 
     public Server() {}
 
@@ -52,6 +52,11 @@ public class Server implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

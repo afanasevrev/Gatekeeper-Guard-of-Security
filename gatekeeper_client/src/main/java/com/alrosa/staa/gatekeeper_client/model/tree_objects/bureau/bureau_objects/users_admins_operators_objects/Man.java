@@ -13,7 +13,7 @@ public class Man implements Global {
     private int parentId;
     //Имя объекта
     private String complete_name = "Человек";
-    private final Direction direction = Direction.MAN;
+    private Direction direction = Direction.MAN;
     public Man() {}
     public Man(String complete_name) {
         this.complete_name = complete_name;
@@ -41,6 +41,10 @@ public class Man implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
     @Override
     public Direction getDirection() {

@@ -17,7 +17,7 @@ public class Operators implements Global {
     //Имя объекта
     private String complete_name = "Операторы";
 
-    private final Direction direction = Direction.OPERATORS;
+    private Direction direction = Direction.OPERATORS;
 
     public Operators() {}
 
@@ -53,6 +53,11 @@ public class Operators implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

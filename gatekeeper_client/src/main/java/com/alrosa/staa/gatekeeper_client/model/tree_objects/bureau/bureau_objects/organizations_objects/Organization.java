@@ -17,7 +17,7 @@ public class Organization implements Global {
     //Имя объекта
     private String complete_name = "Организация";
 
-    private final Direction direction = Direction.ORGANIZATION;
+    private Direction direction = Direction.ORGANIZATION;
 
     public Organization() {}
 
@@ -53,6 +53,11 @@ public class Organization implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

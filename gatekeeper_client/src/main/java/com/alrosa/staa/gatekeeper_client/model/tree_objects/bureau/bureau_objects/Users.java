@@ -13,7 +13,7 @@ public class Users implements Global {
     //Имя объекта по умолчанию
     private String complete_name = "Пользователи";
 
-    private final Direction direction = Direction.USERS;
+    private Direction direction = Direction.USERS;
     public Users() {}
 
     public Users(String complete_name) {
@@ -48,6 +48,11 @@ public class Users implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

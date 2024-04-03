@@ -17,7 +17,7 @@ public class Positions implements Global {
     //Имя объекта
     private String complete_name = "Должности";
 
-    private final Direction direction = Direction.POSITIONS;
+    private Direction direction = Direction.POSITIONS;
 
     public Positions() {}
 
@@ -53,6 +53,11 @@ public class Positions implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

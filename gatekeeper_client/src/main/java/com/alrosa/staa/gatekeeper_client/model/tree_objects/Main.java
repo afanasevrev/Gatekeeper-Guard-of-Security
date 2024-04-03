@@ -6,7 +6,6 @@ import com.alrosa.staa.gatekeeper_client.model.Direction;
  * Класс для главной вершины дерева
  */
 public class Main implements Global {
-
     //ID объекта в БД
     private int id = 1;
 
@@ -16,7 +15,7 @@ public class Main implements Global {
     //Имя объекта
     private String complete_name = "Главный";
 
-    private final Direction direction = Direction.MAIN;
+    private Direction direction = Direction.MAIN;
 
     public Main(){}
 
@@ -52,6 +51,11 @@ public class Main implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

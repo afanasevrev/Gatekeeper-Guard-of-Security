@@ -17,7 +17,7 @@ public class PERCoC01 implements Global {
     //Имя объекта
     private String complete_name = "Контроллер PERC0-C01";
 
-    private final Direction direction = Direction.PERCOC01;
+    private Direction direction = Direction.PERCOC01;
 
     public PERCoC01() {}
 
@@ -53,6 +53,11 @@ public class PERCoC01 implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

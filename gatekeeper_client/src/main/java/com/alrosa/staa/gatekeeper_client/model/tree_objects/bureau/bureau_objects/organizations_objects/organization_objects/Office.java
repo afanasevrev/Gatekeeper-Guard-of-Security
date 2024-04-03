@@ -17,7 +17,7 @@ public class Office implements Global {
     //Имя объекта
     private String complete_name = "Отдел";
 
-    private final Direction direction = Direction.OFFICE;
+    private Direction direction = Direction.OFFICE;
 
     public Office() {}
 
@@ -53,6 +53,11 @@ public class Office implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

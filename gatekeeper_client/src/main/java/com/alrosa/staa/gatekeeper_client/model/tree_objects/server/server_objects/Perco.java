@@ -17,7 +17,7 @@ public class Perco implements Global {
     //Имя объекта
     private String complete_name = "Контроллер Perco";
 
-    private final Direction direction = Direction.PERCO;
+    private Direction direction = Direction.PERCO;
 
     public Perco() {}
 
@@ -53,6 +53,11 @@ public class Perco implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

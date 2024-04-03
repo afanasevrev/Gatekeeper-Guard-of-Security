@@ -16,7 +16,7 @@ public class Cards implements Global {
     //Имя объекта
     private String complete_name = "Карты доступа";
 
-    private final Direction direction = Direction.CARDS;
+    private Direction direction = Direction.CARDS;
 
     public Cards() {}
 
@@ -53,7 +53,10 @@ public class Cards implements Global {
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
     }
-
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
     @Override
     public Direction getDirection() {
         return this.direction;

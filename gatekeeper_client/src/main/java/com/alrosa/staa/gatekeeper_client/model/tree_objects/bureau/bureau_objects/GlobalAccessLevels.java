@@ -16,7 +16,7 @@ public class GlobalAccessLevels implements Global {
     //Имя объекта
     private String complete_name = "Глобальные уровни доступа";
 
-    private final Direction direction = Direction.GLOBAL_ACCESS_LEVELS;
+    private Direction direction = Direction.GLOBAL_ACCESS_LEVELS;
 
     public GlobalAccessLevels() {}
 
@@ -52,6 +52,11 @@ public class GlobalAccessLevels implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

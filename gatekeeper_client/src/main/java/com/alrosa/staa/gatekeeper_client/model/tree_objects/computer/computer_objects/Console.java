@@ -56,6 +56,11 @@ public class Console implements Global {
     }
 
     @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    @Override
     public Direction getDirection() {
         return this.direction;
     }

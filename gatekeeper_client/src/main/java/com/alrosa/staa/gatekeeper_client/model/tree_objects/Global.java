@@ -39,4 +39,8 @@ public interface Global {
      * @return
      */
     Direction getDirection();
+    /**
+     * Назначаем enum объекта
+     */
+    void setDirection(Direction direction);
 }

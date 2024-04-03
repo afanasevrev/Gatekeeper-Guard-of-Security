@@ -16,7 +16,7 @@ public class Bureau implements Global {
     //Имя объекта, по умолчанию "Бюро"
     private String complete_name = "Бюро";
 
-    private final Direction direction = Direction.BUREAU;
+    private Direction direction = Direction.BUREAU;
 
     public Bureau(){}
 
@@ -52,6 +52,11 @@ public class Bureau implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

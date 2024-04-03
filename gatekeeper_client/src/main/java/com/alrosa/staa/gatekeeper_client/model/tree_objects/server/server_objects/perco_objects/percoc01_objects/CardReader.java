@@ -17,7 +17,7 @@ public class CardReader implements Global {
     //Имя объекта
     private String complete_name = "Считыватель";
 
-    private final Direction direction = Direction.CARDREADER;
+    private Direction direction = Direction.CARDREADER;
 
     public CardReader() {}
 
@@ -53,6 +53,11 @@ public class CardReader implements Global {
     @Override
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
+    }
+
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 
     @Override

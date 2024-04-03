@@ -52,12 +52,14 @@ public class Admins implements Global {
     public void setComplete_name(String complete_name) {
         this.complete_name = complete_name;
     }
-
+    @Override
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
     @Override
     public Direction getDirection() {
         return this.direction;
     }
-
     @Override
     public String toString() {
         return getComplete_name();
