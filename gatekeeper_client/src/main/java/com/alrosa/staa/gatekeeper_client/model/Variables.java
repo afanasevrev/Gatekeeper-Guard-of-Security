@@ -49,6 +49,8 @@ public class Variables {
     public static TreeItem<Global> adminsConsoleItem;
     //Добавляем статический enum для контейнера
     public static Direction containerConsoleDirection = Direction.MAIN;
+    //Вычисляем id выбранного объекта
+    public static int parentId;
     //Добавляем статический enum для админского консоля
     public static Direction adminsConsoleDirection = Direction.MAIN;
     //Указываем путь к рисунку shield. Значок.

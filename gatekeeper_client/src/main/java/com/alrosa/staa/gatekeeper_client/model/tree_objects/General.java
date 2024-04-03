@@ -7,10 +7,15 @@ import com.alrosa.staa.gatekeeper_client.model.Direction;
  * При создании объекта, данные будем отправлять на сервер
  */
 public class General implements Global {
-    
+
     private Direction direction;
 
     private int parentId;
+
+    public General(Direction direction, int parentId) {
+        this.direction = direction;
+        this.parentId = parentId;
+    }
 
     @Override
     public void setId(int id) {}
