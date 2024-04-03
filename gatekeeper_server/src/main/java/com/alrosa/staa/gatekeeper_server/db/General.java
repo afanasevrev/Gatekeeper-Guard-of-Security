@@ -4,6 +4,8 @@ public class General {
     private int parentId;
     private Direction direction;
 
+    private int id;
+
     public General(int parentId, Direction direction) {
         this.parentId = parentId;
         this.direction = direction;
@@ -23,5 +25,13 @@ public class General {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

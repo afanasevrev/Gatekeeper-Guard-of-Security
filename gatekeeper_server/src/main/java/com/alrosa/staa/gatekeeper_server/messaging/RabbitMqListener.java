@@ -21,6 +21,8 @@ public class RabbitMqListener {
 
     Gson gson = new Gson();
 
+    String text;
+
     @Autowired
     private AmqpTemplate template;
 
@@ -38,7 +40,9 @@ public class RabbitMqListener {
         if (general.getDirection() == Direction.SERVER) {
             Server server = new Server("Сервер", "0.0.0.0", 0);
             writeServer(server);
-            logger.info(server.getId());
+            general.setId(server.getId());
+            text = gson.toJson(general);
+            template.convertAndSend(Variables.QUEUE_NAME_1, text);
         } else {
             template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
         }
