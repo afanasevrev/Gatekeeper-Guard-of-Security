@@ -14,12 +14,12 @@ public class Main {
     private int id;
 
     @Column(name = "name")
-    private String name;
+    private String complete_name;
 
     public Main() {}
 
     public Main(String name) {
-        this.name = name;
+        this.complete_name = name;
     }
 
 
@@ -32,11 +32,10 @@ public class Main {
     }
 
     public String getName() {
-        return this.name;
+        return this.complete_name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.complete_name = name;
     }
-
 }

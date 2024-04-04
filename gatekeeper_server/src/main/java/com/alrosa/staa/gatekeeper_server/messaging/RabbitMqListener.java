@@ -39,7 +39,9 @@ public class RabbitMqListener {
         General general = gson.fromJson(message, General.class);
         switch (general.getDirection()) {
             case MAIN:
-
+                Main main = getMain(general.getId());
+                text = gson.toJson(main);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             case SERVER:
                 Server server = new Server("Сервер", "0.0.0.0", general.getParentId());
