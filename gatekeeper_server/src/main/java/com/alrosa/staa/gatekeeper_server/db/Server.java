@@ -16,15 +16,11 @@ public class Server {
     @Column(name = "server_ip")
     private String server_ip;
 
-    @Column(name = "server_port")
-    private int server_port;
-
     public Server(){}
 
-    public Server(String server_name, String server_ip, int server_port) {
+    public Server(String server_name, String server_ip) {
         this.server_name = server_name;
         this.server_ip = server_ip;
-        this.server_port = server_port;
     }
 
     public int getId() {
@@ -51,11 +47,4 @@ public class Server {
         this.server_ip = server_ip;
     }
 
-    public int getServer_port() {
-        return server_port;
-    }
-
-    public void setServer_port(int server_port) {
-        this.server_port = server_port;
-    }
 }
