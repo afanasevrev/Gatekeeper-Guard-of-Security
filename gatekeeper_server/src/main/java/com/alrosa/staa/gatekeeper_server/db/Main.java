@@ -16,18 +16,12 @@ public class Main {
     @Column(name = "name")
     private String name;
 
-    private final Direction direction = Direction.MAIN;
-
     public Main() {}
 
     public Main(String name) {
         this.name = name;
     }
 
-    public Main(String name, int id) {
-        this.name = name;
-        this.id = id;
-    }
 
     public int getId() {
         return id;
@@ -45,7 +39,4 @@ public class Main {
         this.name = name;
     }
 
-    public Direction getDirection() {
-        return this.direction;
-    }
 }

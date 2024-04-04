@@ -16,11 +16,15 @@ public class Server {
     @Column(name = "server_ip")
     private String server_ip;
 
+    @Column(name = "parent_id")
+    private int parent_id;
+
     public Server(){}
 
-    public Server(String server_name, String server_ip) {
+    public Server(String server_name, String server_ip, int parent_id) {
         this.server_name = server_name;
         this.server_ip = server_ip;
+        this.parent_id = parent_id;
     }
 
     public int getId() {
@@ -47,4 +51,11 @@ public class Server {
         this.server_ip = server_ip;
     }
 
+    public int getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(int parent_id) {
+        this.parent_id = parent_id;
+    }
 }

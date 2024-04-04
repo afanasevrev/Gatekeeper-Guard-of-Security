@@ -38,7 +38,7 @@ public class RabbitMqListener {
         General general = gson.fromJson(message, General.class);
         logger.info(general.getDirection());
         if (general.getDirection() == Direction.SERVER) {
-            Server server = new Server("Сервер", "0.0.0.0");
+            Server server = new Server("Сервер", "0.0.0.0", general.getParentId());
             writeServer(server);
             general.setId(server.getId());
             text = gson.toJson(general);
