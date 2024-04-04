@@ -1,5 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.controller.messaging;
 
+import com.alrosa.staa.gatekeeper_client.controller.admins_console.AdminsConsoleController;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.General;
 import com.google.gson.Gson;
@@ -51,6 +52,7 @@ public class Receiver {
             switch(general.getDirection()) {
                 case MAIN:
                     logger.info(general.getComplete_name());
+                    AdminsConsoleController.mainSystem.getValue().setComplete_name(general.getComplete_name());
                     break;
                 default:
                     logger.info("Получен неизвестный тип");

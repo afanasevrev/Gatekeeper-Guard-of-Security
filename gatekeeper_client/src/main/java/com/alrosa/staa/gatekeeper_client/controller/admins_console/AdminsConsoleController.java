@@ -62,7 +62,7 @@ public class AdminsConsoleController implements Initializable {
     @FXML
     private VBox vBox = new VBox();
     //Создаем главную вершину дерева
-    private static TreeItem<Global> mainSystem = new TreeItem<>(new Main("Главный"));
+    public static TreeItem<Global> mainSystem = new TreeItem<>(new Main("Главный"));
     //Создаем само дерево
     private static TreeView treeView = new TreeView(mainSystem);
     //Создаем ссылку на рисунок для главной вершины
