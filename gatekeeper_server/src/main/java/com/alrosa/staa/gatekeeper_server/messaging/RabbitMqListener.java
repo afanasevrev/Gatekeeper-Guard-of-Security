@@ -2,6 +2,7 @@ package com.alrosa.staa.gatekeeper_server.messaging;
 
 import com.alrosa.staa.gatekeeper_server.db.Direction;
 import com.alrosa.staa.gatekeeper_server.db.General;
+import com.alrosa.staa.gatekeeper_server.db.Main;
 import com.alrosa.staa.gatekeeper_server.db.Server;
 import com.alrosa.staa.gatekeeper_server.util.HibernateUtil;
 import com.alrosa.staa.gatekeeper_server.variables.Variables;
@@ -36,15 +37,40 @@ public class RabbitMqListener {
     private void Queue(String message) {
         logger.info(message);
         General general = gson.fromJson(message, General.class);
-        if (general.getDirection() == Direction.SERVER) {
-            Server server = new Server("Сервер", "0.0.0.0", general.getParentId());
-            writeServer(server);
-            general.setId(server.getId());
-            text = gson.toJson(general);
-            template.convertAndSend(Variables.QUEUE_NAME_1, text);
-        } else {
-            template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
+        switch (general.getDirection()) {
+            case MAIN:
+
+                break;
+            case SERVER:
+                Server server = new Server("Сервер", "0.0.0.0", general.getParentId());
+                writeServer(server);
+                general.setId(server.getId());
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
+            default:
+                template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
         }
+    }
+    /**
+     * Метод вытягивает из БД объект Главный
+     */
+    private synchronized Main getMain(int id) {
+        Main main = null;
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            main = session.get(Main.class, id);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return main;
     }
     /**
      * Метод записывает в БД объект Сервер
