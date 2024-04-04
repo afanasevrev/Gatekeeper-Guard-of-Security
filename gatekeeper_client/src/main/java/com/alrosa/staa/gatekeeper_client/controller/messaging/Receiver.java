@@ -53,6 +53,9 @@ public class Receiver {
                 case MAIN:
                     logger.info(general.getComplete_name());
                     AdminsConsoleController.mainSystem.getValue().setComplete_name(general.getComplete_name());
+                    AdminsConsoleController.mainSystem.getValue().setId(general.getId());
+                    AdminsConsoleController.mainSystem.getValue().setParentId(general.getParentId());
+                    AdminsConsoleController.mainSystem.getValue().setDirection(general.getDirection());
                     break;
                 default:
                     logger.info("Получен неизвестный тип");
