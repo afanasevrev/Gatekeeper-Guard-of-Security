@@ -8,6 +8,10 @@ import com.alrosa.staa.gatekeeper_client.model.Direction;
  */
 public class General implements Global {
 
+    private int id;
+
+    private String complete_name;
+
     private Direction direction;
 
     private int parentId;
@@ -15,6 +19,13 @@ public class General implements Global {
     public General(Direction direction, int parentId) {
         this.direction = direction;
         this.parentId = parentId;
+    }
+
+    public General(int id, Direction direction, int parentId, String complete_name) {
+        this.id = id;
+        this.direction = direction;
+        this.parentId = parentId;
+        this.complete_name = complete_name;
     }
 
     @Override
@@ -37,11 +48,13 @@ public class General implements Global {
 
     @Override
     public String getComplete_name() {
-        return null;
+        return this.complete_name;
     }
 
     @Override
-    public void setComplete_name(String complete_name) {}
+    public void setComplete_name(String complete_name) {
+        this.complete_name = complete_name;
+    }
 
     @Override
     public Direction getDirection() {

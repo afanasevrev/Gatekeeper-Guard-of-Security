@@ -40,7 +40,11 @@ public class RabbitMqListener {
         switch (general.getDirection()) {
             case MAIN:
                 Main main = getMain(general.getId());
-                text = gson.toJson(main);
+                general.setId(main.getId());
+                general.setDirection(Direction.MAIN);
+                general.setParentId(0);
+                general.setComplete_name(main.getName());
+                text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             case SERVER:
