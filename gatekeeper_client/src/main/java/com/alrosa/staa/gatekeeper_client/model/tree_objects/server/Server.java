@@ -68,5 +68,4 @@ public class Server implements Global {
     public String toString() {
         return getComplete_name();
     }
-
 }

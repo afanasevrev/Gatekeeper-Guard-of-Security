@@ -89,13 +89,13 @@ public class ContainerController implements Initializable {
      */
     @FXML
     private void isPressedButtonCreate() throws Exception {
+        General general = new General(Variables.containerConsoleDirection, Variables.parentId);
         TreeItem<Global> item;
         ImageView imageView;
         switch (Variables.containerConsoleDirection) {
             case MAIN:
                 break;
             case SERVER:
-                General general = new General(Variables.containerConsoleDirection, Variables.parentId);
                 text = gson.toJson(general);
                 break;
             case COMPUTER:
@@ -109,14 +109,14 @@ public class ContainerController implements Initializable {
                 Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case BUREAU:
-                Bureau bureau = new Bureau();
-                text = gson.toJson(bureau);
-                item = new TreeItem<>(bureau);
-                imageView = new ImageView(Variables.imageBureau);
-                imageView.setFitHeight(25);
-                imageView.setFitWidth(25);
-                item.setGraphic(imageView);
-                Variables.adminsConsoleItem.getChildren().add(item);
+                //Bureau bureau = new Bureau();
+                text = gson.toJson(general);
+                //item = new TreeItem<>(bureau);
+                //imageView = new ImageView(Variables.imageBureau);
+                //imageView.setFitHeight(25);
+                //imageView.setFitWidth(25);
+                //item.setGraphic(imageView);
+                //Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case PERCO:
                 Perco perco = new Perco();
