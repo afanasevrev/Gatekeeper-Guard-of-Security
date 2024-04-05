@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Import;
 @EnableAutoConfiguration
 @ComponentScan
 public class GatekeeperServerApplication {
+
 	public static void main(String[] args) throws Exception {
 		BasicConfigurator.configure();
 		//Запускаем сервер Spring

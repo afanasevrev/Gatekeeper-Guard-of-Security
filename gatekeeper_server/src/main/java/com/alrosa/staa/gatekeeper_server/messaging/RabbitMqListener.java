@@ -49,7 +49,11 @@ public class RabbitMqListener {
                 break;
             case SERVER:
                 Server server = new Server("Сервер", "0.0.0.0", general.getParentId());
-                writeServer(server);
+                try {
+                    writeServer(server);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
                 general.setId(server.getId());
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
