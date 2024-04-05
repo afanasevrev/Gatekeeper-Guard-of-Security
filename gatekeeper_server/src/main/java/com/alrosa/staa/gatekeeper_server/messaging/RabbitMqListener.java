@@ -136,4 +136,23 @@ public class RabbitMqListener {
             e.printStackTrace();
         }
     }
+    /**
+     * Метод записывает в БД объект Компьютер
+     */
+    private synchronized void writeComputer(Computer computer) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(computer);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
 }
