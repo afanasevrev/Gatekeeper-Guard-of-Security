@@ -71,7 +71,18 @@ public class RabbitMqListener {
                 break;
             case COMPUTER:
                 Computer computer = new Computer("Компьютер", "0.0.0.0", general.getParentId());
-
+                try {
+                    writeComputer(computer);
+                } catch (IllegalStateException e) {
+                    logger.info(e);
+                }
+                general.setId(computer.getId());
+                general.setComplete_name(computer.getComputer_name());
+                general.setParentId(computer.getParent_id());
+                general.setDirection(Direction.BUREAU);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
