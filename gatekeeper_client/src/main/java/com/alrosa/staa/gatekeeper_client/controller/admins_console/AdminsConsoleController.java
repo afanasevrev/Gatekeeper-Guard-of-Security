@@ -135,7 +135,8 @@ public class AdminsConsoleController implements Initializable {
                             switch (Variables.adminsConsoleDirection) {
                                 case MAIN:
                                     break;
-                                default:  Variables.adminsConsoleItem.getParent().getChildren().remove(Variables.adminsConsoleItem);
+                                default:
+                                    Variables.adminsConsoleItem.getParent().getChildren().remove(Variables.adminsConsoleItem);
                                     break;
                             }
                         });

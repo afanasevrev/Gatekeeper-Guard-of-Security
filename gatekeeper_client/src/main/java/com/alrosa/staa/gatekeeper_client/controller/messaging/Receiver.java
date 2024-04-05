@@ -59,12 +59,12 @@ public class Receiver {
                     AdminsConsoleController.mainSystem.getValue().setDirection(general.getDirection());
                     break;
                 case SERVER:
-                    Server server = new Server();
-                    server.setComplete_name(general.getComplete_name());
-                    server.setDirection(general.getDirection());
-                    server.setId(general.getId());
-                    server.setParentId(general.getParentId());
-                    item = new TreeItem<>(server);
+                    //Server server = new Server();
+                    //server.setComplete_name(general.getComplete_name());
+                    //server.setDirection(general.getDirection());
+                    //server.setId(general.getId());
+                    //server.setParentId(general.getParentId());
+                    item = new TreeItem<>(general);
                     imageView = new ImageView(Variables.imageServer);
                     imageView.setFitHeight(25);
                     imageView.setFitWidth(25);

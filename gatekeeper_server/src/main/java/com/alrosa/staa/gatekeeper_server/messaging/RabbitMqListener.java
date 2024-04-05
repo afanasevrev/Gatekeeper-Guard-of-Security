@@ -16,14 +16,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class RabbitMqListener {
     Logger logger = Logger.getLogger(RabbitMqListener.class);
-
     Gson gson = new Gson();
-
     String text;
-
     @Autowired
     private AmqpTemplate template;
-
     /**
      * Листенер получает от клиента объекты,
      * которые необходимо добавить в БД,
