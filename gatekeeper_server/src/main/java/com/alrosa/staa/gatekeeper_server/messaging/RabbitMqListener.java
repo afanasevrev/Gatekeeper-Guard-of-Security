@@ -70,7 +70,7 @@ public class RabbitMqListener {
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             case COMPUTER:
-                Computer computer = new Computer("Компьютер", general.getParentId());
+                Computer computer = new Computer("Компьютер", "0.0.0.0", general.getParentId());
 
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
