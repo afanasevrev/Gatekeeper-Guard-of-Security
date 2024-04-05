@@ -14,18 +14,17 @@ public class Bureau {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "login")
-    private String login;
+    @Column(name = "bureau_name")
+    private String bureau_name;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "parent_id")
+    private int parent_id;
 
     public Bureau(){}
 
-    public Bureau(int id, String login, String password) {
+    public Bureau(int parentId, String bureau_name) {
         this.id = id;
-        this.login = login;
-        this.password = password;
+        this.bureau_name = bureau_name;
     }
 
     public int getId() {
