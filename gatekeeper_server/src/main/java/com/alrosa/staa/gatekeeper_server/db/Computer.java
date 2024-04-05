@@ -20,5 +20,9 @@ public class Computer {
     @Column(name = "parent_id")
     private int parent_id;
     public Computer(){}
-    public Computer(String computer_name, String computer_ip, int parent_id) {}
+    public Computer(String computer_name, String computer_ip, int parent_id) {
+        this.computer_name = computer_name;
+        this.computer_ip = computer_ip;
+        this.parent_id = parent_id;
+    }
 }

@@ -99,14 +99,14 @@ public class ContainerController implements Initializable {
                 text = gson.toJson(general);
                 break;
             case COMPUTER:
-                Computer computer = new Computer();
-                text = gson.toJson(computer);
-                item = new TreeItem<>(computer);
-                imageView = new ImageView(Variables.imageComputer);
-                imageView.setFitHeight(25);
-                imageView.setFitWidth(25);
-                item.setGraphic(imageView);
-                Variables.adminsConsoleItem.getChildren().add(item);
+                //Computer computer = new Computer();
+                text = gson.toJson(general);
+                //item = new TreeItem<>(computer);
+                //imageView = new ImageView(Variables.imageComputer);
+                //imageView.setFitHeight(25);
+                //imageView.setFitWidth(25);
+                //item.setGraphic(imageView);
+                //Variables.adminsConsoleItem.getChildren().add(item);
                 break;
             case BUREAU:
                 //Bureau bureau = new Bureau();
