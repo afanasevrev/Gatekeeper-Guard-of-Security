@@ -79,6 +79,14 @@ public class Receiver {
                     item.setGraphic(imageView);
                     Variables.adminsConsoleItem.getChildren().add(item);
                     break;
+                case COMPUTER:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageComputer);
+                    imageView.setFitHeight(25);
+                    imageView.setFitWidth(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
                 default:
                     logger.info("Получен неизвестный тип");
                     break;

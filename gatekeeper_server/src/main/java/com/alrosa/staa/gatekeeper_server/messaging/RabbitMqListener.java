@@ -79,7 +79,7 @@ public class RabbitMqListener {
                 general.setId(computer.getId());
                 general.setComplete_name(computer.getComputer_name());
                 general.setParentId(computer.getParent_id());
-                general.setDirection(Direction.BUREAU);
+                general.setDirection(Direction.COMPUTER);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
