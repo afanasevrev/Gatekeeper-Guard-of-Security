@@ -324,7 +324,11 @@ public class ContainerController implements Initializable {
         }
         transmitter.sendMessage(text);
         //Сортируем элементы дерева после необходимых итераций
-        Variables.adminsConsoleItem.getChildren().sort(Comparator.comparing(t->t.getValue().toString()));
+        try {
+            Variables.adminsConsoleItem.getChildren().sort(Comparator.comparing(t -> t.getValue().toString()));
+        } catch (NullPointerException e) {
+
+        }
     }
 
     /**
