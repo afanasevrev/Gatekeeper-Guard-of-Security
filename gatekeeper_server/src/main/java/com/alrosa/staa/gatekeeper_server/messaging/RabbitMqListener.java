@@ -40,6 +40,7 @@ public class RabbitMqListener {
         switch (general.getDirection()) {
             case MAIN:
                 Main main = getMain(general.getId());
+                logger.info(main.getId());
                 general.setId(main.getId());
                 general.setDirection(Direction.MAIN);
                 general.setParentId(0);
