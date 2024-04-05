@@ -13,13 +13,10 @@ public class Bureau {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
     @Column(name = "bureau_name")
     private String bureau_name;
-
     @Column(name = "parent_id")
     private int parent_id;
-
     public Bureau(){}
     public Bureau(int parent_id, String bureau_name) {
         this.parent_id = parent_id;
