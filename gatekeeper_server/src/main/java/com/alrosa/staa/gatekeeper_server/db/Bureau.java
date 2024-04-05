@@ -21,33 +21,14 @@ public class Bureau {
     private int parent_id;
 
     public Bureau(){}
-
-    public Bureau(int parentId, String bureau_name) {
-        this.id = id;
+    public Bureau(int parent_id, String bureau_name) {
+        this.parent_id = parent_id;
         this.bureau_name = bureau_name;
     }
-
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
