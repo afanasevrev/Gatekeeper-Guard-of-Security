@@ -28,4 +28,16 @@ public class Bureau {
     public void setId(int id) {
         this.id = id;
     }
+    public String getBureau_name() {
+        return bureau_name;
+    }
+    public void setBureau_name(String bureau_name) {
+        this.bureau_name = bureau_name;
+    }
+    public int getParent_id() {
+        return parent_id;
+    }
+    public void setParent_id(int parent_id) {
+        this.parent_id = parent_id;
+    }
 }

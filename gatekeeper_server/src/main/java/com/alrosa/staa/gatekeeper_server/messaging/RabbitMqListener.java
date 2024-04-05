@@ -63,6 +63,9 @@ public class RabbitMqListener {
                     logger.error(e);
                 }
                 general.setId(bureau.getId());
+                general.setComplete_name(bureau.getBureau_name());
+                general.setParentId(bureau.getParent_id());
+                general.setDirection(Direction.BUREAU);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
