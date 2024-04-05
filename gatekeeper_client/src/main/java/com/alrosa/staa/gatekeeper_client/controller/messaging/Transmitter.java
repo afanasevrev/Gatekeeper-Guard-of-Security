@@ -30,7 +30,7 @@ public class Transmitter {
      * @throws TimeoutException
      */
     public synchronized void sendMessage(String text) throws IOException, TimeoutException {
-        connectionFactory.setHost(Variables.properties.getProperty("server_ip"));
+        connectionFactory.setHost(Variables.properties.getProperty("rabbitmq_ip"));
         connectionFactory.setUsername("admin");
         connectionFactory.setPassword("admin");
         Connection connection = connectionFactory.newConnection();

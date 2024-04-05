@@ -40,7 +40,7 @@ public class Receiver {
      * Метод запускает приёмник сообщений
      */
     public void start() throws IOException, TimeoutException {
-        connectionFactory.setHost(Variables.properties.getProperty("server_ip"));
+        connectionFactory.setHost(Variables.properties.getProperty("rabbitmq_ip"));
         connectionFactory.setUsername("admin");
         connectionFactory.setPassword("admin");
         Connection connection = connectionFactory.newConnection();
