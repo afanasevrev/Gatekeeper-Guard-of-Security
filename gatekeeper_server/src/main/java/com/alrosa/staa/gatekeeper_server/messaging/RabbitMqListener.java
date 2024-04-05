@@ -58,7 +58,15 @@ public class RabbitMqListener {
                 break;
             case BUREAU:
                 Bureau bureau = new Bureau("Бюро", general.getParentId());
-                
+                try {
+                    writeBureau(bureau);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(bureau.getId());
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -95,6 +103,25 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(server);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД объект Бюро
+     */
+    private synchronized void writeBureau(Bureau bureau) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(bureau);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
