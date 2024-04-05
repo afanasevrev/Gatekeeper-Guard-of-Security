@@ -11,7 +11,7 @@ public class Server {
     private int id;
 
     @Column(name = "server_name")
-    private String complete_name;
+    private String server_name;
 
     @Column(name = "server_ip")
     private String server_ip;
@@ -22,7 +22,7 @@ public class Server {
     public Server(){}
 
     public Server(String server_name, String server_ip, int parent_id) {
-        this.complete_name = server_name;
+        this.server_name = server_name;
         this.server_ip = server_ip;
         this.parent_id = parent_id;
     }
@@ -36,11 +36,11 @@ public class Server {
     }
 
     public String getServer_name() {
-        return complete_name;
+        return server_name;
     }
 
     public void setServer_name(String server_name) {
-        this.complete_name = server_name;
+        this.server_name = server_name;
     }
 
     public String getServer_ip() {

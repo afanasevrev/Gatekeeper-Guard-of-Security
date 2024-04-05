@@ -56,10 +56,11 @@ public class RabbitMqListener {
                 break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
+                break;
         }
     }
     /**
-     * Метод вытягивает из БД объект Главный
+     * Метод вытягивает из БД главный класс по указанному ID
      */
     private synchronized Main getMain(int id) {
         Main main = null;
