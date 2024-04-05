@@ -29,7 +29,9 @@ public class General implements Global {
     }
 
     @Override
-    public void setId(int id) {}
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @Override
     public void setParentId(int parentId) {
@@ -38,7 +40,7 @@ public class General implements Global {
 
     @Override
     public int getId() {
-        return 0;
+        return this.id;
     }
 
     @Override

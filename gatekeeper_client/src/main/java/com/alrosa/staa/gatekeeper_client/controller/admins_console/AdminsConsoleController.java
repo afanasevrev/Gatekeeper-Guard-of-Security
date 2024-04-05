@@ -120,6 +120,7 @@ public class AdminsConsoleController implements Initializable {
                     Variables.parentId = Variables.adminsConsoleItem.getValue().getId();
                     System.out.println(Variables.parentId);
                     System.out.println(Variables.adminsConsoleDirection);
+                    System.out.println(Variables.adminsConsoleItem.getValue().getComplete_name());
                     //Проверяем, что элемент не является пустым и что была нажата правая кнопка мыши
                     if (Variables.adminsConsoleItem != null && event.getButton() == MouseButton.SECONDARY) {
                         //Добавляем реакцию на нажатие кнопки "Добавить"
