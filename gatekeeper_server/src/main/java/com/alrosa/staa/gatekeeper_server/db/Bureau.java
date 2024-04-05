@@ -18,9 +18,9 @@ public class Bureau {
     @Column(name = "parent_id")
     private int parent_id;
     public Bureau(){}
-    public Bureau(int parent_id, String bureau_name) {
-        this.parent_id = parent_id;
+    public Bureau(String bureau_name, int parent_id) {
         this.bureau_name = bureau_name;
+        this.parent_id = parent_id;
     }
     public int getId() {
         return id;

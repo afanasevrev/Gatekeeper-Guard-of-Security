@@ -1,9 +1,6 @@
 package com.alrosa.staa.gatekeeper_server.messaging;
 
-import com.alrosa.staa.gatekeeper_server.db.Direction;
-import com.alrosa.staa.gatekeeper_server.db.General;
-import com.alrosa.staa.gatekeeper_server.db.Main;
-import com.alrosa.staa.gatekeeper_server.db.Server;
+import com.alrosa.staa.gatekeeper_server.db.*;
 import com.alrosa.staa.gatekeeper_server.util.HibernateUtil;
 import com.alrosa.staa.gatekeeper_server.variables.Variables;
 import com.google.gson.Gson;
@@ -59,6 +56,9 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case BUREAU:
+                Bureau bureau = new Bureau("Бюро", general.getParentId());
+                
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
