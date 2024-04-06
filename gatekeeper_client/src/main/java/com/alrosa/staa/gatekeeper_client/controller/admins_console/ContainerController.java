@@ -330,7 +330,6 @@ public class ContainerController implements Initializable {
 
         }
     }
-
     /**
      * Закрываем окно при нажатии кнопки "Отмена"
      */
@@ -339,7 +338,6 @@ public class ContainerController implements Initializable {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
-
     /**
      * Метод добавляет в контейнер дерево объектов
      * @param direction
