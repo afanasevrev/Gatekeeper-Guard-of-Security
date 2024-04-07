@@ -1,5 +1,7 @@
 package com.alrosa.staa.gatekeeper_server.db;
 
+import com.alrosa.staa.gatekeeper_server.messaging.Direction;
+
 public class General {
     private String complete_name;
     private int parentId;

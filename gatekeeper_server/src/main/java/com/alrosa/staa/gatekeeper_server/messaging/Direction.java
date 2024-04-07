@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_server.db;
+package com.alrosa.staa.gatekeeper_server.messaging;
 
 public enum Direction {
     //Главный объект системы
