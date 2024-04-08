@@ -10,7 +10,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Admins"/>
-        <mapping class="com.alrosa.staa.gatekeeper_server.db.Operator"/>
+        <mapping class="com.alrosa.staa.gatekeeper_server.db.Operators"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Bureau"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Main"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Server"/>
