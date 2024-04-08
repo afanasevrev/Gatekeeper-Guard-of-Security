@@ -59,11 +59,6 @@ public class Receiver {
                     AdminsConsoleController.mainSystem.getValue().setDirection(general.getDirection());
                     break;
                 case SERVER:
-                    //Server server = new Server();
-                    //server.setComplete_name(general.getComplete_name());
-                    //server.setDirection(general.getDirection());
-                    //server.setId(general.getId());
-                    //server.setParentId(general.getParentId());
                     item = new TreeItem<>(general);
                     imageView = new ImageView(Variables.imageServer);
                     imageView.setFitHeight(25);
@@ -82,6 +77,14 @@ public class Receiver {
                 case COMPUTER:
                     item = new TreeItem<>(general);
                     imageView = new ImageView(Variables.imageComputer);
+                    imageView.setFitHeight(25);
+                    imageView.setFitWidth(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case USERS:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageUsers);
                     imageView.setFitHeight(25);
                     imageView.setFitWidth(25);
                     item.setGraphic(imageView);

@@ -83,6 +83,20 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case USERS:
+                Users user = new Users("Пользователи", general.getParentId());
+                try {
+                    writeUsers(user);
+                } catch (IllegalStateException e) {
+                    logger.info(e);
+                }
+                general.setId(user.getId());
+                general.setComplete_name(user.getUsers_name());
+                general.setParentId(user.getParent_id());
+                general.setDirection(Direction.USERS);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -157,6 +171,25 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(computer);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД объект Пользователи
+     */
+    private synchronized void writeUsers(Users user) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(user);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
