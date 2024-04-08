@@ -1,11 +1,13 @@
 package com.alrosa.staa.gatekeeper_client.controller.messaging;
 
 import com.alrosa.staa.gatekeeper_client.controller.admins_console.AdminsConsoleController;
+import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.General;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.Server;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -50,7 +52,13 @@ public class Receiver {
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), StandardCharsets.UTF_8);
             logger.info("Received from the server: " + message);
-            General general = gson.fromJson(message, General.class);
+            General general = null;
+            try {
+                general = gson.fromJson(message, General.class);
+            } catch (JsonSyntaxException e) {
+                logger.error("Получен неизвестный тип от сервера");
+                general = new General();
+            }
             switch(general.getDirection()) {
                 case MAIN:
                     AdminsConsoleController.mainSystem.getValue().setComplete_name(general.getComplete_name());
@@ -91,7 +99,6 @@ public class Receiver {
                     Variables.adminsConsoleItem.getChildren().add(item);
                     break;
                 default:
-                    logger.info("Получен неизвестный тип");
                     break;
             }
         };
