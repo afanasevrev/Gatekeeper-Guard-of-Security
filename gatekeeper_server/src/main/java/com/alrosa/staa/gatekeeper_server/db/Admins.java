@@ -16,10 +16,8 @@ public class Admins {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
     @Column(name = "admins_name")
     private String admins_name;
-
     @Column(name = "parent_id")
     private int parent_id;
     public Admins(){}

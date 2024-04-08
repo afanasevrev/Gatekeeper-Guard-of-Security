@@ -98,6 +98,14 @@ public class Receiver {
                     item.setGraphic(imageView);
                     Variables.adminsConsoleItem.getChildren().add(item);
                     break;
+                case ADMINS:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageAdmins);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
                 default:
                     break;
             }

@@ -6,22 +6,6 @@ import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.General;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Main;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.Bureau;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.*;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.card_layouts_objects.CardLayout;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.cards_objects.Card;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.global_access_levels_objects.GlobalAccessLevel;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.organizations_objects.Organization;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.organizations_objects.organization_objects.Office;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.positions_objects.Position;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Man;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Woman;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.Computer;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.computer_objects.Console;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.Server;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.Perco;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.PERCoC01;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.percoc01_objects.CardReader;
 import com.google.gson.Gson;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,6 +15,7 @@ import javafx.scene.control.TreeView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
 
 import java.net.URL;
 import java.util.Comparator;
@@ -42,6 +27,8 @@ import java.util.ResourceBundle;
  * и добавлять их в дерево системы
  */
 public class ContainerController implements Initializable {
+
+    Logger logger = Logger.getLogger(ContainerController.class);
     @FXML
     private AnchorPane anchorPane = new AnchorPane();
     @FXML
@@ -97,7 +84,6 @@ public class ContainerController implements Initializable {
                 break;
             default:
                 text = gson.toJson(general);
-                //System.out.println(Variables.containerConsoleItem.getValue().getDirection());
                 break;
         }
         transmitter.sendMessage(text);
@@ -105,7 +91,7 @@ public class ContainerController implements Initializable {
         try {
             Variables.adminsConsoleItem.getChildren().sort(Comparator.comparing(t -> t.getValue().toString()));
         } catch (NullPointerException e) {
-
+            logger.error("Попытка сортировать null");
         }
     }
     /**
