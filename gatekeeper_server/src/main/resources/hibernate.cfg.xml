@@ -4,7 +4,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://192.168.1.38:3306/gatekeeper_db</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/gatekeeper_db</property>
         <property name="hibernate.connection.username">rewoly</property>
         <property name="hibernate.connection.password">Marshmellow89</property>
         <property name="hibernate.show_sql">true</property>
