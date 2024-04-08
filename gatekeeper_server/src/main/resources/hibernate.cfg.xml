@@ -15,5 +15,6 @@
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Main"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Server"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Computer"/>
+        <mapping class="com.alrosa.staa.gatekeeper_server.db.Users"/>
     </session-factory>
 </hibernate-configuration>
