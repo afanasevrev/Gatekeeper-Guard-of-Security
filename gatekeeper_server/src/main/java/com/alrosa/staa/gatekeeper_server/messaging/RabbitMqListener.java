@@ -74,7 +74,7 @@ public class RabbitMqListener {
                 try {
                     writeComputer(computer);
                 } catch (IllegalStateException e) {
-                    logger.info(e);
+                    logger.error(e);
                 }
                 general.setId(computer.getId());
                 general.setComplete_name(computer.getComputer_name());
@@ -84,21 +84,33 @@ public class RabbitMqListener {
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             case USERS:
-                Users user = new Users("Пользователи", general.getParentId());
+                Users users = new Users("Пользователи", general.getParentId());
                 try {
-                    writeUsers(user);
+                    writeUsers(users);
                 } catch (IllegalStateException e) {
-                    logger.info(e);
+                    logger.error(e);
                 }
-                general.setId(user.getId());
-                general.setComplete_name(user.getUsers_name());
-                general.setParentId(user.getParent_id());
+                general.setId(users.getId());
+                general.setComplete_name(users.getUsers_name());
+                general.setParentId(users.getParent_id());
                 general.setDirection(Direction.USERS);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             case ADMINS:
-
+                Admins admins = new Admins("Администраторы", general.getParentId());
+                try {
+                    writeAdmins(admins);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(admins.getId());
+                general.setComplete_name(admins.getAdmins_name());
+                general.setParentId(admins.getParent_id());
+                general.setDirection(Direction.ADMINS);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -185,13 +197,32 @@ public class RabbitMqListener {
     /**
      * Метод записывает в БД объект Пользователи
      */
-    private synchronized void writeUsers(Users user) {
+    private synchronized void writeUsers(Users users) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // Старт транзакции
             transaction = session.beginTransaction();
             // Добавим в БД сервер
-            session.persist(user);
+            session.persist(users);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД объект Администраторы
+     */
+    private synchronized void writeAdmins(Admins admins) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(admins);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
