@@ -25,5 +25,4 @@ public class Operators {
         this.operators_name = operators_name;
         this.parent_id = parent_id;
     }
-
 }
