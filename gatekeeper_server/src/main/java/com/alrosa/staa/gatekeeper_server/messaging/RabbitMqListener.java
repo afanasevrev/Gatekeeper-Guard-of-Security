@@ -112,7 +112,19 @@ public class RabbitMqListener {
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             case OPERATORS:
-
+                Operators operators = new Operators("Операторы", general.getParentId());
+                try {
+                    writeOperators(operators);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(operators.getId());
+                general.setComplete_name(operators.getOperators_name());
+                general.setParentId(operators.getParent_id());
+                general.setDirection(Direction.OPERATORS);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -225,6 +237,25 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(admins);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД объект Операторы
+     */
+    private synchronized void writeOperators(Operators operators) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(operators);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
