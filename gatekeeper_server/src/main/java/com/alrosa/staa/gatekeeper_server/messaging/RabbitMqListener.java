@@ -128,10 +128,16 @@ public class RabbitMqListener {
             case GLOBAL_ACCESS_LEVELS:
                 GlobalAccessLevels globalAccessLevels = new GlobalAccessLevels("Глобальный уровень доступа", general.getParentId());
                 try{
-
+                    writeGlobalAccessLevels(globalAccessLevels);
                 } catch (IllegalStateException e) {
-                    
+                    logger.error(e);
                 }
+                general.setId(globalAccessLevels.getId());
+                general.setComplete_name(globalAccessLevels.getGlobal_access_levels_name());
+                general.setParentId(globalAccessLevels.getParent_id());
+                general.setDirection(Direction.GLOBAL_ACCESS_LEVELS);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
@@ -264,6 +270,25 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(operators);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД объект Глобальные уровни доступа
+     */
+    private synchronized void writeGlobalAccessLevels(GlobalAccessLevels globalAccessLevels) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(globalAccessLevels);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
