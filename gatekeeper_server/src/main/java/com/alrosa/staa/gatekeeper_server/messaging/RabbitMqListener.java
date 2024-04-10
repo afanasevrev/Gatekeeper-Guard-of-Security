@@ -155,7 +155,11 @@ public class RabbitMqListener {
                 break;
             case CARD_LAYOUTS:
                 CardLayouts cardLayouts = new CardLayouts("Макеты карт", general.getParentId());
-                
+                try {
+                    
+                } catch(IllegalStateException e) {
+                    logger.error(e);
+                }
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -325,6 +329,25 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(cards);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД объект Макеты карт
+     */
+    private synchronized void writeCardLayouts(CardLayouts cardLayouts) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(cardLayouts);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
