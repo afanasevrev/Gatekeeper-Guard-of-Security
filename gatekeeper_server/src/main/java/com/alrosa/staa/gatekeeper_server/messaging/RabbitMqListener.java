@@ -140,7 +140,12 @@ public class RabbitMqListener {
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             case CARDS:
+                Cards cards = new Cards("Карты доступа", general.getParentId());
+                try{
 
+                } catch(IllegalStateException e) {
+                    logger.error(e);
+                }
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -291,6 +296,25 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(globalAccessLevels);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД объект Карты доступа
+     */
+    private synchronized void writeCards(Cards cards) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(cards);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
