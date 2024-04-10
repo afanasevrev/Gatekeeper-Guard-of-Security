@@ -1,11 +1,14 @@
 package com.alrosa.staa.gatekeeper_server.db;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Класс сущности для бюро пропусков
  */
-
+@Setter
+@Getter
 @Entity
 @Table(name = "gk_bureau")
 public class Bureau {
@@ -20,24 +23,6 @@ public class Bureau {
     public Bureau(){}
     public Bureau(String bureau_name, int parent_id) {
         this.bureau_name = bureau_name;
-        this.parent_id = parent_id;
-    }
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getBureau_name() {
-        return bureau_name;
-    }
-    public void setBureau_name(String bureau_name) {
-        this.bureau_name = bureau_name;
-    }
-    public int getParent_id() {
-        return parent_id;
-    }
-    public void setParent_id(int parent_id) {
         this.parent_id = parent_id;
     }
 }

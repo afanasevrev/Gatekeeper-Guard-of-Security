@@ -1,10 +1,14 @@
 package com.alrosa.staa.gatekeeper_server.db;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Класс сущности для главного объекта в дереве системы
  */
+@Setter
+@Getter
 @Entity
 @Table(name = "gk_main")
 public class Main {
@@ -12,30 +16,10 @@ public class Main {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
     @Column(name = "name")
     private String complete_name;
-
     public Main() {}
-
     public Main(String name) {
-        this.complete_name = name;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.complete_name;
-    }
-
-    public void setName(String name) {
         this.complete_name = name;
     }
 }
