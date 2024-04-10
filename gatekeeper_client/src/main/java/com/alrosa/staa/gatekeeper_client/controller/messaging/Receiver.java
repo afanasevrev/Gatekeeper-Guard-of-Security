@@ -114,6 +114,14 @@ public class Receiver {
                     item.setGraphic(imageView);
                     Variables.adminsConsoleItem.getChildren().add(item);
                     break;
+                case GLOBAL_ACCESS_LEVELS:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageGlobalAccessLevels);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
                 default:
                     break;
             }

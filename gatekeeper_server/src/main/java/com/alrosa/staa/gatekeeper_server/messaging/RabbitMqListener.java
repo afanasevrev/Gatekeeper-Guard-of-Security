@@ -37,7 +37,7 @@ public class RabbitMqListener {
                 general.setId(main.getId());
                 general.setDirection(Direction.MAIN);
                 general.setParentId(0);
-                general.setComplete_name(main.getName());
+                general.setComplete_name(main.getComplete_name());
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
