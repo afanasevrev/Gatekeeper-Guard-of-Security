@@ -7,10 +7,10 @@ import lombok.Setter;
 /**
  * Класс сущности администратора системы
  */
-@Entity
-@Table(name = "gk_admins")
 @Getter
 @Setter
+@Entity
+@Table(name = "gk_admins")
 public class Admins {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

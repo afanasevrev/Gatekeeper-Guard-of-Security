@@ -16,12 +16,10 @@ import java.util.List;
 public class Controller {
     //Создаем экземпляр класса ролей
     Roles roles = new Roles();
-
     @GetMapping("/")
     public String getInfo() {
         return "Система контроля и управления доступом. GateKeeper - Guard of Security";
     }
-
     @GetMapping("/authenticate")
     public Roles getAuthenticate() throws Exception {
         roles.setRole(LoginEventListener.getAuthorities);

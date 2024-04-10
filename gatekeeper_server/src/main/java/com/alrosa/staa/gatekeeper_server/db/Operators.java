@@ -7,10 +7,10 @@ import lombok.Setter;
 /**
  * Класс сущности для дежурного оператора
  */
+@Setter
+@Getter
 @Entity
 @Table(name = "gk_operators")
-@Getter
-@Setter
 public class Operators {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
