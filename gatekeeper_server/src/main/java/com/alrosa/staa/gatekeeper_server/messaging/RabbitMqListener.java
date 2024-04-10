@@ -156,10 +156,17 @@ public class RabbitMqListener {
             case CARD_LAYOUTS:
                 CardLayouts cardLayouts = new CardLayouts("Макеты карт", general.getParentId());
                 try {
-                    
+                    writeCardLayouts(cardLayouts);
                 } catch(IllegalStateException e) {
                     logger.error(e);
                 }
+                general.setId(cardLayouts.getId());
+                general.setComplete_name(cardLayouts.getCard_layouts_name());
+                general.setParentId(cardLayouts.getParent_id());
+                general.setDirection(Direction.CARD_LAYOUTS);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
