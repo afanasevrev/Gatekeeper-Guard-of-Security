@@ -126,7 +126,12 @@ public class RabbitMqListener {
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             case GLOBAL_ACCESS_LEVELS:
+                GlobalAccessLevels globalAccessLevels = new GlobalAccessLevels("Глобальный уровень доступа", general.getParentId());
+                try{
 
+                } catch (IllegalStateException e) {
+                    
+                }
                 break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");

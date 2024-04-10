@@ -13,6 +13,13 @@ public class GlobalAccessLevels {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
-
+    @Column(name = "global_access_levels_name")
+    private String global_access_levels_name;
+    @Column(name = "parent_id")
+    private int parent_id;
+    public GlobalAccessLevels(){}
+    public GlobalAccessLevels(String global_access_levels_name, int parent_id){
+        this.global_access_levels_name = global_access_levels_name;
+        this.parent_id = parent_id;
+    }
 }
