@@ -32,7 +32,6 @@ public enum Direction {
     ORGANIZATION,
     //Объекты ORGANIZATION
     OFFICE,
-
     //Нулёвый тип
     NULL_DIRECTION;
 }

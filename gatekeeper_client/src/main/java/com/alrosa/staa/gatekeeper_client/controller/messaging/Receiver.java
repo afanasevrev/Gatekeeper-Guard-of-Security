@@ -130,6 +130,14 @@ public class Receiver {
                     item.setGraphic(imageView);
                     Variables.adminsConsoleItem.getChildren().add(item);
                     break;
+                case CARD_LAYOUTS:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageCardLayouts);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
                 default:
                     break;
             }
