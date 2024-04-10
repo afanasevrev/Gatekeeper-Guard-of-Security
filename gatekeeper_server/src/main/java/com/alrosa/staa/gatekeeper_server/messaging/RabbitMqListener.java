@@ -167,6 +167,20 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case POSITIONS:
+                Positions positions = new Positions("Должности", general.getParentId());
+                try {
+                    writePositions(positions);
+                } catch (IllegalStateException e) {
+                    logger.info(e);
+                }
+                general.setId(positions.getId());
+                general.setComplete_name(positions.getPositions_name());
+                general.setParentId(positions.getParent_id());
+                general.setDirection(Direction.POSITIONS);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -355,6 +369,27 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(cardLayouts);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Метод записывает в БД объект Должности
+     * @param positions
+     */
+    private synchronized void writePositions(Positions positions) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(positions);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
