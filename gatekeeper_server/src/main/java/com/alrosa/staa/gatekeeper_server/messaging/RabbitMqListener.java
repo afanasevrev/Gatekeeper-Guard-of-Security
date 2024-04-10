@@ -142,10 +142,17 @@ public class RabbitMqListener {
             case CARDS:
                 Cards cards = new Cards("Карты доступа", general.getParentId());
                 try{
-
+                    writeCards(cards);
                 } catch(IllegalStateException e) {
                     logger.error(e);
                 }
+                general.setId(cards.getId());
+                general.setComplete_name(cards.getCards_name());
+                general.setParentId(cards.getParent_id());
+                general.setDirection(Direction.CARDS);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;

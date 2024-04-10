@@ -17,5 +17,6 @@
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Computer"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Users"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.GlobalAccessLevels"/>
+        <mapping class="com.alrosa.staa.gatekeeper_server.db.Cards"/>
     </session-factory>
 </hibernate-configuration>
