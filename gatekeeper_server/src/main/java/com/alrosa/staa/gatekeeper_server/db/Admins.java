@@ -7,8 +7,8 @@ import lombok.Setter;
 /**
  * Класс сущности администратора системы
  */
-@Getter
 @Setter
+@Getter
 @Entity
 @Table(name = "gk_admins")
 public class Admins {

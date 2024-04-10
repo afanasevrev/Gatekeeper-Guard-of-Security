@@ -3,8 +3,8 @@ package com.alrosa.staa.gatekeeper_server.db;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-@Getter
 @Setter
+@Getter
 @Entity
 @Table(name = "gk_computers")
 public class Computer {
