@@ -181,6 +181,20 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case ORGANIZATIONS:
+                Organizations organizations = new Organizations("Организации", general.getParentId());
+                try {
+                    writeOrganizations(organizations);
+                } catch (IllegalStateException e) {
+                    logger.error(organizations);
+                }
+                general.setId(organizations.getId());
+                general.setComplete_name(organizations.getOrganizations_name());
+                general.setParentId(organizations.getParent_id());
+                general.setDirection(Direction.ORGANIZATIONS);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -390,6 +404,27 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(positions);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Метод записывает в БД объект Организации
+     * @param organizations
+     */
+    private synchronized void writeOrganizations(Organizations organizations) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(organizations);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {

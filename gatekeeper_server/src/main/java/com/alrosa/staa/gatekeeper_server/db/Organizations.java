@@ -12,9 +12,9 @@ import java.util.UUID;
 @Table(name = "gk_organizations")
 public class Organizations {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;
+    private int id;
     @Column(name = "organizations_name")
     private String organizations_name;
     @Column(name = "parent_id")
