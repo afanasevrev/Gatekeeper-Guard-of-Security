@@ -43,8 +43,8 @@ public class Receiver {
      */
     public void start() throws IOException, TimeoutException {
         connectionFactory.setHost(Variables.properties.getProperty("rabbitmq_ip"));
-        connectionFactory.setUsername("admin");
-        connectionFactory.setPassword("admin");
+        connectionFactory.setUsername(Variables.properties.getProperty("rabbitmq_username"));
+        connectionFactory.setPassword(Variables.properties.getProperty("rabbitmq_password"));
         Connection connection = connectionFactory.newConnection();
         Channel channel = connection.createChannel();
         channel.queueDeclare(Variables.QUEUE_NAME_1, true, false, false, null);
