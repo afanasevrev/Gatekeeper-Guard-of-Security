@@ -198,11 +198,17 @@ public class RabbitMqListener {
             case PERCO:
                 Perco perco = new Perco("Контроллеры Perco", general.getParentId());
                 try {
-
+                    writePerco(perco);
                 } catch (IllegalStateException e) {
                     logger.error(perco);
                 }
-
+                general.setId(perco.getId());
+                general.setComplete_name(perco.getPerco_name());
+                general.setParentId(perco.getParent_id());
+                general.setDirection(Direction.PERCO);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;

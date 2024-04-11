@@ -154,6 +154,14 @@ public class Receiver {
                     item.setGraphic(imageView);
                     Variables.adminsConsoleItem.getChildren().add(item);
                     break;
+                case PERCO:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imagePerco);
+                    imageView.setFitHeight(25);
+                    imageView.setFitWidth(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
                 default:
                     break;
             }
