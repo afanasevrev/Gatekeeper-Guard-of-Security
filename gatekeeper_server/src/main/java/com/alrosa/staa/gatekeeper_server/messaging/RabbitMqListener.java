@@ -172,7 +172,7 @@ public class RabbitMqListener {
                 try {
                     writePositions(positions);
                 } catch (IllegalStateException e) {
-                    logger.info(e);
+                    logger.error(e);
                 }
                 general.setId(positions.getId());
                 general.setComplete_name(positions.getPositions_name());
@@ -186,7 +186,7 @@ public class RabbitMqListener {
                 try {
                     writeOrganizations(organizations);
                 } catch (IllegalStateException e) {
-                    logger.error(organizations);
+                    logger.error(e);
                 }
                 general.setId(organizations.getId());
                 general.setComplete_name(organizations.getOrganizations_name());
@@ -200,7 +200,7 @@ public class RabbitMqListener {
                 try {
                     writePerco(perco);
                 } catch (IllegalStateException e) {
-                    logger.error(perco);
+                    logger.error(e);
                 }
                 general.setId(perco.getId());
                 general.setComplete_name(perco.getPerco_name());
@@ -214,7 +214,7 @@ public class RabbitMqListener {
                 try {
                     writePercoC01(percoc01);
                 } catch (IllegalStateException e) {
-                    logger.error(percoc01);
+                    logger.error(e);
                 }
                 general.setId(percoc01.getId());
                 general.setComplete_name(percoc01.getPercoc01_name());
@@ -223,6 +223,19 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case CARDREADER:
+                CardReader cardReader = new CardReader("Считыватель", 0, "Wiegand", general.getParentId());
+                try {
+                    writeCardReader(cardReader);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(cardReader.getId());
+                general.setComplete_name(cardReader.getCard_reader_name());
+                general.setParentId(cardReader.getParent_id());
+                general.setDirection(Direction.CARDREADER);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -491,6 +504,27 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(percoc01);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Метод добавляет в БД Считыватели под контроллер PERCO-C01
+     * @param cardReader
+     */
+    private synchronized void writeCardReader(CardReader cardReader){
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(cardReader);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
