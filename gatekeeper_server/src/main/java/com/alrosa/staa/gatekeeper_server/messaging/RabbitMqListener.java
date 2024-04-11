@@ -195,6 +195,14 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case PERCO:
+                Perco perco = new Perco("Контроллеры Perco", general.getParentId());
+                try {
+
+                } catch (IllegalStateException e) {
+                    logger.error(perco);
+                }
+
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -392,7 +400,6 @@ public class RabbitMqListener {
             e.printStackTrace();
         }
     }
-
     /**
      * Метод записывает в БД объект Должности
      * @param positions
@@ -413,7 +420,6 @@ public class RabbitMqListener {
             e.printStackTrace();
         }
     }
-
     /**
      * Метод записывает в БД объект Организации
      * @param organizations
@@ -425,6 +431,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(organizations);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод добавляет в БД контроллеры Perco(Обобщенное наименование)
+     * @param perco
+     */
+    private synchronized void writePerco(Perco perco){
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(perco);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
