@@ -209,6 +209,20 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case PERCOC01:
+                PercoC01 percoc01 = new PercoC01("Контроллер PercoC01","0.0.0.0",false, general.getParentId());
+                try {
+                    writePercoC01(percoc01);
+                } catch (IllegalStateException e) {
+                    logger.error(percoc01);
+                }
+                general.setId(percoc01.getId());
+                general.setComplete_name(percoc01.getPercoc01_name());
+                general.setParentId(percoc01.getParent_id());
+                general.setDirection(Direction.PERCOC01);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -457,6 +471,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(perco);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод добавляет в БД контроллеры PercoC01
+     * @param percoc01
+     */
+    private synchronized void writePercoC01(PercoC01 percoc01){
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(percoc01);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
