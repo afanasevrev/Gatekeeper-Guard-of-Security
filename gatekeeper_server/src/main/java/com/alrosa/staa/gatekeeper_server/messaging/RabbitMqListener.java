@@ -236,6 +236,7 @@ public class RabbitMqListener {
                 general.setDirection(Direction.CARDREADER);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
