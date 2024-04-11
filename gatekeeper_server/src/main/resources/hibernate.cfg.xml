@@ -22,5 +22,6 @@
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Positions"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Organizations"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Perco"/>
+        <mapping class="com.alrosa.staa.gatekeeper_server.db.PercoC01"/>
     </session-factory>
 </hibernate-configuration>
