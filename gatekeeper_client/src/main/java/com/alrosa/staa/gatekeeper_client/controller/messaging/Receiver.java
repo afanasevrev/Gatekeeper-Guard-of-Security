@@ -194,6 +194,7 @@ public class Receiver {
                     item.setGraphic(imageView);
                     Variables.adminsConsoleItem.getChildren().add(item);
                     break;
+
                 default:
                     break;
             }
