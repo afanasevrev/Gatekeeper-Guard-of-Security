@@ -267,7 +267,17 @@ public class RabbitMqListener {
                 break;
             case WOMAN_USER:
                 WomanUser womanUser = new WomanUser("Человек", "", "", "", Variables.GENDER_WOMAN, general.getParentId());
-
+                try {
+                    writeWomanUser(womanUser);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(womanUser.getId());
+                general.setComplete_name(womanUser.getComplete_name());
+                general.setParentId(womanUser.getParent_id());
+                general.setDirection(Direction.WOMAN_USER);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
