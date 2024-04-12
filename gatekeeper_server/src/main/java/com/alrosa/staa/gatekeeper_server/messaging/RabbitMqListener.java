@@ -251,7 +251,20 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
-
+            case MAN_USER:
+                ManUser manUser = new ManUser("Человек", "", "", "", "мужской", general.getParentId());
+                try {
+                    writeManUser(manUser);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(manUser.getId());
+                general.setComplete_name(manUser.getComplete_name());
+                general.setParentId(manUser.getParent_id());
+                general.setDirection(Direction.MAN_USER);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -562,6 +575,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(console);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД пользователей
+     * @param manUser
+     */
+    private synchronized void writeManUser(ManUser manUser) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(manUser);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
