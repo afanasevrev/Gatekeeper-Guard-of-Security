@@ -266,6 +266,8 @@ public class RabbitMqListener {
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             case WOMAN_USER:
+                WomanUser womanUser = new WomanUser("Человек", "", "", "", Variables.GENDER_WOMAN, general.getParentId());
+
                 break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
@@ -587,7 +589,7 @@ public class RabbitMqListener {
         }
     }
     /**
-     * Метод записывает в БД пользователей
+     * Метод записывает в БД пользователей мужского пола
      * @param manUser
      */
     private synchronized void writeManUser(ManUser manUser) {
@@ -597,6 +599,27 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(manUser);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Метод записывает в БД пользователей женского пола
+     * @param womanUser
+     */
+    private synchronized void writeWomanUser(WomanUser womanUser) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(womanUser);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
