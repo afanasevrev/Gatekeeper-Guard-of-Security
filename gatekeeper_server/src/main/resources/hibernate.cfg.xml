@@ -24,5 +24,6 @@
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Perco"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.PercoC01"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.CardReader"/>
+        <mapping class="com.alrosa.staa.gatekeeper_server.db.Console"/>
     </session-factory>
 </hibernate-configuration>

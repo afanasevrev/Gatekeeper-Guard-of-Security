@@ -237,6 +237,20 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case CONSOLE:
+                Console console = new Console("Консоль", general.getParentId());
+                try {
+                    writeConsole(console);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(console.getId());
+                general.setComplete_name(console.getConsole_name());
+                general.setParentId(console.getParent_id());
+                general.setDirection(Direction.CONSOLE);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -526,6 +540,27 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(cardReader);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Метод записывает в БД Консоли
+     * @param console
+     */
+    private synchronized void writeConsole(Console console) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(console);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
