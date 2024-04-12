@@ -13,5 +13,19 @@ public class ManUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    
+    @Column(name = "complete_name")
+    private String complete_name;
+    @Column(name = "surname")
+    private String surname;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "patronymic")
+    private String patronymic;
+    public ManUser(){}
+    public ManUser(String complete_name, String surname, String name, String patronymic) {
+        this.complete_name = complete_name;
+        this.surname = surname;
+        this.name = name;
+        this.patronymic = patronymic;
+    }
 }
