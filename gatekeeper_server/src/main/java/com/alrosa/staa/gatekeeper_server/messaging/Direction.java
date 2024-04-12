@@ -15,8 +15,12 @@ public enum Direction {
     CARDREADER,
     //Объекты COMPUTER
     CONSOLE,
-    //Объекты USERS, ADMINS, OPERATORS
-    MAN, WOMAN,
+    //Объекты USERS
+    MAN_USER, WOMAN_USER,
+    //Объекты ADMINS
+    MAN_ADMIN, WOMAN_ADMIN,
+    //Объекты OPERATORS
+    MAN_OPERATOR, WOMAN_OPERATOR,
     //Объекты GLOBAL_ACCESS_LEVELS
     GLOBAL_ACCESS_LEVEL,
     //Объекты CARDS
