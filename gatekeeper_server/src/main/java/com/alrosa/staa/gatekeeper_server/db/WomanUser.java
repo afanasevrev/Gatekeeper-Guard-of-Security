@@ -23,5 +23,12 @@ public class WomanUser {
     private String patronymic;
     @Column(name = "gender")
     private String gender;
-
+    public WomanUser(){}
+    public WomanUser(String complete_name, String surname, String name, String patronymic, String gender) {
+        this.complete_name = complete_name;
+        this.surname = surname;
+        this.name = name;
+        this.patronymic = patronymic;
+        this.gender = gender;
+    }
 }

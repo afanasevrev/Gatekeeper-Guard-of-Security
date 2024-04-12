@@ -26,5 +26,6 @@
         <mapping class="com.alrosa.staa.gatekeeper_server.db.CardReader"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Console"/>
         <mapping class="com.alrosa.staa.getekeeper_server.db.ManUser"/>
+        <mapping class="com.alrosa.staa.gatekeeper_server.db.WomanUser"/>
     </session-factory>
 </hibernate-configuration>
