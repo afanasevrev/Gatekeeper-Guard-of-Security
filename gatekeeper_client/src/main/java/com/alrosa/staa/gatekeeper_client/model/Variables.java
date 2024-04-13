@@ -53,7 +53,7 @@ public class Variables {
     public static int parentId;
     //Вычисляем id выбранного объекта
     public static int id;
-    //Добавляем статический enum для админского консоля
+    //Добавляем статический enum для админской консоли
     public static Direction adminsConsoleDirection = Direction.MAIN;
     //Указываем путь к рисунку shield. Значок.
     public static final Image shieldImage = new Image(GateKeeperClient.class.getResource("favicon/shield.png").toString());
@@ -320,12 +320,5 @@ public class Variables {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        /**
-        try (FileInputStream fileInputStream = new FileInputStream("settings.properties")) {
-            properties.load(fileInputStream);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-         **/
     }
 }
