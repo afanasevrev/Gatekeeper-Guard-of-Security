@@ -19,7 +19,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
-
 /**
  * Контроллер предназначен для работы с файлом sign_in.fxml
  */
@@ -42,7 +41,6 @@ public class SignInController {
     private Button signInButton = new Button();
     @FXML
     private TextArea logsTextArea = new TextArea();
-
     /**
      * При нажатии кнопки, проходим аутентификацию на сервере
      * @throws IOException
@@ -52,7 +50,6 @@ public class SignInController {
     private void clickSignInButton() {
         authenticate(loginTextField.getText(), passwordField.getText());
     }
-
     /**
      * Метод для аутентификации на сервере
      * @param login логин
@@ -68,23 +65,18 @@ public class SignInController {
             String url = "http://" + server_ip + ":" + server_port + "/authenticate";
             //Создаем экземпляр класса RestTemplate для http - запроса к серверу
             RestTemplate restTemplate = new RestTemplate();
-
             ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
             HttpHeaders responseHeaders = response.getHeaders();
             //Активируем куки, чтобы получить ID сессии на сервере
             Variables.jSessionId = responseHeaders.getFirst("Set-Cookie");
-
             HttpHeaders headers = new HttpHeaders();
             headers.set("Cookie", Variables.jSessionId);
             headers.setBasicAuth(login, password);
-
             HttpEntity<String> request = new HttpEntity<>(url, headers);
             ResponseEntity<String> authResponse = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
-
             String text = authResponse.getBody();
             logsTextArea.setText(text);
             Stage stage = (Stage) signInButton.getScene().getWindow();
-
             try {
                 //В экземпляр класса Roles записываем полученный JSON файл
                 role = gson.fromJson(text, Roles.class);
@@ -99,7 +91,6 @@ public class SignInController {
                     //Запускаем консоль бюро пропусков
                     bureausConsole.start(new Stage());
                 }
-
                 //Закрываем форму ввода логина и пароля
                 stage.close();
             } catch (JsonSyntaxException e) {

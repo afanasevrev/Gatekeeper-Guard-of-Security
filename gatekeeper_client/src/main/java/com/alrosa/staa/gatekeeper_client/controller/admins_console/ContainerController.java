@@ -16,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.apache.log4j.Logger;
-
 import java.net.URL;
 import java.util.Comparator;
 import java.util.ResourceBundle;
@@ -27,7 +26,6 @@ import java.util.ResourceBundle;
  * и добавлять их в дерево системы
  */
 public class ContainerController implements Initializable {
-
     Logger logger = Logger.getLogger(ContainerController.class);
     @FXML
     private AnchorPane anchorPane = new AnchorPane();
@@ -47,7 +45,6 @@ public class ContainerController implements Initializable {
     Gson gson = new Gson();
     //Создаем экземпляр класса Transmitter
     Transmitter transmitter = Transmitter.getInstance();
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Выравниваем наше дерево по всем краям окна
@@ -70,7 +67,6 @@ public class ContainerController implements Initializable {
             Variables.containerConsoleDirection = Variables.containerConsoleItem.getValue().getDirection();
         });
     }
-
     /**
      * При нажатии кнопки "Добавить" добавляем в главное дерево объекты (вершины)
      */

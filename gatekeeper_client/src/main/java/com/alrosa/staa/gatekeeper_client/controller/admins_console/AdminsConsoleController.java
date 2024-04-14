@@ -2,7 +2,6 @@ package com.alrosa.staa.gatekeeper_client.controller.admins_console;
 
 import com.alrosa.staa.gatekeeper_client.controller.messaging.Receiver;
 import com.alrosa.staa.gatekeeper_client.controller.messaging.Transmitter;
-import com.alrosa.staa.gatekeeper_client.model.CommandList;
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
@@ -22,23 +21,18 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeoutException;
-
 /**
  * Контроллер для работы с файлом admins_console.fxml
  */
 public class AdminsConsoleController implements Initializable {
     //Создаем экземпляр класса Receiver
     private Receiver receiver = Receiver.getInstance();
-
     //Создаем экземпляр класса Transmitter
     private Transmitter transmitter = Transmitter.getInstance();
-
     //Задействуем JSON
     private Gson gson = new Gson();
-
     //Текст для отправки на сервер
     private String text = new String();
-
     //Создаем экземпляр класса Container
     Container container = new Container();
     //Создаем сцену
@@ -112,7 +106,6 @@ public class AdminsConsoleController implements Initializable {
         } catch (IOException | TimeoutException e) {
             throw new RuntimeException(e);
         }
-
         //Добавляем реакцию на нажатие вершины дерева
         treeView.setOnMouseClicked(event -> {
                     Variables.adminsConsoleItem = (TreeItem<Global>) treeView.getSelectionModel().getSelectedItem();

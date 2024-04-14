@@ -1,11 +1,9 @@
 package com.alrosa.staa.gatekeeper_client.controller.messaging;
 
 import com.alrosa.staa.gatekeeper_client.controller.admins_console.AdminsConsoleController;
-import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.General;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.Server;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.rabbitmq.client.Channel;
@@ -15,7 +13,6 @@ import com.rabbitmq.client.DeliverCallback;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.ImageView;
 import org.apache.log4j.Logger;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;

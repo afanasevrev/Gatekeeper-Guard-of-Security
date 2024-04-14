@@ -4,11 +4,9 @@ import com.alrosa.staa.gatekeeper_client.model.Variables;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
-
 /**
  * Класс отвечает за отправку сообщений на сервер
  * Реализуем по паттерну Singleton
