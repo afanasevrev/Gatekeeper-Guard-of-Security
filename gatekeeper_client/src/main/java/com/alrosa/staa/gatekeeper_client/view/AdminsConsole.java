@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 /**
- * Админская консоль
+ * Консоль администратора системы
  */
 public class AdminsConsole {
     public void start(Stage stage) throws IOException {
