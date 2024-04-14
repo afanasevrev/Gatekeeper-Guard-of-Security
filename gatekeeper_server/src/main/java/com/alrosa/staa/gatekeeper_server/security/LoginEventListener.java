@@ -13,12 +13,10 @@ import java.util.List;
 @Component
 public class LoginEventListener {
     Logger logger = Logger.getLogger(LoginEventListener.class);
-
     //Массив для хранения логинов
     public static List<String> successfulLogins = new ArrayList<>();
     //Записываем роль подключенного клиента
     public static String getAuthorities;
-
     @EventListener
     public void handleSuccessfulLogin(AuthenticationSuccessEvent event) {
         String username = event.getAuthentication().getName();
