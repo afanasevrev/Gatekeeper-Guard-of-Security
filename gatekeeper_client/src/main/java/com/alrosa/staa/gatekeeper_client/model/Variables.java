@@ -29,14 +29,11 @@ import java.util.Properties;
  * В классе будем хранить статические переменные и постоянные
  */
 public class Variables {
-
+    //Для возврата текущей даты
     public static Date date = new Date();
-
-    //Постоянная для сессий на основе RabbitMQ
+    //Постоянная для очередей на основе RabbitMQ
     public static final String QUEUE_NAME = "Gatekeeper";
-
     public static final String QUEUE_NAME_1 = "Gatekeeper_Client";
-
     //Сюда запишем полученный SessionID
     public static String jSessionId;
     //Переменная для загрузки настроек
@@ -119,9 +116,9 @@ public class Variables {
     //Инициируем объект admins
     public static final TreeItem<Global> adminsTreeItem = new TreeItem<>(new Admins());
     //----------------------------------------------------------------------------------------//
-    //Уазываем путь к рисунку operators
+    //Указываем путь к рисунку operators
     public static final Image imageOperators = new Image(GateKeeperClient.class.getResource("icons/operators.png").toString());
-    //Регистриуем рисунок в ImageView
+    //Регистрируем рисунок в ImageView
     public static final ImageView operatorsView = new ImageView(imageOperators);
     //Инициируем объект operators
     public static final TreeItem<Global> operatorsTreeItem = new TreeItem<>(new Operators());
@@ -215,7 +212,6 @@ public class Variables {
     public static final ImageView officeView = new ImageView(imageOffice);
     //Инициируем объект office
     public static final TreeItem<Global> officeTreeItem = new TreeItem<>(new Office());
-
     //Прикрепляем все иконки к объектам
     static {
         serverView.setFitWidth(25);
