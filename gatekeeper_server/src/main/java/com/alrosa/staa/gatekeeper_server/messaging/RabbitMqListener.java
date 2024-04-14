@@ -252,7 +252,7 @@ public class RabbitMqListener {
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
             case MAN_USER:
-                ManUser manUser = new ManUser("Человек", "", "", "", "мужской", general.getParentId());
+                ManUser manUser = new ManUser("Человек", "", "", "", Variables.GENDER_MAN, general.getParentId());
                 try {
                     writeManUser(manUser);
                 } catch (IllegalStateException e) {
