@@ -5,9 +5,10 @@ import com.alrosa.staa.gatekeeper_client.model.Variables;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-
+/**
+ * Консоль оператора системы
+ */
 public class OperatorsConsole {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(GateKeeperClient.class.getResource("console/operator/operators_console.fxml"));
