@@ -11,7 +11,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * Класс отвечает за отправку сообщений на сервер
- * Реализуем его по паттерну Singleton
+ * Реализуем по паттерну Singleton
  */
 public class Transmitter {
     private static Transmitter INSTANCE;
