@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Класс сущности для главного объекта в дереве системы
+ * Класс для главного объекта в дереве системы
  */
 @Setter
 @Getter

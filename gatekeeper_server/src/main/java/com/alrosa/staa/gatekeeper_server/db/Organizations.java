@@ -3,9 +3,9 @@ package com.alrosa.staa.gatekeeper_server.db;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.UUID;
-
+/**
+ * Класс для организаций
+ */
 @Setter
 @Getter
 @Entity

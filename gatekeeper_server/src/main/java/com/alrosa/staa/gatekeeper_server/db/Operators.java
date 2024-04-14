@@ -3,9 +3,8 @@ package com.alrosa.staa.gatekeeper_server.db;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 /**
- * Класс сущности для дежурного оператора
+ * Класс для дежурного оператора
  */
 @Setter
 @Getter
