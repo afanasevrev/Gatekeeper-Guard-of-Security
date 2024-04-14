@@ -1,9 +1,8 @@
 package com.alrosa.staa.gatekeeper_client.model;
 
 /**
- * Класс предназначен для приёма роли от сервера
+ * Класс для приёма роли от сервера
  */
-
 public class Roles {
     private String role;
 

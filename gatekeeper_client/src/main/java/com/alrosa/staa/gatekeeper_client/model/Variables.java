@@ -21,12 +21,10 @@ import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_object
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
-
 /**
  * В классе будем хранить статические переменные и постоянные
  */
@@ -45,7 +43,7 @@ public class Variables {
     public static final Properties properties = new Properties();
     //Добавляем вершину дерева для контейнера
     public static TreeItem<Global> containerConsoleItem;
-    //Добавляем вершину дерева для админского консоля
+    //Добавляем вершину дерева для админской консоли
     public static TreeItem<Global> adminsConsoleItem;
     //Добавляем статический enum для контейнера
     public static Direction containerConsoleDirection = Direction.MAIN;
@@ -312,7 +310,6 @@ public class Variables {
         officeView.setFitWidth(25);
         officeTreeItem.setGraphic(officeView);
     }
-
     //Извлекаем настройки сервера из файла settings.properties
     static {
         try (FileInputStream fileInputStream = new FileInputStream("src/main/resources/com/alrosa/staa/gatekeeper_client/settings/settings.properties")) {

@@ -5,7 +5,9 @@ import com.alrosa.staa.gatekeeper_client.model.Variables;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+/**
+ * Контейнер для выбора объектов
+ */
 public class Container {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(GateKeeperClient.class.getResource("console/admin/container.fxml"));
