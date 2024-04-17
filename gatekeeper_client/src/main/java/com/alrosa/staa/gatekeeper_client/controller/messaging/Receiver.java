@@ -16,7 +16,6 @@ import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
-
 /**
  * Класс Приёмник сообщений от сервера
  * Класс реализуем по паттерну Singleton
