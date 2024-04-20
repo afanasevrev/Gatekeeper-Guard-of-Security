@@ -6,7 +6,6 @@ import org.springframework.security.authentication.event.AuthenticationSuccessEv
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Класс нужен для фиксации авторизованных клиентов
  */
