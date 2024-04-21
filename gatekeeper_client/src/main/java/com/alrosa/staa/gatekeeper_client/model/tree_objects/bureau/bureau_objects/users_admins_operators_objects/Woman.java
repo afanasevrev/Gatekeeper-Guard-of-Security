@@ -7,16 +7,12 @@ import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
  * Класс для отображения человека женского пола
  */
 public class Woman implements Global {
-
     //ID объекта в БД
     private int id;
-
     //Родительский ID объекта в БД
     private int parentId;
-
     //Имя объекта
     private String complete_name = "Человек";
-
     private Direction direction = Direction.WOMAN;
     public Woman() {}
     public Woman(String complete_name) {
