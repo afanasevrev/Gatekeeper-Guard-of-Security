@@ -7,7 +7,7 @@ module com.alrosa.staa.gatekeeper_client {
     requires com.rabbitmq.client;
     requires com.google.gson;
     requires log4j;
-    requires lombok;
+    requires static lombok;
 
     opens com.alrosa.staa.gatekeeper_client to javafx.fxml;
     exports com.alrosa.staa.gatekeeper_client;

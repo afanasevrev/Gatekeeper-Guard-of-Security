@@ -14,6 +14,10 @@ public class General implements Global {
     public General() {
         this.direction = Direction.NULL_DIRECTION;
     }
+    public General(Direction direction, String complete_name) {
+        this.direction = direction;
+        this.complete_name = complete_name;
+    }
     public General(Direction direction, int parentId) {
         this.direction = direction;
         this.parentId = parentId;

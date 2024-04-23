@@ -1,6 +1,7 @@
 package com.alrosa.staa.gatekeeper_client.model;
 
 import com.alrosa.staa.gatekeeper_client.GateKeeperClient;
+import com.alrosa.staa.gatekeeper_client.model.tree_objects.General;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.Bureau;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.*;
@@ -14,7 +15,6 @@ import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_object
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Woman;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.Computer;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.computer_objects.Console;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.Server;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.Perco;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.PERCoC01;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.percoc01_objects.CardReader;
@@ -54,12 +54,14 @@ public class Variables {
     public static final Image shieldImage = new Image(GateKeeperClient.class.getResource("favicon/shield.png").toString());
     //Указываем путь к рисунку main.
     public static final Image mainImage = new Image(GateKeeperClient.class.getResource("icons/main.png").toString());
+    //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку server
     public static final Image imageServer = new Image(GateKeeperClient.class.getResource("icons/server.png").toString());
     //Регистрируем рисунок сервера в ImageView
     public static final ImageView serverView = new ImageView(imageServer);
     //Инициируем объект сервера
-    public static final TreeItem<Global> serverTreeItem = new TreeItem<>(new Server());
+    public static final TreeItem<Global> serverTreeItem = new TreeItem<>(new General(Direction.SERVER, "Сервер"));
+    //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку computer
     public static final Image imageComputer = new Image(GateKeeperClient.class.getResource("icons/computer.png").toString());
     //Регистрируем рисунок компьютера в ImageView

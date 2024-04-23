@@ -19,7 +19,7 @@ public class Main {
     @Column(name = "name")
     private String complete_name;
     public Main() {}
-    public Main(String name) {
-        this.complete_name = name;
+    public Main(String complete_name) {
+        this.complete_name = complete_name;
     }
 }
