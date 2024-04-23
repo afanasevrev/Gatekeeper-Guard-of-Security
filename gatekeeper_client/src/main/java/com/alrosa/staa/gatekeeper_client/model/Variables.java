@@ -103,49 +103,49 @@ public class Variables {
     //Регистрируем рисунок users в ImageView
     public static final ImageView usersView = new ImageView(imageUsers);
     //Инициируем объект users
-    public static final TreeItem<Global> usersTreeItem = new TreeItem<>(new Users());
+    public static final TreeItem<Global> usersTreeItem = new TreeItem<>(new General(Direction.USERS, "Пользователи"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку admins
     public static final Image imageAdmins = new Image(GateKeeperClient.class.getResource("icons/admins.png").toString());
     //Регистрируем рисунок admins в ImageView
     public static final ImageView adminsView = new ImageView(imageAdmins);
     //Инициируем объект admins
-    public static final TreeItem<Global> adminsTreeItem = new TreeItem<>(new Admins());
+    public static final TreeItem<Global> adminsTreeItem = new TreeItem<>(new General(Direction.ADMINS, "Администраторы"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку operators
     public static final Image imageOperators = new Image(GateKeeperClient.class.getResource("icons/operators.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView operatorsView = new ImageView(imageOperators);
     //Инициируем объект operators
-    public static final TreeItem<Global> operatorsTreeItem = new TreeItem<>(new Operators());
+    public static final TreeItem<Global> operatorsTreeItem = new TreeItem<>(new General(Direction.OPERATORS, "Операторы"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку global_access_levels
     public static final Image imageGlobalAccessLevels = new Image(GateKeeperClient.class.getResource("icons/global_access_levels.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView globalAccessLevelsView = new ImageView(imageGlobalAccessLevels);
     //Инициируем объект global_access_levels
-    public static final TreeItem<Global> globalAccessLevelsTreeItem = new TreeItem<>(new GlobalAccessLevels());
+    public static final TreeItem<Global> globalAccessLevelsTreeItem = new TreeItem<>(new General(Direction.GLOBAL_ACCESS_LEVELS, "Глобальные уровни доступа"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку cards
     public static final Image imageCards = new Image(GateKeeperClient.class.getResource("icons/cards.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView cardsView = new ImageView(imageCards);
     //Инициируем объект cards
-    public static final TreeItem<Global> cardsTreeItem = new TreeItem<>(new Cards());
+    public static final TreeItem<Global> cardsTreeItem = new TreeItem<>(new General(Direction.CARDS, "Карты доступа"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку card_layouts
     public static final Image imageCardLayouts = new Image(GateKeeperClient.class.getResource("icons/card_layouts.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView cardLayoutsView = new ImageView(imageCardLayouts);
     //Инициируем объект cardLayouts
-    public static final TreeItem<Global> cardLayoutsTreeItem = new TreeItem<>(new CardLayouts());
+    public static final TreeItem<Global> cardLayoutsTreeItem = new TreeItem<>(new General(Direction.CARD_LAYOUTS, "Макеты карт"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку positions
     public static final Image imagePositions = new Image(GateKeeperClient.class.getResource("icons/positions.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView positionsView = new ImageView(imagePositions);
     //Инициируем объект positions
-    public static final TreeItem<Global> positionsTreeItem = new TreeItem<>(new Positions());
+    public static final TreeItem<Global> positionsTreeItem = new TreeItem<>(new General(Direction.POSITIONS, "Должности"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку organizations
     public static final Image imageOrganizations = new Image(GateKeeperClient.class.getResource("icons/organizations.png").toString());

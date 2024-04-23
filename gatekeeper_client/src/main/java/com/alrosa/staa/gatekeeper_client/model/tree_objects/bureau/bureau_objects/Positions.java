@@ -2,7 +2,6 @@ package com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objec
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
-
 /**
  * Класс для должностей
  */
