@@ -3,9 +3,6 @@ package com.alrosa.staa.gatekeeper_client.model;
 import com.alrosa.staa.gatekeeper_client.GateKeeperClient;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.General;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.organizations_objects.Organization;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.organizations_objects.organization_objects.Office;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.positions_objects.Position;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -187,21 +184,21 @@ public class Variables {
     //Регистрируем рисунок в ImageView
     public static final ImageView positionView = new ImageView(imagePosition);
     //Инициируем объект position
-    public static final TreeItem<Global> positionTreeItem = new TreeItem<>(new Position());
+    public static final TreeItem<Global> positionTreeItem = new TreeItem<>(new General(Direction.POSITION, "Должность"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку organization
     public static final Image imageOrganization = new Image(GateKeeperClient.class.getResource("icons/organization.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView organizationView = new ImageView(imageOrganization);
     //Инициируем объект organization
-    public static final TreeItem<Global> organizationTreeItem = new TreeItem<>(new Organization());
+    public static final TreeItem<Global> organizationTreeItem = new TreeItem<>(new General(Direction.ORGANIZATION, "Организация"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку office
     public static final Image imageOffice = new Image(GateKeeperClient.class.getResource("icons/office.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView officeView = new ImageView(imageOffice);
     //Инициируем объект office
-    public static final TreeItem<Global> officeTreeItem = new TreeItem<>(new Office());
+    public static final TreeItem<Global> officeTreeItem = new TreeItem<>(new General(Direction.OFFICE, "Отдел"));
     //Прикрепляем все иконки к объектам
     static {
         serverView.setFitWidth(25);
