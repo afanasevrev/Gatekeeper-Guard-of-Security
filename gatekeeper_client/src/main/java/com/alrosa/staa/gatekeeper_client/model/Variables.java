@@ -13,8 +13,6 @@ import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_object
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Man;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Woman;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.computer_objects.Console;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.PERCoC01;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.percoc01_objects.CardReader;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -78,28 +76,28 @@ public class Variables {
     //Регистрируем рисунок perco в ImageView
     public static final ImageView percoView = new ImageView(imagePerco);
     //Инициируем объект perco
-    public static final TreeItem<Global> percoTreeItem = new TreeItem<>(new General(Direction.PERCO, "Контроллер Perco"));
+    public static final TreeItem<Global> percoTreeItem = new TreeItem<>(new General(Direction.PERCO, "Контроллеры Perco"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку PERCoC01
     public static final Image imagePERCoC01 = new Image(GateKeeperClient.class.getResource("icons/PERCoC01.png").toString());
     //Регистрируем рисунок PERCoC01 в ImageView
     public static final ImageView PERCoC01View = new ImageView(imagePERCoC01);
     //Инициируем объект PERCoC01
-    public static final TreeItem<Global> PERCoC01TreeItem = new TreeItem<>(new PERCoC01());
+    public static final TreeItem<Global> PERCoC01TreeItem = new TreeItem<>(new General(Direction.PERCOC01, "Контроллер PERCo-C01"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку cardreader
     public static final Image imageCardReader = new Image(GateKeeperClient.class.getResource("icons/cardreader.png").toString());
     //Регистрируем рисунок cardreader в ImageView
     public static final ImageView cardReaderView = new ImageView(imageCardReader);
     //Инициируем объект cardReader
-    public static final TreeItem<Global> cardReaderTreeItem = new TreeItem<>(new CardReader());
+    public static final TreeItem<Global> cardReaderTreeItem = new TreeItem<>(new General(Direction.CARDREADER, "Считыватель"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку console
     public static final Image imageConsole = new Image(GateKeeperClient.class.getResource("icons/console.png").toString());
     //Регистрируем рисунок console в ImageView
     public static final ImageView consoleView = new ImageView(imageConsole);
     //Инициируем объект console
-    public static final TreeItem<Global> consoleTreeItem = new TreeItem<>(new Console());
+    public static final TreeItem<Global> consoleTreeItem = new TreeItem<>(new General(Direction.CONSOLE, "Консоль"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку users
     public static final Image imageUsers = new Image(GateKeeperClient.class.getResource("icons/users.png").toString());
