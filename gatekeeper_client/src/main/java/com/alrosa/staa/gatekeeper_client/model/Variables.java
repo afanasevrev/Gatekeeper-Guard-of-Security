@@ -12,7 +12,6 @@ import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_object
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.positions_objects.Position;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Man;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Woman;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.computer_objects.Console;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
