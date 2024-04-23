@@ -17,6 +17,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +27,7 @@ import java.util.concurrent.TimeoutException;
  * Контроллер для работы с файлом admins_console.fxml
  */
 public class AdminsConsoleController implements Initializable {
+    Logger logger = Logger.getLogger(AdminsConsoleController.class);
     //Создаем экземпляр класса Receiver
     private Receiver receiver = Receiver.getInstance();
     //Создаем экземпляр класса Transmitter
@@ -103,6 +106,7 @@ public class AdminsConsoleController implements Initializable {
         try {
             text = gson.toJson(mainSystem.getValue());
             transmitter.sendMessage(text);
+            logger.info(text);
         } catch (IOException | TimeoutException e) {
             throw new RuntimeException(e);
         }
