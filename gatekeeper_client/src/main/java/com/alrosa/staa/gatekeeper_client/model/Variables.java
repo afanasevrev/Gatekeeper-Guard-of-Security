@@ -3,15 +3,11 @@ package com.alrosa.staa.gatekeeper_client.model;
 import com.alrosa.staa.gatekeeper_client.GateKeeperClient;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.General;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.*;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.card_layouts_objects.CardLayout;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.cards_objects.Card;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.global_access_levels_objects.GlobalAccessLevel;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.organizations_objects.Organization;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.organizations_objects.organization_objects.Office;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.positions_objects.Position;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Man;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Woman;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -152,27 +148,27 @@ public class Variables {
     //Регистрируем рисунок в ImageView
     public static final ImageView organizationsView = new ImageView(imageOrganizations);
     //Инициируем объект organizations
-    public static final TreeItem<Global> organizationsTreeItem = new TreeItem<>(new Organizations());
+    public static final TreeItem<Global> organizationsTreeItem = new TreeItem<>(new General(Direction.ORGANIZATIONS, "Организации"));
     //----------------------------------------------------------------------------------------//
     public static final Image imageMan = new Image(GateKeeperClient.class.getResource("icons/man.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView manView = new ImageView(imageMan);
     //Инициируем объект man
-    public static final TreeItem<Global> manTreeItem = new TreeItem<>(new Man());
+    public static final TreeItem<Global> manTreeItem = new TreeItem<>(new General(Direction.MAN, "Человек"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку woman
     public static final Image imageWoman = new Image(GateKeeperClient.class.getResource("icons/woman.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView womanView = new ImageView(imageWoman);
     //Инициируем объект woman
-    public static final TreeItem<Global> womanTreeItem = new TreeItem<>(new Woman());
+    public static final TreeItem<Global> womanTreeItem = new TreeItem<>(new General(Direction.WOMAN, "Человек"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку global_access_level
     public static final Image imageGlobalAccessLevel = new Image(GateKeeperClient.class.getResource("icons/global_access_level.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView globalAccessLevelView = new ImageView(imageGlobalAccessLevel);
     //Инициируем объект globalAccessLevel
-    public static final TreeItem<Global> globalAccessLevelTreeItem = new TreeItem<>(new GlobalAccessLevel());
+    public static final TreeItem<Global> globalAccessLevelTreeItem = new TreeItem<>(new General(Direction.GLOBAL_ACCESS_LEVEL, "Глобальный уровень доступа"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку card
     public static final Image imageCard = new Image(GateKeeperClient.class.getResource("icons/card.png").toString());
