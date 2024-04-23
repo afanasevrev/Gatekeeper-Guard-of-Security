@@ -3,8 +3,6 @@ package com.alrosa.staa.gatekeeper_client.model;
 import com.alrosa.staa.gatekeeper_client.GateKeeperClient;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.General;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.card_layouts_objects.CardLayout;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.cards_objects.Card;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.organizations_objects.Organization;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.organizations_objects.organization_objects.Office;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.positions_objects.Position;
@@ -175,14 +173,14 @@ public class Variables {
     //Регистрируем рисунок в ImageView
     public static final ImageView cardView = new ImageView(imageCard);
     //Инициируем объект card
-    public static final TreeItem<Global> cardTreeItem = new TreeItem<>(new Card());
+    public static final TreeItem<Global> cardTreeItem = new TreeItem<>(new General(Direction.CARD, "Карта доступа"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку card_layout
     public static final Image imageCardLayout = new Image(GateKeeperClient.class.getResource("icons/card_layout.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView cardLayoutView = new ImageView(imageCardLayout);
     //Инициируем объект cardLayout
-    public static final TreeItem<Global> cardLayoutTreeItem = new TreeItem<>(new CardLayout());
+    public static final TreeItem<Global> cardLayoutTreeItem = new TreeItem<>(new General(Direction.CARD_LAYOUT, "Макет карты"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку position
     public static final Image imagePosition = new Image(GateKeeperClient.class.getResource("icons/position.png").toString());
