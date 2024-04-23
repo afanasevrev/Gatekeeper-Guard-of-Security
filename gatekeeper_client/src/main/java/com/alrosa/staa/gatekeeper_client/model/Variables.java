@@ -46,7 +46,7 @@ public class Variables {
     public static Direction containerConsoleDirection = Direction.MAIN;
     //Вычисляем parentId выбранного объекта
     public static int parentId;
-    //Вычисляем id выбранного объекта
+    //id выбранного объекта
     public static int id;
     //Добавляем статический enum для админской консоли
     public static Direction adminsConsoleDirection = Direction.MAIN;
