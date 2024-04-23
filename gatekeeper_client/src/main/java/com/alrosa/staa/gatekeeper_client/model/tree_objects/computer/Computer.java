@@ -2,7 +2,6 @@ package com.alrosa.staa.gatekeeper_client.model.tree_objects.computer;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
-
 /**
  * Класс для объекта "Компьютер"
  */

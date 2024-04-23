@@ -13,7 +13,6 @@ import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_object
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.positions_objects.Position;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Man;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Woman;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.Computer;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.computer_objects.Console;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.Perco;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.PERCoC01;
@@ -67,7 +66,7 @@ public class Variables {
     //Регистрируем рисунок компьютера в ImageView
     public static final ImageView computerView = new ImageView(imageComputer);
     //Инициируем объект компьютера
-    public static final TreeItem<Global> computerTreeItem = new TreeItem<>(new Computer());
+    public static final TreeItem<Global> computerTreeItem = new TreeItem<>(new General(Direction.COMPUTER, "Компьютер"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку bureau
     public static final Image imageBureau = new Image(GateKeeperClient.class.getResource("icons/bureau.png").toString());
