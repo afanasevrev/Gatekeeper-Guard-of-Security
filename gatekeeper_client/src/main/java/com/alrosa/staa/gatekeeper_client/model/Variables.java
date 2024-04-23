@@ -3,7 +3,6 @@ package com.alrosa.staa.gatekeeper_client.model;
 import com.alrosa.staa.gatekeeper_client.GateKeeperClient;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.General;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.Global;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.Bureau;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.*;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.card_layouts_objects.CardLayout;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.cards_objects.Card;
@@ -14,7 +13,6 @@ import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_object
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Man;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.bureau.bureau_objects.users_admins_operators_objects.Woman;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.computer.computer_objects.Console;
-import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.Perco;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.PERCoC01;
 import com.alrosa.staa.gatekeeper_client.model.tree_objects.server.server_objects.perco_objects.percoc01_objects.CardReader;
 import javafx.scene.control.TreeItem;
@@ -73,14 +71,14 @@ public class Variables {
     //Регистрируем рисунок бюро в ImageView
     public static final ImageView bureauView = new ImageView(imageBureau);
     //Инициируем объект бюро
-    public static final TreeItem<Global> bureauTreeItem = new TreeItem<>(new Bureau());
+    public static final TreeItem<Global> bureauTreeItem = new TreeItem<>(new General(Direction.BUREAU, "Бюро"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку perco
     public static final Image imagePerco = new Image(GateKeeperClient.class.getResource("icons/perco.png").toString());
     //Регистрируем рисунок perco в ImageView
     public static final ImageView percoView = new ImageView(imagePerco);
     //Инициируем объект perco
-    public static final TreeItem<Global> percoTreeItem = new TreeItem<>(new Perco());
+    public static final TreeItem<Global> percoTreeItem = new TreeItem<>(new General(Direction.PERCO, "Контроллер Perco"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку PERCoC01
     public static final Image imagePERCoC01 = new Image(GateKeeperClient.class.getResource("icons/PERCoC01.png").toString());
