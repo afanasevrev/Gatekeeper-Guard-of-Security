@@ -307,6 +307,23 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case MAN_ADMIN:
+                ManAdmin manAdmin = new ManAdmin("Человек", "", "", "", Variables.GENDER_MAN, general.getParentId());
+                try {
+                    writeManAdmin(manAdmin);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(manAdmin.getId());
+                general.setComplete_name(manAdmin.getComplete_name());
+                general.setParentId(manAdmin.getParent_id());
+                general.setDirection(Direction.MAN_ADMIN);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
+            case WOMAN_ADMIN:
+                WomanAdmin womanAdmin = new WomanAdmin("Человек", "", "", "", Variables.GENDER_WOMAN, general.getParentId());
+                
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -697,6 +714,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(womanOperator);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД администраторов мусжкого пола
+     * @param manAdmin
+     */
+    private synchronized void writeManAdmin(ManAdmin manAdmin) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(manAdmin);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {

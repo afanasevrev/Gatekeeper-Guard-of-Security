@@ -3,11 +3,12 @@ package com.alrosa.staa.gatekeeper_server.db;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 @Setter
 @Getter
 @Entity
-@Table(name = "gk_man_admin")
-public class ManAdmin {
+@Table(name = "gk_woman_admin")
+public class WomanAdmin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -24,8 +25,8 @@ public class ManAdmin {
     private String gender;
     @Column(name = "parent_id")
     private int parent_id;
-    public ManAdmin(){}
-    public ManAdmin(String complete_name, String surname, String name, String patronymic, String gender, int parent_id) {
+    public WomanAdmin(){}
+    public WomanAdmin(String complete_name, String surname, String name, String patronymic, String gender, int parent_id) {
         this.complete_name = complete_name;
         this.surname = surname;
         this.name = name;
