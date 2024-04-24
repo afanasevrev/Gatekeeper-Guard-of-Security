@@ -293,6 +293,20 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case WOMAN_OPERATOR:
+                WomanOperator womanOperator = new WomanOperator("Человек", "", "", "", Variables.GENDER_WOMAN, general.getParentId());
+                try {
+                    writeWomanOperator(womanOperator);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(womanOperator.getId());
+                general.setComplete_name(womanOperator.getComplete_name());
+                general.setParentId(womanOperator.getParent_id());
+                general.setDirection(Direction.WOMAN_OPERATOR);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -663,6 +677,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(manOperator);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД операторов женского пола
+     * @param womanOperator
+     */
+    private synchronized void writeWomanOperator(WomanOperator womanOperator) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(womanOperator);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
