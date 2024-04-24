@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.log4j.BasicConfigurator;
 import java.io.IOException;
-
 /**
  * Точка входа в приложение
  */
