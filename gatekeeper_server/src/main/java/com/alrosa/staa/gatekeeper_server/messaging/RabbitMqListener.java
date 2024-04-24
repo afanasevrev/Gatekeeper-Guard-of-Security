@@ -260,7 +260,7 @@ public class RabbitMqListener {
                 }
                 general.setId(passOffice.getId());
                 general.setComplete_name(passOffice.getPass_office_name());
-                general.setParentId(passOffice.getParent_id()));
+                general.setParentId(passOffice.getParent_id());
                 general.setDirection(Direction.PASS_OFFICE);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
