@@ -279,6 +279,20 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case MAN_OPERATOR:
+                ManOperator manOperator = new ManOperator("Человек","","","",Variables.GENDER_MAN, general.getParentId());
+                try {
+                    writeManOperator(manOperator);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(manOperator.getId());
+                general.setComplete_name(manOperator.getComplete_name());
+                general.setParentId(manOperator.getParent_id());
+                general.setDirection(Direction.MAN_OPERATOR);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -618,7 +632,6 @@ public class RabbitMqListener {
             e.printStackTrace();
         }
     }
-
     /**
      * Метод записывает в БД пользователей женского пола
      * @param womanUser
@@ -630,6 +643,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(womanUser);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД операторов мужского пола
+     * @param manOperator
+     */
+    private synchronized void writeManOperator(ManOperator manOperator) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(manOperator);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
