@@ -28,5 +28,6 @@
         <mapping class="com.alrosa.staa.gatekeeper_server.db.ManUser"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.WomanUser"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.ManOperator"/>
+        <mapping class="com.alrosa.staa.gatekeeper_server.db.WomanOperator"/>
     </session-factory>
 </hibernate-configuration>
