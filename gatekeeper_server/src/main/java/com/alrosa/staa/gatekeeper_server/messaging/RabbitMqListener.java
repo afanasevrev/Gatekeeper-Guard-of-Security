@@ -251,6 +251,20 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case PASS_OFFICE:
+                PassOffice passOffice = new PassOffice("Бюро пропусков", general.getParentId());
+                try {
+                    writePassOffice(passOffice);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(passOffice.getId());
+                general.setComplete_name(passOffice.getPass_office_name());
+                general.setParentId(passOffice.getParent_id()));
+                general.setDirection(Direction.PASS_OFFICE);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             case MAN_USER:
                 ManUser manUser = new ManUser("Человек", "", "", "", Variables.GENDER_MAN, general.getParentId());
                 try {
@@ -673,6 +687,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(console);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД Бюро пропусков
+     * @param passOffice
+     */
+    private synchronized void writePassOffice(PassOffice passOffice) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(passOffice);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
