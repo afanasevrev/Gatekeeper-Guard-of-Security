@@ -323,7 +323,18 @@ public class RabbitMqListener {
                 break;
             case WOMAN_ADMIN:
                 WomanAdmin womanAdmin = new WomanAdmin("Человек", "", "", "", Variables.GENDER_WOMAN, general.getParentId());
-                
+                try {
+                    writeWomanAdmin(womanAdmin);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(womanAdmin.getId());
+                general.setComplete_name(womanAdmin.getComplete_name());
+                general.setParentId(womanAdmin.getParent_id());
+                general.setDirection(Direction.WOMAN_ADMIN);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -734,6 +745,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(manAdmin);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД администраторов женского пола
+     * @param womanAdmin
+     */
+    private synchronized void writeWomanAdmin(WomanAdmin womanAdmin) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(womanAdmin);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
