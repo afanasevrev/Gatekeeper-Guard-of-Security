@@ -21,6 +21,8 @@ public enum Direction {
     MAN_ADMIN, WOMAN_ADMIN,
     //Объекты OPERATORS
     MAN_OPERATOR, WOMAN_OPERATOR,
+    //Объекты бюро пропусков
+    PASS_OFFICE,
     //Объекты GLOBAL_ACCESS_LEVELS
     GLOBAL_ACCESS_LEVEL,
     //Объекты CARDS
