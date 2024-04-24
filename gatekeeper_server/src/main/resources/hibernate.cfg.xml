@@ -33,5 +33,6 @@
         <mapping class="com.alrosa.staa.gatekeeper_server.db.WomanAdmin"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.ManPassOffice"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.WomanPassOffice"/>
+        <mapping class="com.alrosa.staa.gatekeeper_server.db.PassOffice"/>
     </session-factory>
 </hibernate-configuration>
