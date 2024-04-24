@@ -1,7 +1,6 @@
 package com.alrosa.staa.gatekeeper_client.model.tree_objects;
 
 import com.alrosa.staa.gatekeeper_client.model.Direction;
-
 /**
  * Объявяляем общий класс, для обмена между клиентом и сервером
  * При создании объекта, данные будем отправлять на сервер
