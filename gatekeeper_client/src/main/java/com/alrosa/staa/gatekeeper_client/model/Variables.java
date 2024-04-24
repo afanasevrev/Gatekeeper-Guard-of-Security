@@ -199,6 +199,7 @@ public class Variables {
     public static final ImageView officeView = new ImageView(imageOffice);
     //Инициируем объект office
     public static final TreeItem<Global> officeTreeItem = new TreeItem<>(new General(Direction.OFFICE, "Отдел"));
+    //----------------------------------------------------------------------------------------//
     //Прикрепляем все иконки к объектам
     static {
         serverView.setFitWidth(25);
