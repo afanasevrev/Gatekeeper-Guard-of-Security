@@ -335,6 +335,34 @@ public class RabbitMqListener {
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
                 break;
+            case MAN_PASS_OFFICE:
+                ManPassOffice manPassOffice = new ManPassOffice("Человек", "", "", "", Variables.GENDER_MAN, general.getParentId());
+                try {
+                    writeManPassOffice(manPassOffice);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(manPassOffice.getId());
+                general.setComplete_name(manPassOffice.getComplete_name());
+                general.setParentId(manPassOffice.getParent_id());
+                general.setDirection(Direction.MAN_PASS_OFFICE);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
+            case WOMAN_PASS_OFFICE:
+                WomanPassOffice womanPassOffice = new WomanPassOffice("Человек", "", "", "", Variables.GENDER_WOMAN, general.getParentId());
+                try {
+                    writeWomanPassOffice(womanPassOffice);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(womanPassOffice.getId());
+                general.setComplete_name(womanPassOffice.getComplete_name());
+                general.setParentId(womanPassOffice.getParent_id());
+                general.setDirection(Direction.WOMAN_PASS_OFFICE);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -765,6 +793,46 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(womanAdmin);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД инспекторов бюро пропусков женского пола
+     * @param manPassOffice
+     */
+    private synchronized void writeManPassOffice(ManPassOffice manPassOffice) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(manPassOffice);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД инспекторов бюро пропусков мужского пола
+     * @param womanPassOffice
+     */
+    private synchronized void writeWomanPassOffice(WomanPassOffice womanPassOffice) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(womanPassOffice);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
