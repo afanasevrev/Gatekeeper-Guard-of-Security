@@ -36,5 +36,6 @@
         <mapping class="com.alrosa.staa.gatekeeper_server.db.PassOffice"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.GlobalAccessLevel"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Card"/>
+        <mapping class="com.alrosa.staa.gatekeeper_server.db.CardLayout"/>
     </session-factory>
 </hibernate-configuration>
