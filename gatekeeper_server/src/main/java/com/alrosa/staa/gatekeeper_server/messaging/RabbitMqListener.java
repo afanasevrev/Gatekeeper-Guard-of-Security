@@ -390,6 +390,7 @@ public class RabbitMqListener {
                 general.setDirection(Direction.GLOBAL_ACCESS_LEVEL);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
