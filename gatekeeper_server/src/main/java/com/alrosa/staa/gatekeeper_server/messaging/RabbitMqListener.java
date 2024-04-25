@@ -390,7 +390,19 @@ public class RabbitMqListener {
                 general.setDirection(Direction.GLOBAL_ACCESS_LEVEL);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
-
+            case CARD:
+                Card card = new Card("Карта доступа", 0, general.getParentId());
+                try {
+                    writeCard(card);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(card.getId());
+                general.setComplete_name(card.getCard_name());
+                general.setParentId(card.getParent_id());
+                general.setDirection(Direction.CARD);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -901,6 +913,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(globalAccessLevel);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД карты доступа
+     * @param card
+     */
+    private synchronized void writeCard(Card card) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(card);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
