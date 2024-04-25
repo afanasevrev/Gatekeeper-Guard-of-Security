@@ -403,6 +403,19 @@ public class RabbitMqListener {
                 general.setDirection(Direction.CARD);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+            case CARD_LAYOUT:
+                CardLayout cardLayout = new CardLayout("Макет карты", general.getParentId());
+                try {
+                    writeCardLayout(cardLayout);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(cardLayout.getId());
+                general.setComplete_name(cardLayout.getCard_layout_name());
+                general.setParentId(cardLayout.getParent_id());
+                general.setDirection(Direction.CARD_LAYOUT);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -933,6 +946,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(card);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД макеты карт
+     * @param cardLayout
+     */
+    private synchronized void writeCardLayout(CardLayout cardLayout) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(cardLayout);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
