@@ -3,6 +3,9 @@ package com.alrosa.staa.gatekeeper_server.db;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+/**
+ * Класс для инспекторов бюро пропусков мужского пола
+ */
 @Setter
 @Getter
 @Entity

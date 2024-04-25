@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 /**
- * Класс администратора системы
+ * Класс администраторов системы
  */
 @Setter
 @Getter
