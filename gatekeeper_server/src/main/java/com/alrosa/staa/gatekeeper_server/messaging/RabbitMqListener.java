@@ -379,7 +379,17 @@ public class RabbitMqListener {
                 break;
             case GLOBAL_ACCESS_LEVEL:
                 GlobalAccessLevel globalAccessLevel = new GlobalAccessLevel("Глобальный уровень доступа", general.getParentId());
-
+                try {
+                    writeGlobalAccessLevel(globalAccessLevel);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(globalAccessLevel.getId());
+                general.setComplete_name(globalAccessLevel.getGlobal_access_level_name());
+                general.setParentId(globalAccessLevel.getParent_id());
+                general.setDirection(Direction.GLOBAL_ACCESS_LEVEL);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
