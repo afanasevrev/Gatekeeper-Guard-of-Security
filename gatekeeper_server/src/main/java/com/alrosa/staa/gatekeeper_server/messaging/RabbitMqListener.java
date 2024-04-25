@@ -442,6 +442,19 @@ public class RabbitMqListener {
                 general.setDirection(Direction.ORGANIZATION);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+            case OFFICE:
+                Office office = new Office("Отдел", general.getParentId());
+                try {
+                    writeOffice(office);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(office.getId());
+                general.setComplete_name(office.getOffice_name());
+                general.setParentId(office.getParent_id());
+                general.setDirection(Direction.OFFICE);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -1032,6 +1045,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(organization);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД отдел
+     * @param office
+     */
+    private synchronized void writeOffice(Office office) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(office);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
