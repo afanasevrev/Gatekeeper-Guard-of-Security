@@ -416,6 +416,19 @@ public class RabbitMqListener {
                 general.setDirection(Direction.CARD_LAYOUT);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+            case POSITION:
+                Position position = new Position("Должность", general.getParentId());
+                try {
+                    writePosition(position);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(position.getId());
+                general.setComplete_name(position.getPosition_name());
+                general.setParentId(position.getParent_id());
+                general.setDirection(Direction.POSITION);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -966,6 +979,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(cardLayout);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД должность
+     * @param position
+     */
+    private synchronized void writePosition(Position position) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(position);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
