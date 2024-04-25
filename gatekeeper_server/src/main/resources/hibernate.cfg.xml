@@ -39,5 +39,6 @@
         <mapping class="com.alrosa.staa.gatekeeper_server.db.CardLayout"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Position"/>
         <mapping class="com.alrosa.staa.gatekeeper_server.db.Organization"/>
+        <mapping class="com.alrosa.staa.gatekeeper_server.db.Office"/>
     </session-factory>
 </hibernate-configuration>
