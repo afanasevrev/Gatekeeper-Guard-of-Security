@@ -429,6 +429,19 @@ public class RabbitMqListener {
                 general.setDirection(Direction.POSITION);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+            case ORGANIZATION:
+                Organization organization = new Organization("Организация", general.getParentId());
+                try {
+                    writeOrganization(organization);
+                } catch (IllegalStateException e) {
+                    logger.error(e);
+                }
+                general.setId(organization.getId());
+                general.setComplete_name(organization.getOrganization_name());
+                general.setParentId(organization.getParent_id());
+                general.setDirection(Direction.ORGANIZATION);
+                text = gson.toJson(general);
+                template.convertAndSend(Variables.QUEUE_NAME_1, text);
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
@@ -999,6 +1012,26 @@ public class RabbitMqListener {
             transaction = session.beginTransaction();
             // Добавим в БД сервер
             session.persist(position);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Метод записывает в БД организацию
+     * @param organization
+     */
+    private synchronized void writeOrganization(Organization organization) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сервер
+            session.persist(organization);
             // Коммит транзакции
             transaction.commit();
         } catch (Exception e) {
