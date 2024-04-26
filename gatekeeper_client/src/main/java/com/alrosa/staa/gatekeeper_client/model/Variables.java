@@ -207,12 +207,19 @@ public class Variables {
     //Инициируем объект pass_office
     public static final TreeItem<Global> passOfficeTreeItem = new TreeItem<>(new General(Direction.PASS_OFFICE, "Бюро пропусков"));
     //----------------------------------------------------------------------------------------//
-    //Указываем путь к рисунку man
+    //Указываем путь к рисунку man для manAdmin
     public static final Image imageManAdmin = new Image(GateKeeperClient.class.getResource("icons/man.png").toString());
     //Регистрируем рисунок в ImageView
     public static final ImageView manAdminView = new ImageView(imageManAdmin);
     //Инициируем объект manAdmin
     public static final TreeItem<Global> manAdminTreeItem = new TreeItem<>(new General(Direction.MAN_ADMIN, "Человек"));
+    //----------------------------------------------------------------------------------------//
+    //Указываем путь к рисунку woman для womanAdmin
+    public static final Image imageWomanAdmin = new Image(GateKeeperClient.class.getResource("icons/woman.png").toString());
+    //Регистрируем рисунок в ImageView
+    public static final ImageView womanAdminView = new ImageView(imageWomanAdmin);
+    //Инициируем объект womanAdmin
+    public static final TreeItem<Global> womanAdminTreeItem = new TreeItem<>(new General(Direction.WOMAN_ADMIN, "Человек"));
     //----------------------------------------------------------------------------------------//
 
     //Прикрепляем все иконки к объектам
@@ -316,6 +323,10 @@ public class Variables {
         manAdminView.setFitHeight(25);
         manAdminView.setFitWidth(25);
         manAdminTreeItem.setGraphic(manAdminView);
+
+        womanAdminView.setFitHeight(25);
+        womanAdminView.setFitWidth(25);
+        womanAdminTreeItem.setGraphic(womanAdminView);
 
     }
     //Извлекаем настройки сервера из файла settings.properties
