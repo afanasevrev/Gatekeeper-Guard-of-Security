@@ -142,7 +142,8 @@ public class ContainerController implements Initializable {
             case USERS:
                 globalTreeItem.getChildren().addAll
                         (
-                                Variables.manUserTreeItem
+                                Variables.manUserTreeItem,
+                                Variables.womanUserTreeItem
                         );
                 break;
             case ADMINS:
