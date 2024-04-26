@@ -390,6 +390,7 @@ public class RabbitMqListener {
                 general.setDirection(Direction.GLOBAL_ACCESS_LEVEL);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             case CARD:
                 Card card = new Card("Карта доступа", 0, general.getParentId());
                 try {
@@ -403,6 +404,7 @@ public class RabbitMqListener {
                 general.setDirection(Direction.CARD);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             case CARD_LAYOUT:
                 CardLayout cardLayout = new CardLayout("Макет карты", general.getParentId());
                 try {
@@ -416,6 +418,7 @@ public class RabbitMqListener {
                 general.setDirection(Direction.CARD_LAYOUT);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             case POSITION:
                 Position position = new Position("Должность", general.getParentId());
                 try {
@@ -429,6 +432,7 @@ public class RabbitMqListener {
                 general.setDirection(Direction.POSITION);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             case ORGANIZATION:
                 Organization organization = new Organization("Организация", general.getParentId());
                 try {
@@ -442,6 +446,7 @@ public class RabbitMqListener {
                 general.setDirection(Direction.ORGANIZATION);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             case OFFICE:
                 Office office = new Office("Отдел", general.getParentId());
                 try {
@@ -455,6 +460,7 @@ public class RabbitMqListener {
                 general.setDirection(Direction.OFFICE);
                 text = gson.toJson(general);
                 template.convertAndSend(Variables.QUEUE_NAME_1, text);
+                break;
             default:
                 template.convertAndSend(Variables.QUEUE_NAME_1, "Этот вопрос ещё не проработан");
                 break;
