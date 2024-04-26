@@ -208,7 +208,9 @@ public class Variables {
     public static final TreeItem<Global> passOfficeTreeItem = new TreeItem<>(new General(Direction.PASS_OFFICE, "Бюро пропусков"));
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку man
-
+    public static final Image imageManAdmin = new Image(GateKeeperClient.class.getResource("icons/man.png").toString());
+    //Ренгистрируем рисунок в ImageView
+    
     //Прикрепляем все иконки к объектам
     static {
         serverView.setFitWidth(25);
