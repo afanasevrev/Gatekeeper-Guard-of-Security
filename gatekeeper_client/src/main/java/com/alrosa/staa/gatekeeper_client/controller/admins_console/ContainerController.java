@@ -141,6 +141,7 @@ public class ContainerController implements Initializable {
             case USERS:
             case ADMINS:
             case OPERATORS:
+            case PASS_OFFICE:
                 globalTreeItem.getChildren().addAll
                         (
                                 Variables.manTreeItem,

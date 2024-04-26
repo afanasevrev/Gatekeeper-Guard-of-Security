@@ -200,6 +200,15 @@ public class Variables {
     //Инициируем объект office
     public static final TreeItem<Global> officeTreeItem = new TreeItem<>(new General(Direction.OFFICE, "Отдел"));
     //----------------------------------------------------------------------------------------//
+    //Указываем путь к рисунку pass_office
+    public static final Image imagePassOffice = new Image(GateKeeperClient.class.getResource("icons/pass_office.png").toString());
+    //Регистрируем рисунок в ImageView
+    public static final ImageView passOfficeView = new ImageView(imagePassOffice);
+    //Инициируем объект pass_office
+    public static final TreeItem<Global> passOfficeTreeItem = new TreeItem<>(new General(Direction.PASS_OFFICE, "Бюро пропусков"));
+    //----------------------------------------------------------------------------------------//
+    //Указываем путь к рисунку man
+
     //Прикрепляем все иконки к объектам
     static {
         serverView.setFitWidth(25);
@@ -293,6 +302,11 @@ public class Variables {
         officeView.setFitHeight(25);
         officeView.setFitWidth(25);
         officeTreeItem.setGraphic(officeView);
+
+        passOfficeView.setFitHeight(25);
+        passOfficeView.setFitWidth(25);
+        passOfficeTreeItem.setGraphic(passOfficeView);
+        
     }
     //Извлекаем настройки сервера из файла settings.properties
     static {
