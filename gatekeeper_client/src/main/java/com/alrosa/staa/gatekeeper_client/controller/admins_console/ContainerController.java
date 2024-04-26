@@ -135,7 +135,8 @@ public class ContainerController implements Initializable {
                                 Variables.cardsTreeItem,
                                 Variables.cardLayoutsTreeItem,
                                 Variables.positionsTreeItem,
-                                Variables.organizationsTreeItem
+                                Variables.organizationsTreeItem,
+                                Variables.passOfficeTreeItem
                         );
                 break;
             case USERS:

@@ -306,7 +306,7 @@ public class Variables {
         passOfficeView.setFitHeight(25);
         passOfficeView.setFitWidth(25);
         passOfficeTreeItem.setGraphic(passOfficeView);
-        
+
     }
     //Извлекаем настройки сервера из файла settings.properties
     static {
