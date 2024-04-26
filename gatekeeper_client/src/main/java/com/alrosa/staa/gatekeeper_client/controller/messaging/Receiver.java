@@ -190,6 +190,62 @@ public class Receiver {
                     item.setGraphic(imageView);
                     Variables.adminsConsoleItem.getChildren().add(item);
                     break;
+                case WOMAN_USER:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageWomanUser);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case MAN_ADMIN:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageManAdmin);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case WOMAN_ADMIN:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageWomanAdmin);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case MAN_OPERATOR:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageManOperator);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case WOMAN_OPERATOR:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageWomanOperator);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case MAN_PASS_OFFICE:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageManPassOffice);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case WOMAN_PASS_OFFICE:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageWomanPassOffice);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
 
                 default:
                     break;
