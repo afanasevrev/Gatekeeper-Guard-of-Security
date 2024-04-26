@@ -355,6 +355,10 @@ public class Variables {
         womanUserView.setFitWidth(25);
         womanUserTreeItem.setGraphic(womanUserView);
 
+        manOperatorView.setFitHeight(25);
+        manOperatorView.setFitWidth(25);
+        manOperatorTreeItem.setGraphic(manOperatorView);
+
     }
     //Извлекаем настройки сервера из файла settings.properties
     static {
