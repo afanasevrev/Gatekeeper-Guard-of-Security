@@ -182,6 +182,14 @@ public class Receiver {
                     item.setGraphic(imageView);
                     Variables.adminsConsoleItem.getChildren().add(item);
                     break;
+                case PASS_OFFICE:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imagePassOffice);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
                 case MAN_USER:
                     item = new TreeItem<>(general);
                     imageView = new ImageView(Variables.imageManUser);
@@ -246,7 +254,54 @@ public class Receiver {
                     item.setGraphic(imageView);
                     Variables.adminsConsoleItem.getChildren().add(item);
                     break;
-
+                case GLOBAL_ACCESS_LEVEL:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageGlobalAccessLevel);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case CARD:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageCard);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case CARD_LAYOUT:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageCardLayout);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case POSITION:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imagePosition);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case ORGANIZATION:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageOrganization);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
+                case OFFICE:
+                    item = new TreeItem<>(general);
+                    imageView = new ImageView(Variables.imageOffice);
+                    imageView.setFitWidth(25);
+                    imageView.setFitHeight(25);
+                    item.setGraphic(imageView);
+                    Variables.adminsConsoleItem.getChildren().add(item);
+                    break;
                 default:
                     break;
             }
