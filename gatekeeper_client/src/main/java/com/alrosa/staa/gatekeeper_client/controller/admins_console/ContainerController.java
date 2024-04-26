@@ -154,6 +154,10 @@ public class ContainerController implements Initializable {
                         );
                 break;
             case OPERATORS:
+                globalTreeItem.getChildren().addAll
+                        (
+                                Variables.manOperatorTreeItem
+                        );
                 break;
             case PASS_OFFICE:
                 break;
