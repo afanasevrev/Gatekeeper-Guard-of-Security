@@ -209,7 +209,11 @@ public class Variables {
     //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку man
     public static final Image imageManAdmin = new Image(GateKeeperClient.class.getResource("icons/man.png").toString());
-    //Ренгистрируем рисунок в ImageView
+    //Регистрируем рисунок в ImageView
+    public static final ImageView manAdminView = new ImageView(imageManAdmin);
+    //Инициируем объект manAdmin
+    public static final TreeItem<Global> manAdminTreeItem = new TreeItem<>(new General(Direction.MAN_ADMIN, "Человек"));
+    //----------------------------------------------------------------------------------------//
     
     //Прикрепляем все иконки к объектам
     static {
