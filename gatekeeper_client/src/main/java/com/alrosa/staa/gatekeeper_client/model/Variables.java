@@ -249,7 +249,14 @@ public class Variables {
     //Инициируем объект womanOperator
     public static final TreeItem<Global> womanOperatorTreeItem = new TreeItem<>(new General(Direction.WOMAN_OPERATOR, "Человек"));
     //----------------------------------------------------------------------------------------//
-    
+    //Указываем путь к рисунку man для manPassOffice
+    public static final Image imageManPassOffice = new Image(GateKeeperClient.class.getResource("icons/man.png").toString());
+    //Регистрируем рисунок в ImageView
+    public static final ImageView manPassOfficeView = new ImageView(imageManPassOffice);
+    //Инициируем объект manPassOffice
+    public static final TreeItem<Global> manPassOfficeTreeItem = new TreeItem<>(new General(Direction.MAN_PASS_OFFICE, "Человек"));
+    //----------------------------------------------------------------------------------------//
+
     //Прикрепляем все иконки к объектам
     static {
         serverView.setFitWidth(25);
@@ -367,6 +374,14 @@ public class Variables {
         manOperatorView.setFitHeight(25);
         manOperatorView.setFitWidth(25);
         manOperatorTreeItem.setGraphic(manOperatorView);
+
+        womanOperatorView.setFitHeight(25);
+        womanOperatorView.setFitWidth(25);
+        womanOperatorTreeItem.setGraphic(womanOperatorView);
+
+        manPassOfficeView.setFitHeight(25);
+        manPassOfficeView.setFitWidth(25);
+        manPassOfficeTreeItem.setGraphic(manPassOfficeView);
 
 
     }
