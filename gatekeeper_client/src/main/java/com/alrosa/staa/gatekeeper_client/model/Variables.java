@@ -214,7 +214,7 @@ public class Variables {
     //Инициируем объект manAdmin
     public static final TreeItem<Global> manAdminTreeItem = new TreeItem<>(new General(Direction.MAN_ADMIN, "Человек"));
     //----------------------------------------------------------------------------------------//
-    
+
     //Прикрепляем все иконки к объектам
     static {
         serverView.setFitWidth(25);
@@ -312,6 +312,10 @@ public class Variables {
         passOfficeView.setFitHeight(25);
         passOfficeView.setFitWidth(25);
         passOfficeTreeItem.setGraphic(passOfficeView);
+
+        manAdminView.setFitHeight(25);
+        manAdminView.setFitWidth(25);
+        manAdminTreeItem.setGraphic(manAdminView);
 
     }
     //Извлекаем настройки сервера из файла settings.properties
