@@ -145,19 +145,6 @@ public class Variables {
     //Инициируем объект organizations
     public static final TreeItem<Global> organizationsTreeItem = new TreeItem<>(new General(Direction.ORGANIZATIONS, "Организации"));
     //----------------------------------------------------------------------------------------//
-    public static final Image imageMan = new Image(GateKeeperClient.class.getResource("icons/man.png").toString());
-    //Регистрируем рисунок в ImageView
-    public static final ImageView manView = new ImageView(imageMan);
-    //Инициируем объект man
-    public static final TreeItem<Global> manTreeItem = new TreeItem<>(new General(Direction.MAN, "Человек"));
-    //----------------------------------------------------------------------------------------//
-    //Указываем путь к рисунку woman
-    public static final Image imageWoman = new Image(GateKeeperClient.class.getResource("icons/woman.png").toString());
-    //Регистрируем рисунок в ImageView
-    public static final ImageView womanView = new ImageView(imageWoman);
-    //Инициируем объект woman
-    public static final TreeItem<Global> womanTreeItem = new TreeItem<>(new General(Direction.WOMAN, "Человек"));
-    //----------------------------------------------------------------------------------------//
     //Указываем путь к рисунку global_access_level
     public static final Image imageGlobalAccessLevel = new Image(GateKeeperClient.class.getResource("icons/global_access_level.png").toString());
     //Регистрируем рисунок в ImageView
@@ -324,14 +311,6 @@ public class Variables {
         organizationsView.setFitWidth(25);
         organizationsView.setFitHeight(25);
         organizationsTreeItem.setGraphic(organizationsView);
-
-        manView.setFitHeight(25);
-        manView.setFitWidth(25);
-        manTreeItem.setGraphic(manView);
-
-        womanView.setFitWidth(25);
-        womanView.setFitHeight(25);
-        womanTreeItem.setGraphic(womanView);
 
         globalAccessLevelView.setFitWidth(25);
         globalAccessLevelView.setFitHeight(25);

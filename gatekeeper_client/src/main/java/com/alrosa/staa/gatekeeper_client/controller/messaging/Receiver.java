@@ -184,7 +184,7 @@ public class Receiver {
                     break;
                 case MAN_USER:
                     item = new TreeItem<>(general);
-                    imageView = new ImageView(Variables.imageMan);
+                    imageView = new ImageView(Variables.imageManUser);
                     imageView.setFitWidth(25);
                     imageView.setFitHeight(25);
                     item.setGraphic(imageView);
