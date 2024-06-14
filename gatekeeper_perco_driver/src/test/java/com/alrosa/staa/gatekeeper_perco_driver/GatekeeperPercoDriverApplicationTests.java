@@ -1,4 +1,4 @@
-package com.example.gatekeeper_perco_driver;
+package com.alrosa.staa.gatekeeper_perco_driver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
