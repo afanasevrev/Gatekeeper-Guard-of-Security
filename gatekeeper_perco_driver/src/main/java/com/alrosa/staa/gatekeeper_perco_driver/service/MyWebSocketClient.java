@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_perco_driver;
+package com.alrosa.staa.gatekeeper_perco_driver.service;
 
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHttpHeaders;
