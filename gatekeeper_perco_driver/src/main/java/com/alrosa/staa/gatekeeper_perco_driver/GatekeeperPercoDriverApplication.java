@@ -8,7 +8,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GatekeeperPercoDriverApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GatekeeperPercoDriverApplication.class, args);
-		MyWebSocketClient myWebSocketClient = new MyWebSocketClient();
-		myWebSocketClient.connect();
 	}
 }
