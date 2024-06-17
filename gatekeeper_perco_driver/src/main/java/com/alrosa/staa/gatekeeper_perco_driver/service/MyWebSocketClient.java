@@ -13,8 +13,6 @@ public class MyWebSocketClient extends TextWebSocketHandler {
         WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
         try {
             this.session = client.doHandshake(this, headers, new URI("ws://10.2.221.26/tcp")).get();
-
-            System.out.println(this.session.getAttributes());
         } catch (Exception e) {
             throw new RuntimeException("Failed to connect to WebSocket server", e);
         }
