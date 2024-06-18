@@ -13,7 +13,7 @@ public class WebSocketController {
         MyWebSocketClient myWebSocketClient = new MyWebSocketClient();
         myWebSocketClient.connect();
         GetNetworkSettings getNetworkSettings = new GetNetworkSettings();
-        getNetworkSettings.setGet("state");
+        getNetworkSettings.setGet("net");
         String text = gson.toJson(getNetworkSettings);
         myWebSocketClient.sendMessage(text);
         return "Successful";
