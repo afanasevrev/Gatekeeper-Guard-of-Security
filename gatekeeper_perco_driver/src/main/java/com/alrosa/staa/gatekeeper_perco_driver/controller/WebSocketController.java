@@ -1,6 +1,6 @@
 package com.alrosa.staa.gatekeeper_perco_driver.controller;
 
-import com.alrosa.staa.gatekeeper_perco_driver.commands.receive.GetNetworkSettings;
+import com.alrosa.staa.gatekeeper_perco_driver.commands.get_commands.GetNetworkSettings;
 import com.alrosa.staa.gatekeeper_perco_driver.service.MyWebSocketClient;
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.GetMapping;

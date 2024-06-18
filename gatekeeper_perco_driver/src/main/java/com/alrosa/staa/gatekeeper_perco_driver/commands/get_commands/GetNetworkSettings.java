@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_perco_driver.commands.receive;
+package com.alrosa.staa.gatekeeper_perco_driver.commands.get_commands;
 
 import lombok.Getter;
 import lombok.Setter;
