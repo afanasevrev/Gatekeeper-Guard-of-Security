@@ -2,6 +2,7 @@ package com.alrosa.staa.gatekeeper_perco_driver.service;
 
 import com.alrosa.staa.gatekeeper_perco_driver.messages.EventCard;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.WebSocketSession;
@@ -35,7 +36,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         try {
             EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
             System.out.println(eventCard.getCard().getId());
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | JsonSyntaxException e) {
             System.out.println("Ошибка JSON");
         }
     }
