@@ -29,10 +29,14 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         }
     }
     @Override
-    public void handleTextMessage(WebSocketSession session, TextMessage message) {
+    public void handleTextMessage(WebSocketSession session, TextMessage message) throws NullPointerException {
         String jsonString = message.getPayload();
         System.out.println("Received message: " + jsonString);
-        EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
-        System.out.println(eventCard.getCard().getId());
+        try {
+            EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
+            System.out.println(eventCard.getCard().getId());
+        } catch (NullPointerException e) {
+            System.out.println("Ошибка JSON");
+        }
     }
 }
