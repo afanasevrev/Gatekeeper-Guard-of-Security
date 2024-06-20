@@ -1,5 +1,7 @@
 package com.alrosa.staa.gatekeeper_perco_driver.service;
 
+import com.alrosa.staa.gatekeeper_perco_driver.messages.EventCard;
+import com.google.gson.Gson;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.WebSocketSession;
@@ -7,6 +9,7 @@ import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.net.URI;
 public class PercoDriverWebSocketClient extends TextWebSocketHandler {
+    private Gson gson = new Gson();
     private WebSocketSession session;
     public void connect() {
         StandardWebSocketClient client = new StandardWebSocketClient();
@@ -27,6 +30,9 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     }
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
-        System.out.println("Received message: " + message.getPayload());
+        String jsonString = message.getPayload();
+        System.out.println("Received message: " + jsonString);
+        EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
+        System.out.println(eventCard.getCard().getId());
     }
 }
