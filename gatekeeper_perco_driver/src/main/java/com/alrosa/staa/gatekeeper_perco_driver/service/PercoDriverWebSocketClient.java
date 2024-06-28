@@ -1,5 +1,7 @@
 package com.alrosa.staa.gatekeeper_perco_driver.service;
 
+import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.ControlData;
+import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.Exdev;
 import com.alrosa.staa.gatekeeper_perco_driver.messages.EventCard;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -35,6 +37,13 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         System.out.println("Received message: " + jsonString);
         try {
             EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
+            if(eventCard.getCard().getId().equals("3867329")) {
+                ControlData controlData = new ControlData();
+                controlData.setControl("exdev");
+                controlData.setExdev(new Exdev(0, 0, "open", "open once", 5000));
+                String text = gson.toJson(controlData);
+                sendMessage(text);
+            }
             System.out.println(eventCard.getCard().getId());
         } catch (NullPointerException | JsonSyntaxException e) {
             System.out.println("Ошибка JSON");

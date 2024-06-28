@@ -11,4 +11,11 @@ public class Exdev {
     private String open_type;
     private int open_time;
     public Exdev() {}
+    public Exdev(int number, int direction, String action, String open_type, int open_time) {
+        this.number = number;
+        this.direction = direction;
+        this.action = action;
+        this.open_type = open_type;
+        this.open_time = open_time;
+    }
 }
