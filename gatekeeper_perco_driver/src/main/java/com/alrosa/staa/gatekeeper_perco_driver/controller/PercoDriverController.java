@@ -16,10 +16,6 @@ public class PercoDriverController {
     private String getConnect(@PathVariable String ip_address) {
         PercoDriverWebSocketClient myWebSocketClient = new PercoDriverWebSocketClient();
         myWebSocketClient.connect(ip_address);
-        GetNetworkSettings getNetworkSettings = new GetNetworkSettings();
-        getNetworkSettings.setGet("net");
-        String text = gson.toJson(getNetworkSettings);
-        myWebSocketClient.sendMessage(text);
         return "Successful";
     }
 }
