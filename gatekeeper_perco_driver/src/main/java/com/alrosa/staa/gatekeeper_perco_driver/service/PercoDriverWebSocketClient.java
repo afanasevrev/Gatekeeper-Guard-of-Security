@@ -18,11 +18,12 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     private Logger logger = Logger.getLogger(PercoDriverWebSocketClient.class);
     private Gson gson = new Gson();
     private WebSocketSession session;
-    public void connect() {
+    public void connect(String ip_address) {
         StandardWebSocketClient client = new StandardWebSocketClient();
         WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
         try {
-            this.session = client.doHandshake(this, headers, new URI("ws://10.2.221.26/tcp")).get();
+            this.session = client.doHandshake(this, headers, new URI("ws://" + ip_address + "/tcp")).get();
+            logger.info("Подключение установлено к контроллеру + " + ip_address);
         } catch (Exception e) {
             logger.error("Ошибка подключения к контроллеру");
         }
