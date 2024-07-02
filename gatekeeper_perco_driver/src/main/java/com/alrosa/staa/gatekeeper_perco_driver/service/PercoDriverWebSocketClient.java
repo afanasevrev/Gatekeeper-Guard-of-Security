@@ -45,7 +45,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
             if(Storage.storageCards.contains(eventCard.getCard().getId())) {
                 ControlData controlData = new ControlData();
                 controlData.setControl("exdev");
-                controlData.setExdev(new Exdev(0, 0, "open", "open once", 5000));
+                controlData.setExdev(new Exdev(0, 0, "open", "open once", 2000));
                 String text = gson.toJson(controlData);
                 sendMessage(text);
             }
