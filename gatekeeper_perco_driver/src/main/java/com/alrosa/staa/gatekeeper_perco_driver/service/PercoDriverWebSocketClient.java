@@ -13,6 +13,9 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.channels.UnresolvedAddressException;
+import java.util.concurrent.ExecutionException;
 
 public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     private Logger logger = Logger.getLogger(PercoDriverWebSocketClient.class);
@@ -22,9 +25,13 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         StandardWebSocketClient client = new StandardWebSocketClient();
         WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
         try {
-            this.session = client.doHandshake(this, headers, new URI("ws://" + ip_address + "/tcp")).get();
+            this.session = client.execute(this, headers, new URI("ws://" + ip_address + "/tcp")).get();
             logger.info("Подключение установлено к контроллеру: " + ip_address);
-        } catch (Exception e) {
+        } catch (ExecutionException e) {
+            logger.error(e);
+        } catch (URISyntaxException e) {
+            logger.error(e);
+        } catch (InterruptedException e) {
             logger.error(e);
         }
     }
