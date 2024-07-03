@@ -27,7 +27,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
             this.session = client.execute(this, headers, new URI("ws://" + ip_address + "/tcp")).get();
             logger.info("Подключение установлено к контроллеру: " + ip_address + " " + this.session);
         } catch (ExecutionException e) {
-            
+
         } catch (URISyntaxException e) {
             logger.error(e);
         } catch (InterruptedException e) {
@@ -37,7 +37,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     public void sendMessage(String message) {
         try {
             this.session.sendMessage(new TextMessage(message));
-            logger.info("Отправлено сообщение: " + message);
+            logger.info("Отправлена команда: " + message);
         } catch (Exception e) {
             logger.error("Возникла ошибка при отправке сообщения");
         }
@@ -57,7 +57,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
             }
             logger.info(eventCard.getCard().getId());
         } catch (NullPointerException | JsonSyntaxException e) {
-            logger.info("Ошибка синтаксиса JSON");
+            logger.error("Ошибка синтаксиса JSON");
         }
     }
 }
