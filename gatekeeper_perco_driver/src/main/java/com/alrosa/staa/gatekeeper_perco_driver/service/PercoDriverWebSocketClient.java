@@ -46,6 +46,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws NullPointerException {
         String jsonString = message.getPayload();
         logger.info("Получено сообщение: " + jsonString);
+        
         try {
             EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
             if(Storage.storageCards.contains(eventCard.getCard().getId())) {
