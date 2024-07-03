@@ -40,7 +40,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
      * open_time - время удержания реле - 3 секунды
      */
     private Exdev exdev1 = new Exdev(0, 1, "open", "open once", 3000);
-    
+
     public void connect(String ip_address) {
         StandardWebSocketClient client = new StandardWebSocketClient();
         WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
