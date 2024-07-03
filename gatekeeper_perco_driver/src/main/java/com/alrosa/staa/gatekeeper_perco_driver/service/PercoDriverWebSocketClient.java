@@ -29,7 +29,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
      * number - номер исполняемого устройства, здесь - 0
      * direction - направление, здесь - 0
      * open_type - open once что означает, открыть для однократного прохода
-     * open_time - время удержания реле - 3 секунды
+     * open_time - время удержания реле открытой - 3 секунды
      */
     private Exdev exdev00 = new Exdev(0, 0, "open", "open once", 3000);
     /**
@@ -37,7 +37,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
      * number - номер исполняемого устройства, здесь - 0
      * direction - направление, здесь - 1
      * open_type - open once что означает, открыть для однократного прохода
-     * open_time - время удержания реле - 3 секунды
+     * open_time - время удержания реле открытой - 3 секунды
      */
     private Exdev exdev01 = new Exdev(0, 1, "open", "open once", 3000);
     /**
@@ -45,7 +45,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
      * number - номер исполняемого устройства, здесь - 1
      * direction - направление, здесь - 0
      * open_type - open once что означает, открыть для однократного прохода
-     * open_time - время удержания реле - 3 секунды
+     * open_time - время удержания реле открытой - 3 секунды
      */
     private Exdev exdev10 = new Exdev(1, 0, "open", "open once", 3000);
     /**
@@ -53,7 +53,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
      * number - номер исполняемого устройства, здесь - 1
      * direction - направление, здесь - 1
      * open_type - open once что означает, открыть для однократного прохода
-     * open_time - время удержания реле - 3 секунды
+     * open_time - время удержания реле открытой - 3 секунды
      */
     private Exdev exdev11 = new Exdev(1, 1, "open", "open once", 3000);
     public void connect(String ip_address) {
