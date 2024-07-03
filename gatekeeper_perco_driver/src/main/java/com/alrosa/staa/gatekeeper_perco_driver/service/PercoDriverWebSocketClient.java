@@ -25,9 +25,9 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
         try {
             this.session = client.execute(this, headers, new URI("ws://" + ip_address + "/tcp")).get();
-            logger.info("Подключение установлено к контроллеру: " + ip_address + this.session);
+            logger.info("Подключение установлено к контроллеру: " + ip_address + " " + this.session);
         } catch (ExecutionException e) {
-            //logger.error(e);
+            
         } catch (URISyntaxException e) {
             logger.error(e);
         } catch (InterruptedException e) {
