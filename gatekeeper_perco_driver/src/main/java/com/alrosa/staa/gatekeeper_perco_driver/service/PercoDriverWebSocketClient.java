@@ -20,10 +20,27 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     private Logger logger = Logger.getLogger(PercoDriverWebSocketClient.class);
     private Gson gson = new Gson();
     private WebSocketSession session;
-    //Создаем экземпляр класса ControlData для отправки команды на контроллер
+    /**
+     * Создаем экземпляр класса ControlData для отправки команды на контроллер
+     */
     private ControlData controlData = new ControlData();
+    /**
+     * Создаем экземпляр класса Exdev
+     * number - номер исполняемого устройства, здесь - 0
+     * direction - направление, здесь - 0
+     * open_type - open once что означает, открыть для однократного прохода
+     * open_time - время удержания реле - 3 секунды
+     */
+    private Exdev exdev0 = new Exdev(0, 0, "open", "open once", 3000);
+    /**
+     * Создаем экземпляр класса Exdev
+     * number - номер исполняемого устройства, здесь - 0
+     * direction - направление, здесь - 1
+     * open_type - open once что означает, открыть для однократного прохода
+     * open_time - время удержания реле - 3 секунды
+     */
+    private Exdev exdev1 = new Exdev(0, 1, "open", "open once", 3000);
     
-    private Exdev exdev = new Exdev(0, 0, "open", "open once", 2000);
     public void connect(String ip_address) {
         StandardWebSocketClient client = new StandardWebSocketClient();
         WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
@@ -49,13 +66,12 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws NullPointerException {
         String jsonString = message.getPayload();
-        logger.info("Получено сообщение: " + jsonString + " " + session.getId());
+        logger.info("Получено сообщение: " + jsonString);
         try {
             EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
-            if(Storage.storageCards.contains(eventCard.getCard().getId())) {
-                ControlData controlData = new ControlData();
+            if (Storage.storageCards.contains(eventCard.getCard().getId())) {
                 controlData.setControl("exdev");
-                controlData.setExdev(new Exdev(0, 0, "open", "open once", 2000));
+                controlData.setExdev(exdev0);
                 String text = gson.toJson(controlData);
                 sendMessage(text);
             }
