@@ -87,8 +87,15 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
                 if (Storage.storageCards.contains(eventCard.getCard().getId())) {
                     controlData.setControl("exdev");
-                    
-                    controlData.setExdev(exdev00);
+                    if(eventCard.getCard().getNumber() == 0 && eventCard.getCard().getDirection() == 0) {
+                        controlData.setExdev(exdev00);
+                    } else if (eventCard.getCard().getNumber() == 0 && eventCard.getCard().getDirection() == 1) {
+                        controlData.setExdev(exdev01);
+                    } else if (eventCard.getCard().getNumber() == 1 && eventCard.getCard().getDirection() == 1) {
+                        controlData.setExdev(exdev10);
+                    } else if (eventCard.getCard().getNumber() == 1 && eventCard.getCard().getDirection() == 1) {
+                        controlData.setExdev(exdev11);
+                    }
                     String text = gson.toJson(controlData);
                     sendMessage(text);
                 }
