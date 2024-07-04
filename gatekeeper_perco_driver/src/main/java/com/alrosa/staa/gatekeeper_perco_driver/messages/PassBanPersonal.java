@@ -13,14 +13,14 @@ public class PassBanPersonal {
     private int number;
     private int direction;
     private String id;
-    private boolean removeCard;
-    private String commandSource;
+    private boolean remove_card;
+    private String command_source;
     public PassBanPersonal() {}
-    public PassBanPersonal(int number, int direction, String id, boolean removeCard, String commandSource) {
+    public PassBanPersonal(int number, int direction, String id, boolean remove_card, String command_source) {
         this.number = number;
         this.direction = direction;
         this.id = id;
-        this.removeCard = removeCard;
-        this.commandSource = commandSource;
+        this.remove_card = remove_card;
+        this.command_source = command_source;
     }
 }
