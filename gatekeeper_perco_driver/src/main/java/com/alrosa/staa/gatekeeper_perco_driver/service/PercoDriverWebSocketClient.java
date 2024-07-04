@@ -87,11 +87,11 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
                 if (Storage.storageCards.contains(eventCard.getCard().getId())) {
                     controlData.setControl("exdev");
+                    
                     controlData.setExdev(exdev00);
                     String text = gson.toJson(controlData);
                     sendMessage(text);
                 }
-                logger.info(eventCard.getCard().getId());
             }
         } catch (NullPointerException | JsonSyntaxException e) {
             logger.error("Ошибка синтаксиса JSON");
