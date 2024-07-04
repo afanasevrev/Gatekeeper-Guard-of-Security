@@ -9,11 +9,11 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class PassBanPersonalEvent {
+public class Event {
     private PassBanPersonal pass_ban_personal;
     private String event;
-    public PassBanPersonalEvent() {}
-    public PassBanPersonalEvent(PassBanPersonal pass_ban_personal, String event) {
+    public Event() {}
+    public Event(PassBanPersonal pass_ban_personal, String event) {
         this.pass_ban_personal = pass_ban_personal;
         this.event = event;
     }

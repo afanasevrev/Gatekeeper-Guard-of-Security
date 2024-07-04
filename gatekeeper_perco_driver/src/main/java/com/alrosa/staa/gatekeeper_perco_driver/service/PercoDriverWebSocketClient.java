@@ -3,8 +3,7 @@ package com.alrosa.staa.gatekeeper_perco_driver.service;
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.ControlData;
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.Exdev;
 import com.alrosa.staa.gatekeeper_perco_driver.messages.EventCard;
-import com.alrosa.staa.gatekeeper_perco_driver.messages.PassBanPersonal;
-import com.alrosa.staa.gatekeeper_perco_driver.messages.PassBanPersonalEvent;
+import com.alrosa.staa.gatekeeper_perco_driver.messages.Event;
 import com.alrosa.staa.gatekeeper_perco_driver.repository.Storage;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -100,8 +99,8 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                     String text = gson.toJson(controlData);
                     sendMessage(text);
                 }
-            } else if (gson.fromJson(jsonString, PassBanPersonalEvent.class) instanceof PassBanPersonalEvent) {
-                PassBanPersonalEvent passBanPersonalEvent = gson.fromJson(jsonString, PassBanPersonalEvent.class);
+            } else if (gson.fromJson(jsonString, Event.class) instanceof Event) {
+                Event passBanPersonalEvent = gson.fromJson(jsonString, Event.class);
                 logger.info("Неизвестная карта: " + passBanPersonalEvent.getPass_ban_personal().getId());
             }
         } catch (NullPointerException | JsonSyntaxException e) {
