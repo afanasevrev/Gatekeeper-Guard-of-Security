@@ -9,16 +9,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class PassPersonal {
-    private int number;
-    private int direction;
-    private String id;
-    private boolean remove_card;
-    public PassPersonal() {}
-    public PassPersonal(int number, int direction, String id, boolean remove_card) {
-        this.number = number;
-        this.direction = direction;
-        this.id = id;
-        this.remove_card = remove_card;
+public class EventPassPersonal {
+    private PassPersonal pass_personal;
+    private String event;
+    public EventPassPersonal() {}
+    public EventPassPersonal(PassPersonal pass_personal, String event) {
+        this.pass_personal = pass_personal;
+        this.event = event;
     }
 }
