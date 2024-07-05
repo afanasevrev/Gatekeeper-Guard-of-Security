@@ -104,7 +104,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 logger.info("Неизвестная карта: " + passBanPersonalEvent.getPass_ban_personal().getId());
             }
         } catch (NullPointerException | JsonSyntaxException e) {
-            logger.error("Ошибка синтаксиса JSON");
+            logger.error("Ошибка синтаксиса JSON: "  + jsonString);
         }
     }
 }
