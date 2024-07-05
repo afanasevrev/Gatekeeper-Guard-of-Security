@@ -110,7 +110,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         }
         try {
             EventPassPersonal eventPassPersonal = gson.fromJson(jsonString, EventPassPersonal.class);
-            
+            logger.info("Доступ разрешен: " + eventPassPersonal.getPass_personal().getId());
         } catch (NullPointerException | JsonSyntaxException e) {
             logger.error("Ошибка синтаксиса JSON3: " + jsonString);
         }
