@@ -3,7 +3,9 @@ package com.alrosa.staa.gatekeeper_perco_driver.service;
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.ControlData;
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.Exdev;
 import com.alrosa.staa.gatekeeper_perco_driver.messages.EventCard;
+import com.alrosa.staa.gatekeeper_perco_driver.messages.EventExdevUnlock;
 import com.alrosa.staa.gatekeeper_perco_driver.messages.EventPassBanPersonal;
+import com.alrosa.staa.gatekeeper_perco_driver.messages.EventPassPersonal;
 import com.alrosa.staa.gatekeeper_perco_driver.repository.Storage;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -102,26 +104,24 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                     sendMessage(text);
                 }
         } catch (NullPointerException | JsonSyntaxException e) {
-            logger.error("Ошибка синтаксиса JSON1: "  + jsonString);
+            //logger.error("Ошибка синтаксиса JSON1: "  + jsonString);
         }
         try {
             EventPassBanPersonal eventPassBanPersonal = gson.fromJson(jsonString, EventPassBanPersonal.class);
             logger.info("Неизвестная карта: " + eventPassBanPersonal.getPass_ban_personal().getId());
         } catch (NullPointerException | JsonSyntaxException e) {
-            logger.error("Ошибка синтаксиса JSON2: " + jsonString);
+            //logger.error("Ошибка синтаксиса JSON2: " + jsonString);
         }
         try {
             if (jsonString.contains("exdev_unlock") && jsonString.contains("pass_personal")) {
-                String regex = "\\}(?=\\{)";
-                Pattern pattern = Pattern.compile(regex);
-                Matcher matcher = pattern.matcher(jsonString);
-                if (matcher.find()) {
-                    int splitIndex = matcher.end();
-                    System.out.println(splitIndex);
-                }
+                String regex = "\\s";
+                String[] jsonString1 = jsonString.split(regex);
+                EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString1[2], EventExdevUnlock.class);
+                EventPassPersonal eventPassPersonal = gson.fromJson(jsonString1[4], EventPassPersonal.class);
+                logger.info("Разрешен доступ: " + eventPassPersonal.getPass_personal().getId());
             }
         } catch (NullPointerException | JsonSyntaxException e) {
-            logger.error("Ошибка синтаксиса JSON3: " + jsonString);
+            //logger.error("Ошибка синтаксиса JSON3: " + jsonString);
         }
     }
 }
