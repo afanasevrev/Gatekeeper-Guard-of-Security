@@ -3,7 +3,7 @@ package com.alrosa.staa.gatekeeper_perco_driver.service;
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.ControlData;
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.Exdev;
 import com.alrosa.staa.gatekeeper_perco_driver.messages.EventCard;
-import com.alrosa.staa.gatekeeper_perco_driver.messages.Event;
+import com.alrosa.staa.gatekeeper_perco_driver.messages.EventPassBanPersonal;
 import com.alrosa.staa.gatekeeper_perco_driver.repository.Storage;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -83,7 +83,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         String jsonString = message.getPayload();
         logger.info("Получено сообщение: " + jsonString);
         try {
-                EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
+            EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
                 if (Storage.storageCards.contains(eventCard.getCard().getId())) {
                     controlData.setControl("exdev");
                     if (eventCard.getCard().getNumber() == 0 && eventCard.getCard().getDirection() == 0) {
@@ -98,8 +98,14 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                     String text = gson.toJson(controlData);
                     sendMessage(text);
                 }
-            } catch (NullPointerException | JsonSyntaxException e) {
-            logger.error("Ошибка синтаксиса JSON: "  + jsonString);
+        } catch (NullPointerException | JsonSyntaxException e) {
+            logger.error("Ошибка синтаксиса JSON1: "  + jsonString);
+        }
+        try {
+            EventPassBanPersonal eventPassBanPersonal = gson.fromJson(jsonString, EventPassBanPersonal.class);
+            logger.info("Неизвестная карта: " + eventPassBanPersonal.getPass_ban_personal().getId());
+        } catch (NullPointerException | JsonSyntaxException e) {
+            logger.error("Ошибка синтаксиса JSON2: " + jsonString);
         }
     }
 }
