@@ -15,9 +15,9 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+/**
+ * Класс устанавливает соединение с контроллером и 
+ */
 public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     private Logger logger = Logger.getLogger(PercoDriverWebSocketClient.class);
     private Gson gson = new Gson();
