@@ -109,8 +109,8 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         }
         try {
             if (jsonString.contains("exdev_unlock") && jsonString.contains("pass_personal")) {
-
-            } 
+                
+            }
         } catch (NullPointerException | JsonSyntaxException e) {
             logger.error("Ошибка синтаксиса JSON3: " + jsonString);
         }
