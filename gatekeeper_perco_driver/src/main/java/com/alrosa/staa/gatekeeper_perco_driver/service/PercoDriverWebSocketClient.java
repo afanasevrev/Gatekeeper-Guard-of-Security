@@ -16,6 +16,9 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     private Logger logger = Logger.getLogger(PercoDriverWebSocketClient.class);
     private Gson gson = new Gson();
@@ -109,7 +112,13 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         }
         try {
             if (jsonString.contains("exdev_unlock") && jsonString.contains("pass_personal")) {
-                
+                String regex = "\\}(?=\\{)";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(jsonString);
+                if (matcher.find()) {
+                    int splitIndex = matcher.end();
+                    System.out.println(splitIndex);
+                }
             }
         } catch (NullPointerException | JsonSyntaxException e) {
             logger.error("Ошибка синтаксиса JSON3: " + jsonString);
