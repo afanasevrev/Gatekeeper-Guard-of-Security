@@ -2,10 +2,7 @@ package com.alrosa.staa.gatekeeper_perco_driver.service;
 
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.ControlData;
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.Exdev;
-import com.alrosa.staa.gatekeeper_perco_driver.messages.EventCard;
-import com.alrosa.staa.gatekeeper_perco_driver.messages.EventExdevUnlock;
-import com.alrosa.staa.gatekeeper_perco_driver.messages.EventPassBanPersonal;
-import com.alrosa.staa.gatekeeper_perco_driver.messages.EventPassPersonal;
+import com.alrosa.staa.gatekeeper_perco_driver.messages.*;
 import com.alrosa.staa.gatekeeper_perco_driver.repository.Storage;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -118,10 +115,18 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 String[] jsonString1 = jsonString.split(regex);
                 EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString1[2], EventExdevUnlock.class);
                 EventPassPersonal eventPassPersonal = gson.fromJson(jsonString1[4], EventPassPersonal.class);
-                logger.info("Разрешен доступ: " + eventPassPersonal.getPass_personal().getId());
+                logger.info("Разрешен доступ: " + eventPassPersonal.getPass_personal().getId() + " Разблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
             }
         } catch (NullPointerException | JsonSyntaxException e) {
             //logger.error("Ошибка синтаксиса JSON3: " + jsonString);
+        }
+        try {
+            EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString, EventExdevUnlock.class);
+            if (!eventExdevUnlock.getExdev_unlock().isUnlock()) {
+                logger.info("Заблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
+            }
+        } catch(NullPointerException | JsonSyntaxException e) {
+            //logger.error("Ошибка синтаксиса JSON4: " + jsonString);
         }
     }
 }
