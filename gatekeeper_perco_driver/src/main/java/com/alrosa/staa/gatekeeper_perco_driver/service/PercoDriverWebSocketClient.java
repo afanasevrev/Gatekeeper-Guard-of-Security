@@ -83,7 +83,6 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         String jsonString = message.getPayload();
         logger.info("Получено сообщение: " + jsonString);
         try {
-            if (gson.fromJson(jsonString, EventCard.class) instanceof EventCard) {
                 EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
                 if (Storage.storageCards.contains(eventCard.getCard().getId())) {
                     controlData.setControl("exdev");
@@ -99,11 +98,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                     String text = gson.toJson(controlData);
                     sendMessage(text);
                 }
-            } else if (gson.fromJson(jsonString, Event.class) instanceof Event) {
-                Event passBanPersonalEvent = gson.fromJson(jsonString, Event.class);
-                logger.info("Неизвестная карта: " + passBanPersonalEvent.getPass_ban_personal().getId());
-            }
-        } catch (NullPointerException | JsonSyntaxException e) {
+            } catch (NullPointerException | JsonSyntaxException e) {
             logger.error("Ошибка синтаксиса JSON: "  + jsonString);
         }
     }
