@@ -4,7 +4,6 @@ import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.ControlData
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.Exdev;
 import com.alrosa.staa.gatekeeper_perco_driver.messages.EventCard;
 import com.alrosa.staa.gatekeeper_perco_driver.messages.EventPassBanPersonal;
-import com.alrosa.staa.gatekeeper_perco_driver.messages.EventPassPersonal;
 import com.alrosa.staa.gatekeeper_perco_driver.repository.Storage;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -109,8 +108,8 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
             logger.error("Ошибка синтаксиса JSON2: " + jsonString);
         }
         try {
-            EventPassPersonal eventPassPersonal = gson.fromJson(jsonString, EventPassPersonal.class);
-            logger.info("Доступ разрешен: " + eventPassPersonal.getPass_personal().getId());
+            logger.info(jsonString.contains("exdev_unlock") && jsonString.contains("pass_personal"));
+
         } catch (NullPointerException | JsonSyntaxException e) {
             logger.error("Ошибка синтаксиса JSON3: " + jsonString);
         }
