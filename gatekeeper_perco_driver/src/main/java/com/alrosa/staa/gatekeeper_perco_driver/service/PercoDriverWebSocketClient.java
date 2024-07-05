@@ -16,7 +16,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.ExecutionException;
 /**
- * Класс устанавливает соединение с контроллером и 
+ * Класс устанавливает соединение с контроллером
  */
 public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     private Logger logger = Logger.getLogger(PercoDriverWebSocketClient.class);
@@ -58,6 +58,10 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
      * open_time - время удержания реле открытой - 3 секунды
      */
     private Exdev exdev11 = new Exdev(1, 1, "open", "open once", 3000);
+    /**
+     * Метод устанавливает соединение с контроллером
+     * @param ip_address
+     */
     public void connect(String ip_address) {
         StandardWebSocketClient client = new StandardWebSocketClient();
         WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
@@ -72,6 +76,10 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
             logger.error(e);
         }
     }
+    /**
+     * Метод отправляет сообщение на контроллер
+     * @param message
+     */
     public void sendMessage(String message) {
         try {
             this.session.sendMessage(new TextMessage(message));
@@ -80,6 +88,12 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
             logger.error("Возникла ошибка при отправке сообщения");
         }
     }
+    /**
+     * Метод ловит сообщения от контроллера
+     * @param session сессия
+     * @param message сообщение
+     * @throws NullPointerException
+     */
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws NullPointerException {
         String jsonString = message.getPayload();
