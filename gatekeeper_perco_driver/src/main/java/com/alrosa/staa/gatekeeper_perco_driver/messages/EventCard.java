@@ -2,6 +2,9 @@ package com.alrosa.staa.gatekeeper_perco_driver.messages;
 
 import lombok.Getter;
 import lombok.Setter;
+/**
+ * Класс для проверки карты доступа пользователя
+ */
 @Getter
 @Setter
 public class EventCard {
