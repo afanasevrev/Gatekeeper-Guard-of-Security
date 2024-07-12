@@ -106,7 +106,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                     controlData.setExdev(exdev00);
                 } else if (eventCard.getCard().getNumber() == 0 && eventCard.getCard().getDirection() == 1) {
                     controlData.setExdev(exdev01);
-                } else if (eventCard.getCard().getNumber() == 1 && eventCard.getCard().getDirection() == 1) {
+                } else if (eventCard.getCard().getNumber() == 1 && eventCard.getCard().getDirection() == 0) {
                     controlData.setExdev(exdev10);
                 } else if (eventCard.getCard().getNumber() == 1 && eventCard.getCard().getDirection() == 1) {
                     controlData.setExdev(exdev11);
