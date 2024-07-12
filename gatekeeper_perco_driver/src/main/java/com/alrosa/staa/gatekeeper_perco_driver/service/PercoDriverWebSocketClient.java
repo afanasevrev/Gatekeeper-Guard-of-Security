@@ -114,15 +114,11 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 String text = gson.toJson(controlData);
                 sendMessage(text);
             }
-        } catch (NullPointerException | JsonSyntaxException e) {
-            //logger.error("Ошибка синтаксиса JSON1: "  + jsonString);
-        }
+        } catch (NullPointerException | JsonSyntaxException e) {}
         try {
             EventPassBanPersonal eventPassBanPersonal = gson.fromJson(jsonString, EventPassBanPersonal.class);
             logger.info("Неизвестная карта: " + eventPassBanPersonal.getPass_ban_personal().getId());
-        } catch (NullPointerException | JsonSyntaxException e) {
-            //logger.error("Ошибка синтаксиса JSON2: " + jsonString);
-        }
+        } catch (NullPointerException | JsonSyntaxException e) {}
         try {
             if (jsonString.contains("exdev_unlock") && jsonString.contains("pass_personal")) {
                 String regex = "\\s";
@@ -131,16 +127,12 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 EventPassPersonal eventPassPersonal = gson.fromJson(jsonString1[4], EventPassPersonal.class);
                 logger.info("Разрешен доступ: " + eventPassPersonal.getPass_personal().getId() + " Разблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
             }
-        } catch (NullPointerException | JsonSyntaxException e) {
-            //logger.error("Ошибка синтаксиса JSON3: " + jsonString);
-        }
+        } catch (NullPointerException | JsonSyntaxException e) {}
         try {
             EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString, EventExdevUnlock.class);
             if (!eventExdevUnlock.getExdev_unlock().isUnlock()) {
                 logger.info("Заблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
             }
-        } catch(NullPointerException | JsonSyntaxException e) {
-            //logger.error("Ошибка синтаксиса JSON4: " + jsonString);
-        }
+        } catch(NullPointerException | JsonSyntaxException e) {}
     }
 }
