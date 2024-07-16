@@ -1,6 +1,6 @@
 package com.alrosa.staa.gatekeeper_perco_driver;
 
-import com.alrosa.staa.gatekeeper_perco_driver.repository.Storage;
+import com.alrosa.staa.gatekeeper_perco_driver.storage.Storage;
 import org.apache.log4j.BasicConfigurator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

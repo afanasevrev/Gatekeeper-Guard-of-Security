@@ -1,4 +1,4 @@
-package com.alrosa.staa.gatekeeper_perco_driver.repository;
+package com.alrosa.staa.gatekeeper_perco_driver.storage;
 
 import java.util.ArrayList;
 public class Storage {
