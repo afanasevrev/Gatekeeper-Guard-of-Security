@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 @RestController
 public class PercoDriverController {
+    //Создаем экземпляр класса RestTemplate
     private RestTemplate restTemplate = new RestTemplate();
     private List<String> perco_controllers = new ArrayList<>();
     private Gson gson = new Gson();
