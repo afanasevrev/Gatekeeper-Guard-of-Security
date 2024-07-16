@@ -2,6 +2,9 @@ package com.alrosa.staa.gatekeeper_perco_driver.messages;
 
 import lombok.Getter;
 import lombok.Setter;
+/**
+ * Класс, в котором будет сообщение о разблокировке ИУ
+ */
 @Getter
 @Setter
 public class ExdevUnlock {
