@@ -2,11 +2,13 @@ package com.alrosa.staa.gatekeeper_perco_driver.service;
 
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.ControlData;
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.Exdev;
+import com.alrosa.staa.gatekeeper_perco_driver.general.General;
 import com.alrosa.staa.gatekeeper_perco_driver.messages.*;
 import com.alrosa.staa.gatekeeper_perco_driver.storage.Storage;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import org.apache.log4j.Logger;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHttpHeaders;
@@ -71,9 +73,8 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         try {
             this.session = client.execute(this, headers, new URI("ws://" + ip_address + "/tcp")).get();
             logger.info("Подключение установлено c контроллером: " + ip_address + " " + this.session.getId());
-        } catch (ExecutionException e) {
-
-        } catch (URISyntaxException e) {
+        } catch (ExecutionException e) {}
+          catch (URISyntaxException e) {
             logger.error(e);
         } catch (InterruptedException e) {
             logger.error(e);
@@ -128,7 +129,15 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 String[] jsonString1 = jsonString.split(regex);
                 EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString1[2], EventExdevUnlock.class);
                 EventPassPersonal eventPassPersonal = gson.fromJson(jsonString1[4], EventPassPersonal.class);
-                logger.info("Разрешен доступ: " + eventPassPersonal.getPass_personal().getId() + " Разблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
+
+                //ResponseEntity<String> response = null;
+                General general = new General(eventPassPersonal.getPass_personal().getId());
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.APPLICATION_JSON);
+                HttpEntity<General> entity = new HttpEntity<General>(general, headers);
+                restTemplate.exchange(url_server, HttpMethod.POST, entity, String.class);
+                
+            logger.info("Разрешен доступ: " + eventPassPersonal.getPass_personal().getId() + " Разблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
             }
         } catch (NullPointerException | JsonSyntaxException e) {}
         try {
