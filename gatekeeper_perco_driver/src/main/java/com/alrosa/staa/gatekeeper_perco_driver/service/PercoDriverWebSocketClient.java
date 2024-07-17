@@ -7,6 +7,7 @@ import com.alrosa.staa.gatekeeper_perco_driver.storage.Storage;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import org.apache.log4j.Logger;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.WebSocketSession;
@@ -22,6 +23,8 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     private Logger logger = Logger.getLogger(PercoDriverWebSocketClient.class);
     private Gson gson = new Gson();
     private WebSocketSession session;
+    private RestTemplate restTemplate = new RestTemplate();
+    private String url_server = "http://localhost:8080/fromController";
     /**
      * Создаем экземпляр класса ControlData для отправки команды на контроллер
      */
