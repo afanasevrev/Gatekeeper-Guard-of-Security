@@ -129,7 +129,6 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 String[] jsonString1 = jsonString.split(regex);
                 EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString1[2], EventExdevUnlock.class);
                 EventPassPersonal eventPassPersonal = gson.fromJson(jsonString1[4], EventPassPersonal.class);
-
                 //ResponseEntity<String> response = null;
                 General general = new General(eventPassPersonal.getPass_personal().getId());
                 HttpHeaders headers = new HttpHeaders();
