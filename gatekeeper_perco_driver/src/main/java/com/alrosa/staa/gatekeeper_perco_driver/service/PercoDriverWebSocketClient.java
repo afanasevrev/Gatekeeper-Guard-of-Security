@@ -3,6 +3,7 @@ package com.alrosa.staa.gatekeeper_perco_driver.service;
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.ControlData;
 import com.alrosa.staa.gatekeeper_perco_driver.commands.set_commands.Exdev;
 import com.alrosa.staa.gatekeeper_perco_driver.general.General;
+import com.alrosa.staa.gatekeeper_perco_driver.general.MessageType;
 import com.alrosa.staa.gatekeeper_perco_driver.messages.*;
 import com.alrosa.staa.gatekeeper_perco_driver.storage.Storage;
 import com.google.gson.Gson;
@@ -129,7 +130,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 String[] jsonString1 = jsonString.split(regex);
                 EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString1[2], EventExdevUnlock.class);
                 EventPassPersonal eventPassPersonal = gson.fromJson(jsonString1[4], EventPassPersonal.class);
-                General general = new General(eventPassPersonal.getPass_personal().getId());
+                General general = new General(MessageType.OPERATOR, eventPassPersonal.getPass_personal().getId());
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.APPLICATION_JSON);
                 HttpEntity<General> entity = new HttpEntity<General>(general, headers);
