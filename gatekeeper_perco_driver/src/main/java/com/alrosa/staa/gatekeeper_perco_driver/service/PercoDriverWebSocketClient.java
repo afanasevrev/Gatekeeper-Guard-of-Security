@@ -18,6 +18,8 @@ import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 /**
  * Класс устанавливает соединение с контроллером
@@ -29,7 +31,14 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     private RestTemplate restTemplate = new RestTemplate();
     //IP - адрес контроллера сохраним здесь
     private String ipAddress;
+    //URL адрес куда будет драйвер высылать сообщения от контроллера
     private String url_server = "http://localhost:8080/fromController";
+    //Текущая дата
+    private Date currentDate;
+    //Форматируем дату на свое усмотрнеие
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+    //Отформатированная дата. Нужна для отправки на сервер
+    private String formattedDate;
     /**
      * Создаем экземпляр класса ControlData для отправки команды на контроллер
      */
