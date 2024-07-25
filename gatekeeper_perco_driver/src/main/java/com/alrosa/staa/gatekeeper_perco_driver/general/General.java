@@ -12,12 +12,15 @@ public class General {
     //IP - адрес контроллера
     private String ipAddress;
     //Направление вход/выход
-    private String direction;
+    private int direction;
+    //Доступ
+    private boolean access;
     public General(){}
-    public General(MessageType messageType, String cardId, String ipAddress, String direction) {
+    public General(MessageType messageType, String cardId, String ipAddress, int direction, boolean access) {
         this.messageType = messageType;
         this.cardId = cardId;
         this.ipAddress = ipAddress;
         this.direction = direction;
+        this.access = access;
     }
 }

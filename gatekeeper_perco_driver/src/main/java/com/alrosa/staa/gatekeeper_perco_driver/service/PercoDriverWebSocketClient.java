@@ -27,6 +27,8 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     private Gson gson = new Gson();
     private WebSocketSession session;
     private RestTemplate restTemplate = new RestTemplate();
+    //IP - адрес контроллера сохраним здесь
+    private String ipAddress;
     private String url_server = "http://localhost:8080/fromController";
     /**
      * Создаем экземпляр класса ControlData для отправки команды на контроллер
@@ -73,6 +75,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
         WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
         try {
             this.session = client.execute(this, headers, new URI("ws://" + ip_address + "/tcp")).get();
+            this.ipAddress = ip_address;
             logger.info("Подключение установлено c контроллером: " + ip_address + " " + this.session.getId());
         } catch (ExecutionException e) {}
           catch (URISyntaxException e) {
@@ -130,7 +133,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 String[] jsonString1 = jsonString.split(regex);
                 EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString1[2], EventExdevUnlock.class);
                 EventPassPersonal eventPassPersonal = gson.fromJson(jsonString1[4], EventPassPersonal.class);
-                General general = new General(MessageType.OPERATOR, eventPassPersonal.getPass_personal().getId());
+                General general = new General(MessageType.OPERATOR, eventPassPersonal.getPass_personal().getId(), ipAddress, eventExdevUnlock.getExdev_unlock().getNumber(), true);
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.APPLICATION_JSON);
                 HttpEntity<General> entity = new HttpEntity<General>(general, headers);
