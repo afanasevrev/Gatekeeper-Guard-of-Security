@@ -20,10 +20,10 @@ public class General {
     public General(){}
     public General(MessageType messageType, String currentDate, String cardId, String ipAddress, int direction, boolean access) {
         this.messageType = messageType;
+        this.currentDate = currentDate;
         this.cardId = cardId;
         this.ipAddress = ipAddress;
         this.direction = direction;
         this.access = access;
-        this.currentDate = currentDate;
     }
 }
