@@ -5,11 +5,19 @@ import lombok.Setter;
 @Getter
 @Setter
 public class General {
+    //Тип сообщения, адресуем оператору или админу
     private MessageType messageType;
-    private String card_identifier;
+    //Номер карты
+    private String cardId;
+    //IP - адрес контроллера
+    private String ipAddress;
+    //Направление вход/выход
+    private String direction;
     public General(){}
-    public General(MessageType messageType, String card_identifier) {
-        this.card_identifier = card_identifier;
+    public General(MessageType messageType, String cardId, String ipAddress, String direction) {
         this.messageType = messageType;
+        this.cardId = cardId;
+        this.ipAddress = ipAddress;
+        this.direction = direction;
     }
 }

@@ -135,7 +135,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 headers.setContentType(MediaType.APPLICATION_JSON);
                 HttpEntity<General> entity = new HttpEntity<General>(general, headers);
                 restTemplate.exchange(url_server, HttpMethod.POST, entity, String.class);
-            logger.info("Разрешен доступ: " + eventPassPersonal.getPass_personal().getId() + " Разблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
+                logger.info("Разрешен доступ: " + eventPassPersonal.getPass_personal().getId() + " Разблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
             }
         } catch (NullPointerException | JsonSyntaxException e) {}
         try {
