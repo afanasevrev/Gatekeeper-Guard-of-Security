@@ -173,7 +173,8 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
             }
         } catch (NullPointerException | JsonSyntaxException e) {}
         try {
-            EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString, EventExdevUnlock.class);
+                //Записываем в класс EventExdevUnlock о блокировке двери
+                EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString, EventExdevUnlock.class);
             if (!eventExdevUnlock.getExdev_unlock().isUnlock()) {
                 //Печатаем логи
                 logger.info("Заблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
