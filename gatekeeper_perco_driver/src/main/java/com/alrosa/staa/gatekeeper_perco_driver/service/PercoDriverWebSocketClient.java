@@ -6,6 +6,7 @@ import com.alrosa.staa.gatekeeper_perco_driver.general.General;
 import com.alrosa.staa.gatekeeper_perco_driver.general.MessageType;
 import com.alrosa.staa.gatekeeper_perco_driver.messages.*;
 import com.alrosa.staa.gatekeeper_perco_driver.storage.Storage;
+import com.alrosa.staa.gatekeeper_perco_driver.variables.Variables;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import org.apache.log4j.Logger;
@@ -32,7 +33,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
     //IP - адрес контроллера сохраним здесь
     private String ipAddress;
     //URL адрес куда будет драйвер высылать сообщения от контроллера
-    private String url_server = "http://localhost:8080/fromController";
+    private String url_server = "http://" + Variables.server_ip + ":" + Variables.server_port + "/fromController";
     //Текущая дата
     private Date currentDate;
     //Форматируем дату на свое усмотрнеие
