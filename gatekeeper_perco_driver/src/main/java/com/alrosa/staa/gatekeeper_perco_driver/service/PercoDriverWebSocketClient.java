@@ -141,7 +141,24 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
             }
         } catch (NullPointerException | JsonSyntaxException e) {}
         try {
+                //Полученный JSON файл превращаем в класс EventPassBanPersonal
                 EventPassBanPersonal eventPassBanPersonal = gson.fromJson(jsonString, EventPassBanPersonal.class);
+                //Возвращаем текущее время
+                currentDate = new Date();
+                //Форматируем текущее время
+                formattedDate = simpleDateFormat.format(currentDate);
+                //Полученные данные с контроллера записываем в класс General
+                General general = new General(MessageType.OPERATOR, formattedDate, eventPassBanPersonal.getPass_ban_personal().getId(), ipAddress, eventPassBanPersonal.getPass_ban_personal().getNumber(), false);
+                //Формируем HTTP - заголовок
+                HttpHeaders headers = new HttpHeaders();
+                //Заголовок помечаем как JSON
+                headers.setContentType(MediaType.APPLICATION_JSON);
+                //Формируем сообщение, которое будем отправлять на сервер.
+                //Класс General превращаем в JSON и готовимся к отправке
+                HttpEntity<General> entity = new HttpEntity<General>(general, headers);
+                //Отправляем сформированное сообщение на сервер, как POST - запрос
+                restTemplate.exchange(url_server, HttpMethod.POST, entity, String.class);
+                //Печатаем логи
                 logger.info("Неизвестная карта: " + eventPassBanPersonal.getPass_ban_personal().getId());
         } catch (NullPointerException | JsonSyntaxException e) {}
         try {
@@ -162,7 +179,7 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 General general = new General(MessageType.OPERATOR, formattedDate, eventPassPersonal.getPass_personal().getId(), ipAddress, eventExdevUnlock.getExdev_unlock().getNumber(), true);
                 //Формируем HTTP заголовок
                 HttpHeaders headers = new HttpHeaders();
-                //Заголовок превращаем в JSON
+                //Заголовок помечаем как JSON
                 headers.setContentType(MediaType.APPLICATION_JSON);
                 //Формируем сообщение, которое будем отправлять на сервер.
                 //Класс General превращаем в JSON и готовимся к отправке
