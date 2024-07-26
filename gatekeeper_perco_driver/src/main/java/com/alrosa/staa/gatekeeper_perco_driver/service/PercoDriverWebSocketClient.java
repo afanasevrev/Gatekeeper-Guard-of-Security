@@ -113,10 +113,15 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
      */
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws NullPointerException {
+        //Превращаем в String полученное сообщение от контроллера
         String jsonString = message.getPayload();
+        //Печатаем логи
         logger.info("Получено сообщение: " + jsonString);
         try {
+            //Получаем от контроллера информацию о приложенной карте
             EventCard eventCard = gson.fromJson(jsonString, EventCard.class);
+            //Если ID предъявленной карты существует во внутренней памяти,
+            //то выполняем условие по разблокировке двери
             if (Storage.storageCards.contains(eventCard.getCard().getId())) {
                 controlData.setControl("exdev");
                 if (eventCard.getCard().getNumber() == 0 && eventCard.getCard().getDirection() == 0) {
@@ -128,33 +133,49 @@ public class PercoDriverWebSocketClient extends TextWebSocketHandler {
                 } else if (eventCard.getCard().getNumber() == 1 && eventCard.getCard().getDirection() == 1) {
                     controlData.setExdev(exdev11);
                 }
+                //Превращаем в JSON класс ControlData
                 String text = gson.toJson(controlData);
+                //Отправляем команду на контроллер
                 sendMessage(text);
             }
         } catch (NullPointerException | JsonSyntaxException e) {}
         try {
-            EventPassBanPersonal eventPassBanPersonal = gson.fromJson(jsonString, EventPassBanPersonal.class);
-            logger.info("Неизвестная карта: " + eventPassBanPersonal.getPass_ban_personal().getId());
+                EventPassBanPersonal eventPassBanPersonal = gson.fromJson(jsonString, EventPassBanPersonal.class);
+                logger.info("Неизвестная карта: " + eventPassBanPersonal.getPass_ban_personal().getId());
         } catch (NullPointerException | JsonSyntaxException e) {}
         try {
             if (jsonString.contains("exdev_unlock") && jsonString.contains("pass_personal")) {
+                //Устанавливаем regex, разделяем полученную строку по абзацу
                 String regex = "\\s";
+                //Получаем массив из полученной строки
                 String[] jsonString1 = jsonString.split(regex);
+                //2-й по индексу в массиве элемент принадлежит классу EventExdevUnlock
                 EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString1[2], EventExdevUnlock.class);
+                //4-й по индексу в массиве элемент принадлежит классу EventPassPersonal
                 EventPassPersonal eventPassPersonal = gson.fromJson(jsonString1[4], EventPassPersonal.class);
+                //Возвращаем текущее время
                 currentDate = new Date();
+                //Форматируем текущее время
                 formattedDate = simpleDateFormat.format(currentDate);
+                //Полученные данные с контроллера записываем в класс General
                 General general = new General(MessageType.OPERATOR, formattedDate, eventPassPersonal.getPass_personal().getId(), ipAddress, eventExdevUnlock.getExdev_unlock().getNumber(), true);
+                //Формируем HTTP заголовок
                 HttpHeaders headers = new HttpHeaders();
+                //Заголовок превращаем в JSON
                 headers.setContentType(MediaType.APPLICATION_JSON);
+                //Формируем сообщение, которое будем отправлять на сервер.
+                //Класс General превращаем в JSON и готовимся к отправке
                 HttpEntity<General> entity = new HttpEntity<General>(general, headers);
+                //Отправляем сформированное сообщение на сервер, как POST - запрос
                 restTemplate.exchange(url_server, HttpMethod.POST, entity, String.class);
+                //Печатаем логи
                 logger.info("Разрешен доступ: " + eventPassPersonal.getPass_personal().getId() + " Разблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
             }
         } catch (NullPointerException | JsonSyntaxException e) {}
         try {
             EventExdevUnlock eventExdevUnlock = gson.fromJson(jsonString, EventExdevUnlock.class);
             if (!eventExdevUnlock.getExdev_unlock().isUnlock()) {
+                //Печатаем логи
                 logger.info("Заблокирован ИУ: " + eventExdevUnlock.getExdev_unlock().getNumber());
             }
         } catch(NullPointerException | JsonSyntaxException e) {}
